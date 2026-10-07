@@ -121,25 +121,43 @@
   <data name="sound-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\sound-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="road" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bg-startgame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\bg-startgame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="water" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="bg-btnStart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\bg-btnStart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bg-GamePlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\bg-GamePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="sound-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\sound-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg-GamePlay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\bg-GamePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pause1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="water1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="road1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fish_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\fish_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="turtle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\turtle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crocodile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\crocodile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="frog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\frog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="treasure_chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\treasure_chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="lilypad_flower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\lilypad_flower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

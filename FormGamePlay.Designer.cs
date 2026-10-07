@@ -49,7 +49,7 @@
             // picWater
             // 
             this.picWater.BackColor = System.Drawing.Color.Transparent;
-            this.picWater.BackgroundImage = global::JumfrogbyMark.Properties.Resources.water;
+            this.picWater.BackgroundImage = global::JumfrogbyMark.Properties.Resources.water1;
             this.picWater.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picWater.Location = new System.Drawing.Point(1, 24);
             this.picWater.Name = "picWater";
@@ -60,7 +60,7 @@
             // picRoad
             // 
             this.picRoad.BackColor = System.Drawing.Color.Transparent;
-            this.picRoad.BackgroundImage = global::JumfrogbyMark.Properties.Resources.road;
+            this.picRoad.BackgroundImage = global::JumfrogbyMark.Properties.Resources.road1;
             this.picRoad.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picRoad.Location = new System.Drawing.Point(1, 314);
             this.picRoad.Name = "picRoad";
@@ -83,7 +83,7 @@
             // btnPause
             // 
             this.btnPause.BackColor = System.Drawing.Color.Transparent;
-            this.btnPause.BackgroundImage = global::JumfrogbyMark.Properties.Resources.pause;
+            this.btnPause.BackgroundImage = global::JumfrogbyMark.Properties.Resources.pause1;
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPause.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPause.FlatAppearance.BorderSize = 0;
@@ -196,7 +196,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GamePlay;
+            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GamePlay1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.lblTime);

@@ -73,9 +73,9 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_GamePlay {
+        internal static System.Drawing.Bitmap bg_GamePlay1 {
             get {
-                object obj = ResourceManager.GetObject("bg-GamePlay", resourceCulture);
+                object obj = ResourceManager.GetObject("bg-GamePlay1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pause {
+        internal static System.Drawing.Bitmap crocodile {
             get {
-                object obj = ResourceManager.GetObject("pause", resourceCulture);
+                object obj = ResourceManager.GetObject("crocodile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,49 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap road {
+        internal static System.Drawing.Bitmap fish_red {
             get {
-                object obj = ResourceManager.GetObject("road", resourceCulture);
+                object obj = ResourceManager.GetObject("fish_red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog {
+            get {
+                object obj = ResourceManager.GetObject("frog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lilypad_flower {
+            get {
+                object obj = ResourceManager.GetObject("lilypad_flower", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause1 {
+            get {
+                object obj = ResourceManager.GetObject("pause1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap road1 {
+            get {
+                object obj = ResourceManager.GetObject("road1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +173,29 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap water {
+        internal static System.Drawing.Bitmap treasure_chest {
             get {
-                object obj = ResourceManager.GetObject("water", resourceCulture);
+                object obj = ResourceManager.GetObject("treasure_chest", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle {
+            get {
+                object obj = ResourceManager.GetObject("turtle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap water1 {
+            get {
+                object obj = ResourceManager.GetObject("water1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

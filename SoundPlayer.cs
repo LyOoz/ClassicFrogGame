@@ -12,7 +12,7 @@ namespace JumfrogbyMark
         private static WindowsMediaPlayer sound = new WindowsMediaPlayer();
         public static void PlayStartMusic() // sound startgame
         {
-            sound.URL = @"sound\sound-startgame.mp3";
+            sound.URL = @"assets\sound\sound-startgame.mp3";
             sound.settings.setMode("loop", true);
             sound.settings.volume = 50;
             sound.controls.play();

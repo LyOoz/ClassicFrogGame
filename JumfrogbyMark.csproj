@@ -60,7 +60,19 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EnemyMonster.cs" />
+    <Compile Include="FriendMonster.cs" />
+    <Compile Include="GameController.cs" />
+    <Compile Include="GameTimer.cs" />
+    <Compile Include="Item.cs" />
+    <Compile Include="JumpingFiled.cs" />
+    <Compile Include="Monster.cs" />
+    <Compile Include="PlayerFrog.cs" />
+    <Compile Include="River.cs" />
+    <Compile Include="Road.cs" />
     <Compile Include="Soundplayer.cs" />
+    <Compile Include="TargetLotus.cs" />
+    <Compile Include="Zone.cs" />
     <EmbeddedResource Include="FormGamePlay.resx">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
     </EmbeddedResource>
@@ -97,16 +109,14 @@
     <None Include="assets\bg-btnStart.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\bg-GamePlay.png" />
+    <None Include="assets\gameplay\bg-GamePlay.png" />
+    <None Include="assets\gameplay\pause.png" />
+    <None Include="assets\gameplay\water.png" />
+    <None Include="assets\gameplay\road.png" />
+    <Content Include="assets\sound\sound-startgame.mp3" />
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />
-    <None Include="assets\road.png" />
-    <None Include="assets\pause.png" />
     <Content Include="assets\sound-off.png" />
-    <None Include="assets\water.png" />
-    <Content Include="sound\sound-startgame.mp3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WMPLib">
