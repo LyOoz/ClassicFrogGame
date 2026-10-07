@@ -13,7 +13,6 @@ namespace JumfrogbyMark
 {
     public partial class FormStartGame : Form
     {
-        private SoundPlayer sound = new SoundPlayer();
         public FormStartGame()
         {
             InitializeComponent();
@@ -22,10 +21,8 @@ namespace JumfrogbyMark
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            sound.Play("C:\Users\mark\Downloads\JumfrogbyMark\sound\sound-startgame.mp3");
+            Soundplayer.PlayStartMusic();
         }
-
-
         private void btnPlay_Click(object sender, EventArgs e)
         {
 

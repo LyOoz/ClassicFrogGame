@@ -1,46 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
-
+using WMPLib;
 namespace JumfrogbyMark
 {
-    internal class SoundPlayer
+    internal class Soundplayer // static class
     {
-        private System.Media.SoundPlayer player;
-        private bool isMuted = false;
-        public SoundPlayer()
+        private static WindowsMediaPlayer sound = new WindowsMediaPlayer();
+        public static void PlayStartMusic() // sound startgame
         {
-            player = new System.Media.SoundPlayer();
+            sound.URL = @"sound\sound-startgame.mp3";
+            sound.settings.setMode("loop", true);
+            sound.settings.volume = 50;
+            sound.controls.play();
+            
         }
-        public void Play(string filePath)
-        {
-            if (isMuted)
-                return;
 
-            player.Stop();
-            player.SoundLocation = filePath;
-            player.Load();
-            player.PlayLooping();
-        }
-        public void Stop()
+        public static void PlayGameMusic() // Sound Gameplay
         {
-            player.Stop();
+            sound.URL = @"";
+            sound.settings.setMode("loop", true);
+            sound.settings.volume = 50;
+            sound.controls.play();
         }
-        public void Mute()
+
+        public static void StopMusic()
         {
-            isMuted = true;
-            player.Stop();
-        }
-        public void Unmute()
-        {
-            isMuted = false;
-        }
-        public bool IsMuted()
-        {
-            return isMuted;
+            sound.controls.stop();
         }
     }
-
 }
