@@ -97,9 +97,12 @@
     <None Include="assets\bg-btnStart.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\bg-GamePlay.png" />
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />
+    <None Include="assets\road.png" />
     <Content Include="assets\sound-off.png" />
+    <None Include="assets\water.png" />
     <Content Include="sound\sound-startgame.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -21,7 +21,7 @@ namespace JumfrogbyMark
         {
 
         }
-        private void FormGamePlay_FormClosed(object sender, FormClosedEventArgs e)
+        private void FormGamePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }

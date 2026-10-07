@@ -44,9 +44,9 @@
             this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(346, 392);
+            this.btnPlay.Location = new System.Drawing.Point(384, 425);
             this.btnPlay.Name = "btnPlay";
-            this.btnPlay.Size = new System.Drawing.Size(345, 157);
+            this.btnPlay.Size = new System.Drawing.Size(273, 98);
             this.btnPlay.TabIndex = 0;
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
@@ -57,9 +57,9 @@
             this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSound.Location = new System.Drawing.Point(723, 438);
+            this.btnSound.Location = new System.Drawing.Point(697, 439);
             this.btnSound.Name = "btnSound";
-            this.btnSound.Size = new System.Drawing.Size(57, 61);
+            this.btnSound.Size = new System.Drawing.Size(68, 65);
             this.btnSound.TabIndex = 1;
             this.btnSound.TabStop = false;
             this.btnSound.Click += new System.EventHandler(this.btnSound_Click);
