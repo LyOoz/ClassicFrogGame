@@ -101,6 +101,7 @@
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />
     <None Include="assets\road.png" />
+    <None Include="assets\pause.png" />
     <Content Include="assets\sound-off.png" />
     <None Include="assets\water.png" />
     <Content Include="sound\sound-startgame.mp3">
