@@ -31,5 +31,10 @@ namespace JumfrogbyMark
         {
             sound.controls.stop();
         }
+        public static bool ToggleMute()
+        {
+            sound.settings.mute = !sound.settings.mute;
+            return sound.settings.mute;
+        }
     }
 }

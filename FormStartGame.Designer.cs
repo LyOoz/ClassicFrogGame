@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStartGame));
             this.btnPlay = new System.Windows.Forms.Button();
+            this.btnSound = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -49,14 +51,28 @@
             this.btnPlay.UseVisualStyleBackColor = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
+            // btnSound
+            // 
+            this.btnSound.BackColor = System.Drawing.Color.Transparent;
+            this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
+            this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSound.Location = new System.Drawing.Point(723, 438);
+            this.btnSound.Name = "btnSound";
+            this.btnSound.Size = new System.Drawing.Size(57, 61);
+            this.btnSound.TabIndex = 1;
+            this.btnSound.TabStop = false;
+            this.btnSound.Click += new System.EventHandler(this.btnSound_Click);
+            // 
             // FormStartGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_startgame;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.btnSound);
             this.Controls.Add(this.btnPlay);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -67,6 +83,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClassicFrog";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -74,6 +91,7 @@
         #endregion
 
         private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.PictureBox btnSound;
     }
 }
 

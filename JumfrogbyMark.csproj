@@ -94,6 +94,9 @@
     <None Include="assets\bg-btnStart.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\images.ico" />
+    <None Include="assets\sound-on.png" />
+    <Content Include="assets\sound-off.png" />
     <Content Include="sound\sound-startgame.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -27,5 +27,18 @@ namespace JumfrogbyMark
         {
 
         }
+
+        private void btnSound_Click(object sender, EventArgs e)
+        {
+            bool isMuted = Soundplayer.ToggleMute();
+            if (isMuted)
+            {
+                btnSound.BackgroundImage = Properties.Resources.sound_off;
+            }
+            else
+            {
+                btnSound.BackgroundImage = Properties.Resources.sound_on;
+            }
+        }
     }
 }
