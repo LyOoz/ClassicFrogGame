@@ -25,7 +25,10 @@ namespace JumfrogbyMark
         }
         private void btnPlay_Click(object sender, EventArgs e)
         {
-
+            Soundplayer.StopMusic();
+            FormGamePlay gameForm = new FormGamePlay();
+            gameForm.Show();
+            this.Hide();
         }
 
         private void btnSound_Click(object sender, EventArgs e)
@@ -40,5 +43,7 @@ namespace JumfrogbyMark
                 btnSound.BackgroundImage = Properties.Resources.sound_on;
             }
         }
+
+
     }
 }
