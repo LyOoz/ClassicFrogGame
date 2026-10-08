@@ -18,6 +18,10 @@ namespace JumfrogbyMark
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
 
+        // debug Location (X, Y) on frog
+        private bool showDebug = false;
+        private readonly Font debugFont = new Font("Consolas", 8f);
+
         public FormGamePlay(string playerName = "ClassicFrog001")
         {
             InitializeComponent();
@@ -69,10 +73,41 @@ namespace JumfrogbyMark
             // กบอยู่บนสุดเพื่อทับ monster ได้
             var frog = controller.PlayerFrog;
             g.DrawImage(frogSprite, frog.X, frog.Y, frog.Width, frog.Height);
+
+            // debug
+            if (showDebug)
+            {
+                DrawDebugLocation(g, "Frog", frog.X, frog.Y);
+                foreach (var m in controller.Friends)
+                    DrawDebugLocation(g, "F", frog.X, frog.Y);
+                foreach (var m in controller.Enemies)
+                    DrawDebugLocation(g, "E", frog.X, frog.Y);
+            }
+        }
+
+        // debug
+        private void DrawDebugLocation(Graphics g, string tag, int x, int y)
+        {
+            string text = string.Format("{0} {1},{2}", tag, x, y);
+            var size = g.MeasureString(text, debugFont);
+            float tx = x;
+            float ty = y - size.Height - 2;
+            if (ty < 0) ty = y + 2; 
+
+            g.FillRectangle(Brushes.Black, tx, ty, size.Width + 4, size.Height + 2);
+            g.DrawString(text, debugFont, Brushes.Lime, tx + 2, ty + 1);
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            // F1 debug Location
+            if (keyData == Keys.F1)
+            {
+                showDebug = !showDebug;
+                Invalidate();
+                return true;
+            }
+
             switch (keyData) // ตรวจปุ่มแลว้สั่่งให้ method jump ทำงาน
             {
                 case Keys.Up:
@@ -126,14 +161,11 @@ namespace JumfrogbyMark
 
             isJumping = false;
         }
-
         private void FormGamePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
             moveTimer?.Stop();
             Application.Exit();
         }
-
-
         private void btnSound_Click(object sender, EventArgs e)
         {
             bool isMuted = Soundplayer.ToggleMute();

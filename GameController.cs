@@ -57,7 +57,7 @@ namespace JumfrogbyMark
         public bool IsVictory => gameState == GameState.Victory;
 
         // constructor (config main game this here)
-        public GameController(int fieldWidth = 396, int fieldHeight = 510)
+        public GameController(int fieldWidth = 396, int fieldHeight = 490)
         {
             this.rng = new Random();
             this.score = 0;
@@ -66,7 +66,7 @@ namespace JumfrogbyMark
             this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 1);
             this.river = new River(x: 0, y: 45, width: fieldWidth, height: 220);
             this.road = new Road(x: 0, y: 315, width: fieldWidth, height: 195, lanesCount: 4);
-            this.playerFrog = new PlayerFrog(startX: fieldWidth , startY: fieldHeight, width: SpriteConfig.Frog.Width, height: SpriteConfig.Frog.Height, initialHearts: 5, stepSize: 40);
+            this.playerFrog = new PlayerFrog(startX: fieldWidth , startY: fieldHeight, width: SpriteConfig.Frog.Width, height: SpriteConfig.Frog.Height, initialHearts: 5, stepSize: 55);
             this.gameTimer = new GameTimer();
             this.currentItem = new Item(width: SpriteConfig.ItemWidth, height: SpriteConfig.ItemHeight, durationSeconds: 10.0f);
             this.enemies = new List<EnemyMonster>();
@@ -104,7 +104,7 @@ namespace JumfrogbyMark
             this.friends.Clear();
             this.targetLotuses.Clear();
 
-            //สร้างใบบัวเป้าหมาย
+            // สร้างใบบัวเป้าหมาย
             int lotusCount = 5;
             int segmentW = jumpingFiled.Width / lotusCount;
             for (int i = 0; i < lotusCount; i++)
