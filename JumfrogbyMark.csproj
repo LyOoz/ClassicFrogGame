@@ -113,6 +113,8 @@
     <None Include="assets\gameplay\pause.png" />
     <None Include="assets\gameplay\water.png" />
     <None Include="assets\gameplay\road.png" />
+    <None Include="assets\gameplay\frog.png" />
+    <None Include="assets\gameplay\frog_up.png" />
     <Content Include="assets\sound\sound-startgame.mp3" />
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />

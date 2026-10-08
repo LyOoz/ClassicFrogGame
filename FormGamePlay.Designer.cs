@@ -41,9 +41,11 @@
             this.lblLives = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
+            this.picFrog = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFrog)).BeginInit();
             this.SuspendLayout();
             // 
             // picWater
@@ -192,6 +194,18 @@
             this.lblTime.TabIndex = 12;
             this.lblTime.Text = "xxxx";
             // 
+            // picFrog
+            // 
+            this.picFrog.BackColor = System.Drawing.Color.Transparent;
+            this.picFrog.BackgroundImage = global::JumfrogbyMark.Properties.Resources.frog_up;
+            this.picFrog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picFrog.Location = new System.Drawing.Point(396, 510);
+            this.picFrog.Name = "picFrog";
+            this.picFrog.Size = new System.Drawing.Size(51, 48);
+            this.picFrog.TabIndex = 13;
+            this.picFrog.TabStop = false;
+            this.picFrog.Click += new System.EventHandler(this.picFrog_Click);
+            // 
             // FormGamePlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -199,6 +213,7 @@
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GamePlay1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.picFrog);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblLives);
@@ -223,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picWater)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFrog)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,5 +258,6 @@
         private System.Windows.Forms.Label lblLives;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.PictureBox picFrog;
     }
 }

@@ -12,14 +12,12 @@ namespace JumfrogbyMark
         Victory
     }
 
-    /// <summary>
     /// คลาส GameController เป็นคลาสที่ใช้ควบคุมการทำงานของเกม
-    /// ทำหน้าที่ประสานงานระหว่าง PlayerFrog, EnemyMonster, FriendMonster,
-    /// TargetLotus, JumpingFiled, River, Road, Item และ GameTimer
-    /// </summary>
+    /// PlayerFrog, EnemyMonster, FriendMonster,
+    /// TargetLotus, JumpingFiled, River, Road, Item , GameTimer
     public class GameController
     {
-        // อ็อบเจกต์หลักของเกมตาม Class Diagram
+        // object หลักของเกม
         private PlayerFrog playerFrog;
         private List<EnemyMonster> enemies;
         private List<FriendMonster> friends;
@@ -40,7 +38,7 @@ namespace JumfrogbyMark
         private float itemSpawnTimer;
         private const float ItemSpawnInterval = 15.0f; // เกิดไอเทมทุกๆ 15 วินาที
 
-        // คุณสมบัติ (Properties)
+        // Properties
         public PlayerFrog PlayerFrog => playerFrog;
         public List<EnemyMonster> Enemies => enemies;
         public List<FriendMonster> Friends => friends;
@@ -57,8 +55,8 @@ namespace JumfrogbyMark
         public bool IsPaused => gameState == GameState.Paused;
         public bool IsVictory => gameState == GameState.Victory;
 
-        // คอนสตรัคเตอร์
-        public GameController(int fieldWidth = 830, int fieldHeight = 560)
+        // constructor
+        public GameController(int fieldWidth = 396, int fieldHeight = 510)
         {
             this.rng = new Random();
             this.score = 0;
@@ -66,24 +64,21 @@ namespace JumfrogbyMark
             this.gameState = GameState.Playing;
 
             // สร้างส่วนประกอบของเกม
-            this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 5);
+            this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 1);
             this.river = new River(x: 0, y: 45, width: fieldWidth, height: 220);
             this.road = new Road(x: 0, y: 315, width: fieldWidth, height: 195, lanesCount: 4);
-            this.playerFrog = new PlayerFrog(startX: fieldWidth / 2 - 20, startY: 515, width: 40, height: 40, initialHearts: 5);
+            this.playerFrog = new PlayerFrog(startX: fieldWidth , startY: fieldHeight, width: 40, height: 40, initialHearts: 5, stepSize: 30);
             this.gameTimer = new GameTimer(defaultLimitSeconds: 30.0f);
             this.currentItem = new Item(width: 32, height: 32, durationSeconds: 10.0f);
 
             this.enemies = new List<EnemyMonster>();
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
-
-            // ตั้งค่าเริ่มต้นของด่านที่ 1
+            // default level 1
             InitializeLevel(1);
         }
 
-        /// <summary>
-        /// เตรียมข้อมูลและอ็อบเจกต์สำหรับแต่ละฉาก/ด่าน
-        /// </summary>
+        // method create object แต่ละอัน
         public void InitializeLevel(int newLevel)
         {
             this.level = newLevel;
@@ -104,7 +99,7 @@ namespace JumfrogbyMark
             // เลน 1: รถวิ่งไปขวา (Car)
             for (int i = 0; i < 3; i++)
             {
-                var enemy = new EnemyMonster(i * 270 + 30, road.Y + 8, 70, 38, baseSpeed: 1.6f, movingRight: true, type: EnemyType.Car);
+                var enemy = new EnemyMonster(i * 270 + 30, road.Y + 8, 70, 38, baseSpeed: 1.6f, movingRight: true, type: EnemyType.turtle);
                 enemy.ApplyLevelSpeed(level);
                 enemies.Add(enemy);
             }
@@ -112,7 +107,7 @@ namespace JumfrogbyMark
             // เลน 2: รถวิ่งไปซ้าย (Car)
             for (int i = 0; i < 3; i++)
             {
-                var enemy = new EnemyMonster(i * 260 + 80, road.Y + 54, 70, 38, baseSpeed: 2.1f, movingRight: false, type: EnemyType.Car);
+                var enemy = new EnemyMonster(i * 260 + 80, road.Y + 54, 70, 38, baseSpeed: 2.1f, movingRight: false, type: EnemyType.crocodile);
                 enemy.ApplyLevelSpeed(level);
                 enemies.Add(enemy);
             }
@@ -120,7 +115,7 @@ namespace JumfrogbyMark
             // เลน 3: งูพิษเลื้อยไปขวา/ซ้าย (Snake)
             for (int i = 0; i < 2; i++)
             {
-                var snake = new EnemyMonster(i * 380 + 50, road.Y + 102, 90, 36, baseSpeed: 1.8f, movingRight: true, type: EnemyType.Snake);
+                var snake = new EnemyMonster(i * 380 + 50, road.Y + 102, 90, 36, baseSpeed: 1.8f, movingRight: true, type: EnemyType.crocodile);
                 snake.ApplyLevelSpeed(level);
                 enemies.Add(snake);
             }
@@ -128,7 +123,7 @@ namespace JumfrogbyMark
             // เลน 4: รถวิ่งเร็วไปซ้าย (Car)
             for (int i = 0; i < 3; i++)
             {
-                var enemy = new EnemyMonster(i * 250 + 60, road.Y + 148, 70, 38, baseSpeed: 2.6f, movingRight: false, type: EnemyType.Car);
+                var enemy = new EnemyMonster(i * 250 + 60, road.Y + 148, 70, 38, baseSpeed: 2.6f, movingRight: false, type: EnemyType.turtle);
                 enemy.ApplyLevelSpeed(level);
                 enemies.Add(enemy);
             }

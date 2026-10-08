@@ -113,9 +113,49 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap frog {
+        internal static System.Drawing.Bitmap frog_down {
             get {
-                object obj = ResourceManager.GetObject("frog", resourceCulture);
+                object obj = ResourceManager.GetObject("frog_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_jump {
+            get {
+                object obj = ResourceManager.GetObject("frog_jump", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_left {
+            get {
+                object obj = ResourceManager.GetObject("frog_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_right {
+            get {
+                object obj = ResourceManager.GetObject("frog_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_up {
+            get {
+                object obj = ResourceManager.GetObject("frog_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
