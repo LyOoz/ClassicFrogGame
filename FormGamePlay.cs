@@ -135,15 +135,15 @@ namespace JumfrogbyMark
                     controller.PlayerFrog.MoveUp();
                     break;
                 case Keys.Down:
-                    frogSprite = SpriteConfig.FrogJump;
+                    frogSprite = SpriteConfig.FrogJumpDown;
                     controller.PlayerFrog.MoveDown();
                     break;
                 case Keys.Left:
-                    frogSprite = SpriteConfig.FrogJump;
+                    frogSprite = SpriteConfig.FrogJumpLeft;
                     controller.PlayerFrog.MoveLeft();
                     break;
                 case Keys.Right:
-                    frogSprite = SpriteConfig.FrogJump;
+                    frogSprite = SpriteConfig.FrogJumpRight;
                     controller.PlayerFrog.MoveRight();
                     break;
             }

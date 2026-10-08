@@ -142,9 +142,9 @@ namespace JumfrogbyMark
             var riverLaneSettings = new (int dir, FriendType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                (-1, FriendType.FishBlue, 3, 930, 105,  -84, 1200), // เลนแรก บนสุด
-                ( 1, FriendType.FishRed,  3, 1,  160,  -84, 1000),
-                (-1, FriendType.FishRed,  3, 930, 415, -84, 1200),
+                (-1, FriendType.FishBlue, 3, 930, 140,  -84, 1200), // เลนแรก บนสุด
+                ( 1, FriendType.FishRed,  3, 1,  195,  -84, 1000),
+                (-1, FriendType.FishRed,  3, 930, 250, -84, 1200),
             };
             riverLaneStarts.Clear();
             for (int lane = 0; lane < riverLanes; lane++)

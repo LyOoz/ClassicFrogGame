@@ -203,6 +203,36 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap frog_jumpback {
+            get {
+                object obj = ResourceManager.GetObject("frog_jumpback", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_jumpleft {
+            get {
+                object obj = ResourceManager.GetObject("frog_jumpleft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap frog_jumpright {
+            get {
+                object obj = ResourceManager.GetObject("frog_jumpright", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap frog_left {
             get {
                 object obj = ResourceManager.GetObject("frog_left", resourceCulture);

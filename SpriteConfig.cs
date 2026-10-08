@@ -9,6 +9,10 @@ namespace JumfrogbyMark
         public static readonly Image FrogUp = Properties.Resources.frog_up;
         public static readonly Image FrogDown = Properties.Resources.frog_down;
         public static readonly Image FrogJump = Properties.Resources.frog_jump;
+        public static readonly Image FrogJumpDown = Properties.Resources.frog_jumpback;
+        public static readonly Image FrogJumpLeft = Properties.Resources.frog_jumpleft;
+        public static readonly Image FrogJumpRight = Properties.Resources.frog_jumpright;
+
 
         public static readonly SpriteSet Turtle = new SpriteSet(
             Properties.Resources.turtle_left, Properties.Resources.turtle_right, width: 84, height: 45, spacing: 320);
