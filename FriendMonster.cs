@@ -5,7 +5,6 @@ namespace JumfrogbyMark
 {
     public enum FriendType
     {
-        Turtle,    
         Fish     
     }
 
@@ -38,8 +37,6 @@ namespace JumfrogbyMark
             Point frogCenter = new Point(frogRect.X + frogRect.Width / 2, frogRect.Y + frogRect.Height / 2);
             return this.Bounds.Contains(frogCenter) || this.Bounds.IntersectsWith(frogRect);
         }
-
-
         /// ขี่คอตามเพื่อน
         public void Carry(PlayerFrog frog)
         {

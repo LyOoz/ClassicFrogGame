@@ -20,6 +20,9 @@ namespace JumfrogbyMark
         private PlayerFrog playerFrog;
         private List<EnemyMonster> enemies;
         private List<FriendMonster> friends;
+        // จำ index ตัวแรกของแต้ละเลน/แถว เพื่อให้ง่ายต่อการเลื้ยง index
+        private readonly List<int> roadLaneStarts = new List<int>();
+        private readonly List<int> riverLaneStarts = new List<int>();
         private List<TargetLotus> targetLotuses;
         private JumpingFiled jumpingFiled;
         private River river;
@@ -77,6 +80,25 @@ namespace JumfrogbyMark
             InitializeLevel(1);
         }
 
+        // constructor ของ สัตว์แต่ละประเภท
+        // เรียง index ตาม (เลน, ตัวที่)
+        public EnemyMonster EnemyAt(int lane, int pos)
+        {
+            if (lane < 0 || lane >= roadLaneStarts.Count) return null;
+            int start = roadLaneStarts[lane];
+            int next = (lane + 1 < roadLaneStarts.Count) ? roadLaneStarts[lane + 1] : enemies.Count;
+            int idx = start + pos;
+            return (idx >= start && idx < next) ? enemies[idx] : null;
+        }
+        public FriendMonster FriendAt(int lane, int pos)
+        {
+            if (lane < 0 || lane >= riverLaneStarts.Count) return null;
+            int start = riverLaneStarts[lane];
+            int next = (lane + 1 < riverLaneStarts.Count) ? riverLaneStarts[lane + 1] : friends.Count;
+            int idx = start + pos;
+            return (idx >= start && idx < next) ? friends[idx] : null;
+        }
+
         // method create object แต่ละอัน
         public void InitializeLevel(int newLevel)
         {
@@ -85,7 +107,7 @@ namespace JumfrogbyMark
             this.friends.Clear();
             this.targetLotuses.Clear();
 
-            // 1. สร้างใบบัวเป้าหมาย (TargetLotus) 5 ตำแหน่งแถวบนสุด
+            //สร้างใบบัวเป้าหมาย
             int lotusCount = 5;
             int segmentW = jumpingFiled.Width / lotusCount;
             for (int i = 0; i < lotusCount; i++)
@@ -94,81 +116,54 @@ namespace JumfrogbyMark
                 targetLotuses.Add(new TargetLotus(lotusX, 5, width: 50, height: 35, scoreValue: 500));
             }
 
-            // 2. สร้างศัตรูบนถนน (EnemyMonster) - อย่างน้อย 2 แบบ (Snake และ Car)
-            // เลน 1: รถวิ่งไปขวา (Car)
-            for (int i = 0; i < 3; i++)
+            // เลน EnemyMonster
+            int roadLanes = 3;
+            var roadLaneSettings = new (float speed, int dir, EnemyType type, int count, int x0)[]
             {
-                var enemy = new EnemyMonster(i * 270 + 30, road.Y + 8, 70, 38, baseSpeed: 1.6f, movingRight: true, type: EnemyType.turtle);
-                enemy.ApplyLevelSpeed(level);
-                enemies.Add(enemy);
+                // baseSpeed, -1=ซ้าย 1=ขวา , type, จำนวนตัว, default x]
+                (10f,  1, EnemyType.turtle,     3, 12), // เลนแรก index = 0
+                (1.6f,  -1, EnemyType.turtle,     3, 753), 
+                (1.6f, 1, EnemyType.crocodile,  3, 12), 
+                // (2.6f, -1, EnemyType.turtle, 3, 60),
+            };
+            roadLaneStarts.Clear();
+            for (int lane = 0; lane < roadLanes; lane++)
+            {
+                roadLaneStarts.Add(enemies.Count);
+                var (speed, dir, type, count, x0) = roadLaneSettings[lane];
+                int laneY = road.Y + 8 + lane * 46;
+                for (int i = 0; i < count; i++)
+                {
+                    var enemy = new EnemyMonster(x0 + i * 270, laneY, 70, 38, baseSpeed: speed, movingRight: dir > 0, type: type);
+                    enemy.ApplyLevelSpeed(level);
+                    enemies.Add(enemy);
+                }
             }
 
-            // เลน 2: รถวิ่งไปซ้าย (Car)
-            for (int i = 0; i < 3; i++)
+            // เลน FriendMonster
+            int riverLanes = 3;
+            var riverLaneSettings = new (float speed, int dir, FriendType type, int count, int x0)[]
             {
-                var enemy = new EnemyMonster(i * 260 + 80, road.Y + 54, 70, 38, baseSpeed: 2.1f, movingRight: false, type: EnemyType.crocodile);
-                enemy.ApplyLevelSpeed(level);
-                enemies.Add(enemy);
+                // baseSpeed, -1=ซ้าย 1=ขวา , type, จำนวนตัว, default x]
+                (1.6f,  -1, FriendType.Fish, 3, 753),
+                (1.6f, 1, FriendType.Fish,   3, 12),
+                (1.6f,  -1, FriendType.Fish, 3, 753),
+                // (2.0f, -1, FriendType.Fish, 3, 50),
+            };
+            riverLaneStarts.Clear();
+            for (int lane = 0; lane < riverLanes; lane++)
+            {
+                riverLaneStarts.Add(friends.Count); 
+                var (speed, dir, type, count, x0) = riverLaneSettings[lane];
+                int laneY = river.Y + 8 + lane * 45;
+                for (int i = 0; i < count; i++)
+                {
+                    var friend = new FriendMonster(x0 + i * 270, laneY, 90, 36, baseSpeed: speed, movingRight: dir > 0, type: type);
+                    friend.ApplyLevelSpeed(level);
+                    friends.Add(friend);
+                }
             }
 
-            // เลน 3: งูพิษเลื้อยไปขวา/ซ้าย (Snake)
-            for (int i = 0; i < 2; i++)
-            {
-                var snake = new EnemyMonster(i * 380 + 50, road.Y + 102, 90, 36, baseSpeed: 1.8f, movingRight: true, type: EnemyType.crocodile);
-                snake.ApplyLevelSpeed(level);
-                enemies.Add(snake);
-            }
-
-            // เลน 4: รถวิ่งเร็วไปซ้าย (Car)
-            for (int i = 0; i < 3; i++)
-            {
-                var enemy = new EnemyMonster(i * 250 + 60, road.Y + 148, 70, 38, baseSpeed: 2.6f, movingRight: false, type: EnemyType.turtle);
-                enemy.ApplyLevelSpeed(level);
-                enemies.Add(enemy);
-            }
-
-            // 3. สร้างเพื่อนในแม่น้ำ (FriendMonster) - อย่างน้อย 2 แบบ (Turtle และ Fish)
-            // แถว 1: เต่าว่ายน้ำไปขวา (Turtle)
-            for (int i = 0; i < 3; i++)
-            {
-                var turtle = new FriendMonster(i * 270 + 40, river.Y + 8, 80, 36, baseSpeed: 1.3f, movingRight: true, type: FriendType.Turtle);
-                turtle.ApplyLevelSpeed(level);
-                friends.Add(turtle);
-            }
-
-            // แถว 2: ปลาใหญ่ว่ายไปซ้าย (Fish)
-            for (int i = 0; i < 2; i++)
-            {
-                var fish = new FriendMonster(i * 380 + 60, river.Y + 50, 110, 36, baseSpeed: 1.7f, movingRight: false, type: FriendType.Fish);
-                fish.ApplyLevelSpeed(level);
-                friends.Add(fish);
-            }
-
-            // แถว 3: เต่าว่ายน้ำไปขวา (Turtle)
-            for (int i = 0; i < 3; i++)
-            {
-                var turtle = new FriendMonster(i * 280 + 30, river.Y + 95, 80, 36, baseSpeed: 1.5f, movingRight: true, type: FriendType.Turtle);
-                turtle.ApplyLevelSpeed(level);
-                friends.Add(turtle);
-            }
-
-            // แถว 4: ปลาใหญ่ว่ายไปซ้าย (Fish)
-            for (int i = 0; i < 3; i++)
-            {
-                var fish = new FriendMonster(i * 260 + 50, river.Y + 140, 95, 36, baseSpeed: 2.0f, movingRight: false, type: FriendType.Fish);
-                fish.ApplyLevelSpeed(level);
-                friends.Add(fish);
-            }
-
-            // แถว 5: เต่าว่ายน้ำไปขวา (Turtle)
-            for (int i = 0; i < 2; i++)
-            {
-                var turtle = new FriendMonster(i * 360 + 80, river.Y + 182, 100, 36, baseSpeed: 1.4f, movingRight: true, type: FriendType.Turtle);
-                turtle.ApplyLevelSpeed(level);
-                friends.Add(turtle);
-            }
-
-            // 4. รีเซ็ตกบ ไอเทม และเวลา
             playerFrog.ResetToStart();
             currentItem.Reset();
             itemSpawnTimer = 3.0f; // รอ 3 วินาทีก่อนสุ่มเกิดไอเทมชิ้นแรก
@@ -337,10 +332,8 @@ namespace JumfrogbyMark
             if (gameState == GameState.Playing)
             {
                 playerFrog.MoveUp(0);
-                score += 10;
             }
         }
-
         public void MoveFrogDown()
         {
             if (gameState == GameState.Playing)
@@ -373,7 +366,6 @@ namespace JumfrogbyMark
                 gameTimer.Resume();
             }
         }
-
         public void RestartGame()
         {
             score = 0;

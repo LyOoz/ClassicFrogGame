@@ -27,7 +27,6 @@ namespace JumfrogbyMark
         }
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            Soundplayer.StopMusic();
             FormGamePlay gameForm = new FormGamePlay(playerName);
             gameForm.Show();
             this.Hide();

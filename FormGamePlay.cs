@@ -15,6 +15,7 @@ namespace JumfrogbyMark
     {
         private GameController controller;
         private string playerName;
+        private System.Windows.Forms.Timer moveTimer;
 
         public FormGamePlay(string playerName = "ClassicFrog001")
         {
@@ -29,6 +30,43 @@ namespace JumfrogbyMark
             // default position frog
             picFrog.Location = new Point(controller.PlayerFrog.X, controller.PlayerFrog.Y);
             picFrog.BringToFront();
+
+            // gameloop timer
+            moveTimer = new System.Windows.Forms.Timer();
+            moveTimer.Interval = 30;
+            moveTimer.Tick += MoveTimer_Tick;
+            moveTimer.Start();
+        }
+
+        private void MoveTimer_Tick(object sender, EventArgs e)
+        {
+            // จุดสิ้นสุดของ Monster
+            foreach (var enemy in controller.Enemies)
+                enemy.Update(-84, 820); 
+            foreach (var friend in controller.Friends)
+                friend.Update(-84, 500);
+            // EnemyMonster
+            // เลนแรก
+            SyncMonster(picTurtleR, controller.EnemyAt(0, 0));
+            // เลนสอง
+            SyncMonster(picTurtleL, controller.EnemyAt(1, 0));
+            // เลนสาม
+            SyncMonster(picCrocR, controller.EnemyAt(2, 0));
+            SyncMonster(picCrocR, controller.EnemyAt(2, 1));
+            // FriendMonster
+            // เลนแรก
+            SyncMonster(picFishL1, controller.FriendAt(0, 0));
+            // เลนสอง
+            SyncMonster(picFishR, controller.FriendAt(1, 0));
+            // เลนสาม
+            SyncMonster(picFishL, controller.FriendAt(2, 0));
+
+        }
+
+        // ให้ PictureBox ขยับ X ตาม Monster (Y คงตำแหน่่งเลนท่ีวางไว้ใน designer)
+        private void SyncMonster(PictureBox pic, Monster m)
+        {
+            pic.Location = new Point((int)m.X, pic.Location.Y);
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -101,6 +139,7 @@ namespace JumfrogbyMark
 
         private void FormGamePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
+            moveTimer?.Stop();
             Application.Exit();
         }
 

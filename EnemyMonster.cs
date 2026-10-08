@@ -22,8 +22,6 @@ namespace JumfrogbyMark
         {
             this.type = type;
         }
-
-
         /// ตรวจสอบการชนกับกบ ถ้าชน กบจะตายและหัวใจลดลง 1 ดวง
         public bool CheckCollision(PlayerFrog frog)
         {

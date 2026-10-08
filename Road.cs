@@ -3,10 +3,6 @@ using System.Drawing;
 
 namespace JumfrogbyMark
 {
-    /// <summary>
-    /// คลาส Road เป็นคลาสซึ่งเป็นตัวแทนของถนน (สืบทอดจาก Zone)
-    /// ซึ่งกบจะต้องกระโดดข้ามถนนไปอีกฝั่ง
-    /// </summary>
     public class Road : Zone
     {
         // ฟิลด์เฉพาะของ Road
@@ -23,17 +19,13 @@ namespace JumfrogbyMark
             this.lanesCount = lanesCount;
         }
 
-        /// <summary>
-        /// ตรวจสอบว่ากบอยู่บนถนนหรือไม่ (ใช้ ContainsFrog จากคลาสแม่)
-        /// </summary>
+        /// ตรวจว่ากบอยู่บนถนนมั้ย
         public bool IsFrogOnRoad(PlayerFrog frog)
         {
             return ContainsFrog(frog);
         }
 
-        /// <summary>
-        /// ตรวจสอบว่ากบกระโดดข้ามถนนไปยังอีกฝั่ง (ฝั่งบนของถนน) ได้สำเร็จหรือไม่
-        /// </summary>
+        /// ตรวจว่ากบกระโดดข้ามถนนไปยังอีกฝั่ง
         public bool HasCrossed(PlayerFrog frog)
         {
             return frog.Y + frog.Height <= y;

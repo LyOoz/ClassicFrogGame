@@ -125,6 +125,7 @@
     <None Include="assets\gameplay\frog_up.png" />
     <None Include="assets\setname\bg-panelSetName.png" />
     <None Include="assets\setname\bg-setname.png" />
+    <None Include="assets\gameplay\crocodile_right.png" />
     <Content Include="assets\sound\sound-jump.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
