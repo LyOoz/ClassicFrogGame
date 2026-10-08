@@ -1,11 +1,12 @@
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace JumfrogbyMark
 {
     public enum FriendType
     {
-        Fish     
+        FishRed,
+        FishBlue
     }
 
     public class FriendMonster : Monster
@@ -24,12 +25,6 @@ namespace JumfrogbyMark
         }
 
         // method
-        public override void ApplyLevelSpeed(int level)
-        {
-            float multiplier = 1.0f + (level - 1) * 0.2f;
-            this.speed = baseSpeed * multiplier;
-        }
-
         /// ตรวจสอบว่ากบอยู่บนตัว friend monster มั้ย
         public bool IsFrogOnTop(PlayerFrog frog)
         {

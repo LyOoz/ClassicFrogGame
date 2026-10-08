@@ -45,7 +45,7 @@ namespace JumfrogbyMark
         public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // Constructor frog
-        public PlayerFrog(string name = "ClassicFrog001",int startX = 396, int startY = 510, int width = 40, int height = 40, int initialHearts = 5, int stepSize = 40)
+        public PlayerFrog(string name = "ClassicFrog001",int startX = 396, int startY = 510, int width = 40, int height = 40, int initialHearts = 5, int stepSize = 30)
         {
             this.name = string.IsNullOrWhiteSpace(name) ? "ClassicFrog001" : name;
             this.startX = startX;

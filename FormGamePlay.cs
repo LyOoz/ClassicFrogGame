@@ -40,9 +40,15 @@ namespace JumfrogbyMark
 
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
-            // จุดสิ้นสุดของ Monster
+            // GameTimer 
+            float deltaTime = moveTimer.Interval / 1000f;
+            controller.GameTimer.Update(deltaTime, controller.PlayerFrog);
+            lblTime.Text = TimeSpan.FromSeconds(Math.Max(0, controller.GameTimer.TimeRemaining)).ToString(@"mm\:ss");
+            lblScore.Text = controller.Score.ToString();
+            lblLevel.Text = controller.Level + "/3";
+
             foreach (var enemy in controller.Enemies)
-                enemy.Update(-84, 820); 
+                enemy.Update(-84, 820);
             foreach (var friend in controller.Friends)
                 friend.Update(-84, 500);
             // EnemyMonster
@@ -55,11 +61,11 @@ namespace JumfrogbyMark
             SyncMonster(picCrocR, controller.EnemyAt(2, 1));
             // FriendMonster
             // เลนแรก
-            SyncMonster(picFishL1, controller.FriendAt(0, 0));
+            SyncMonster(picFishBL, controller.FriendAt(0, 0));
             // เลนสอง
-            SyncMonster(picFishR, controller.FriendAt(1, 0));
+            SyncMonster(picFishRR, controller.FriendAt(1, 0));
             // เลนสาม
-            SyncMonster(picFishL, controller.FriendAt(2, 0));
+            SyncMonster(picFishRL, controller.FriendAt(2, 0));
 
         }
 
@@ -88,10 +94,7 @@ namespace JumfrogbyMark
         {
             if (isJumping) return;
             isJumping = true;
-
-
             Soundplayer.PlayJumpSound();
-
             // เปลี่ยนรูปตามปุ่มเดิน
             switch (direction)
             {
@@ -112,12 +115,9 @@ namespace JumfrogbyMark
                     controller.PlayerFrog.MoveRight();
                     break;
             }
-
             UpdateFrogPosition();
-
             // delay รอ animation จบ
             await Task.Delay(100);
-
             // รูปท่ายืนตามปุ่ม
             switch (direction)
             {

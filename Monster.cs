@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace JumfrogbyMark
@@ -36,12 +36,6 @@ namespace JumfrogbyMark
             this.movingRight = movingRight;
         }
 
-        /// ปรับความเร็วตามระดับด่าน
-        public virtual void ApplyLevelSpeed(int level)
-        {
-            float multiplier = 1.0f + (level - 1) * 0.25f;
-            this.speed = baseSpeed * multiplier;
-        }
 
         /// อัปเดตตำแหน่งการเคลื่อนที่
         public virtual void Update(int minX = -100, int maxX = 900)

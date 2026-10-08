@@ -46,9 +46,9 @@
             this.picHeart5 = new System.Windows.Forms.PictureBox();
             this.picTurtleR = new System.Windows.Forms.PictureBox();
             this.picTurtleL = new System.Windows.Forms.PictureBox();
-            this.picFishR = new System.Windows.Forms.PictureBox();
-            this.picFishL = new System.Windows.Forms.PictureBox();
-            this.picFishL1 = new System.Windows.Forms.PictureBox();
+            this.picFishRR = new System.Windows.Forms.PictureBox();
+            this.picFishRL = new System.Windows.Forms.PictureBox();
+            this.picFishBL = new System.Windows.Forms.PictureBox();
             this.Water = new System.Windows.Forms.PictureBox();
             this.Road = new System.Windows.Forms.PictureBox();
             this.picCrocR = new System.Windows.Forms.PictureBox();
@@ -61,9 +61,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTurtleR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTurtleL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishL1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishRR)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishRL)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishBL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Water)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Road)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCrocR)).BeginInit();
@@ -271,38 +271,38 @@
             this.picTurtleL.TabIndex = 22;
             this.picTurtleL.TabStop = false;
             // 
-            // picFishR
+            // picFishRR
             // 
-            this.picFishR.BackColor = System.Drawing.Color.Transparent;
-            this.picFishR.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_right;
-            this.picFishR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishR.Location = new System.Drawing.Point(12, 130);
-            this.picFishR.Name = "picFishR";
-            this.picFishR.Size = new System.Drawing.Size(64, 46);
-            this.picFishR.TabIndex = 23;
-            this.picFishR.TabStop = false;
+            this.picFishRR.BackColor = System.Drawing.Color.Transparent;
+            this.picFishRR.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_right;
+            this.picFishRR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picFishRR.Location = new System.Drawing.Point(12, 130);
+            this.picFishRR.Name = "picFishRR";
+            this.picFishRR.Size = new System.Drawing.Size(64, 46);
+            this.picFishRR.TabIndex = 23;
+            this.picFishRR.TabStop = false;
             // 
-            // picFishL
+            // picFishRL
             // 
-            this.picFishL.BackColor = System.Drawing.Color.Transparent;
-            this.picFishL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_left;
-            this.picFishL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishL.Location = new System.Drawing.Point(753, 200);
-            this.picFishL.Name = "picFishL";
-            this.picFishL.Size = new System.Drawing.Size(64, 46);
-            this.picFishL.TabIndex = 24;
-            this.picFishL.TabStop = false;
+            this.picFishRL.BackColor = System.Drawing.Color.Transparent;
+            this.picFishRL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_left;
+            this.picFishRL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picFishRL.Location = new System.Drawing.Point(753, 200);
+            this.picFishRL.Name = "picFishRL";
+            this.picFishRL.Size = new System.Drawing.Size(64, 46);
+            this.picFishRL.TabIndex = 24;
+            this.picFishRL.TabStop = false;
             // 
-            // picFishL1
+            // picFishBL
             // 
-            this.picFishL1.BackColor = System.Drawing.Color.Transparent;
-            this.picFishL1.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_left;
-            this.picFishL1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishL1.Location = new System.Drawing.Point(753, 66);
-            this.picFishL1.Name = "picFishL1";
-            this.picFishL1.Size = new System.Drawing.Size(64, 46);
-            this.picFishL1.TabIndex = 25;
-            this.picFishL1.TabStop = false;
+            this.picFishBL.BackColor = System.Drawing.Color.Transparent;
+            this.picFishBL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_blue_left;
+            this.picFishBL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picFishBL.Location = new System.Drawing.Point(753, 66);
+            this.picFishBL.Name = "picFishBL";
+            this.picFishBL.Size = new System.Drawing.Size(64, 46);
+            this.picFishBL.TabIndex = 25;
+            this.picFishBL.TabStop = false;
             // 
             // Water
             // 
@@ -344,9 +344,9 @@
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_Gameplaystatus;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 561);
-            this.Controls.Add(this.picFishL1);
-            this.Controls.Add(this.picFishL);
-            this.Controls.Add(this.picFishR);
+            this.Controls.Add(this.picFishBL);
+            this.Controls.Add(this.picFishRL);
+            this.Controls.Add(this.picFishRR);
             this.Controls.Add(this.picTurtleL);
             this.Controls.Add(this.picTurtleR);
             this.Controls.Add(this.picCrocR);
@@ -385,9 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTurtleR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picTurtleL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishL1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishRR)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishRL)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picFishBL)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Water)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Road)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCrocR)).EndInit();
@@ -414,9 +414,9 @@
         private System.Windows.Forms.PictureBox picHeart5;
         private System.Windows.Forms.PictureBox picTurtleR;
         private System.Windows.Forms.PictureBox picTurtleL;
-        private System.Windows.Forms.PictureBox picFishR;
-        private System.Windows.Forms.PictureBox picFishL;
-        private System.Windows.Forms.PictureBox picFishL1;
+        private System.Windows.Forms.PictureBox picFishRR;
+        private System.Windows.Forms.PictureBox picFishRL;
+        private System.Windows.Forms.PictureBox picFishBL;
         private System.Windows.Forms.PictureBox Water;
         private System.Windows.Forms.PictureBox Road;
         private System.Windows.Forms.PictureBox picCrocR;
