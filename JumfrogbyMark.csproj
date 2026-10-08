@@ -68,6 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EnemyMonster.cs" />
     <Compile Include="FriendMonster.cs" />
+    <Compile Include="SpriteConfig.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="GameTimer.cs" />
     <Compile Include="Item.cs" />

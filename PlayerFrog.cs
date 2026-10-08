@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 
 namespace JumfrogbyMark
@@ -62,7 +62,7 @@ namespace JumfrogbyMark
         }
         // Method
         // method move frog
-        public void MoveUp(int minY = 0)
+        public void MoveUp(int minY = 40) // min ขอบจอแกน y
         {
             direction = FrogDirection.Up;
             if (y - stepSize >= minY)
@@ -71,7 +71,7 @@ namespace JumfrogbyMark
                 y = minY;
         }
 
-        public void MoveDown(int maxY = 560)
+        public void MoveDown(int maxY = 560) // max ขอบจอแกน y 
         {
             direction = FrogDirection.Down;
             if (y + stepSize + height <= maxY)
@@ -80,7 +80,7 @@ namespace JumfrogbyMark
                 y = maxY - height;
         }
 
-        public void MoveLeft(int minX = 0)
+        public void MoveLeft(int minX = 0) // min ขอบจอแกน x
         {
             direction = FrogDirection.Left;
             if (x - stepSize >= minX)
@@ -89,7 +89,7 @@ namespace JumfrogbyMark
                 x = minX;
         }
 
-        public void MoveRight(int maxX = 830)
+        public void MoveRight(int maxX = 1000) // max ขอบจอแกน x
         {
             direction = FrogDirection.Right;
             if (x + stepSize + width <= maxX)

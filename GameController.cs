@@ -66,9 +66,9 @@ namespace JumfrogbyMark
             this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 1);
             this.river = new River(x: 0, y: 45, width: fieldWidth, height: 220);
             this.road = new Road(x: 0, y: 315, width: fieldWidth, height: 195, lanesCount: 4);
-            this.playerFrog = new PlayerFrog(startX: fieldWidth , startY: fieldHeight, width: 50, height: 50, initialHearts: 5, stepSize: 40);
+            this.playerFrog = new PlayerFrog(startX: fieldWidth , startY: fieldHeight, width: SpriteConfig.Frog.Width, height: SpriteConfig.Frog.Height, initialHearts: 5, stepSize: 40);
             this.gameTimer = new GameTimer();
-            this.currentItem = new Item(width: 32, height: 32, durationSeconds: 10.0f);
+            this.currentItem = new Item(width: SpriteConfig.ItemWidth, height: SpriteConfig.ItemHeight, durationSeconds: 10.0f);
             this.enemies = new List<EnemyMonster>();
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
@@ -110,7 +110,7 @@ namespace JumfrogbyMark
             for (int i = 0; i < lotusCount; i++)
             {
                 int lotusX = i * segmentW + (segmentW / 2) - 25;
-                targetLotuses.Add(new TargetLotus(lotusX, 5, width: 50, height: 35, scoreValue: 500));
+                targetLotuses.Add(new TargetLotus(lotusX, 5, width: SpriteConfig.LotusWidth, height: SpriteConfig.LotusHeight, scoreValue: 500));
             }
 
             // config เลน EnemyMonster
@@ -118,9 +118,9 @@ namespace JumfrogbyMark
             var roadLaneSettings = new (int dir, EnemyType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                ( 1, EnemyType.turtle,     3, 12,  323, -84, 800), // เลนแรก บนสุด
-                (-1, EnemyType.turtle,     3, 750, 369, -84, 820),
-                ( 1, EnemyType.crocodile,  3, -16,  455, -84, 800),
+                ( 1, EnemyType.turtle,     3, 12,  348, -84, 1000), // เลนแรก บนสุด
+                (-1, EnemyType.turtle,     3, 915, 400, -84, 1200),
+                ( 1, EnemyType.crocodile,  3, -16,  455, -84, 1000),
             };
             roadLaneStarts.Clear();
             for (int lane = 0; lane < roadLanes; lane++)
@@ -129,10 +129,10 @@ namespace JumfrogbyMark
                 var (dir, type, count, x0, y0, minX, maxX) = roadLaneSettings[lane];
                 for (int i = 0; i < count; i++)
                 {
-                    var enemy = new EnemyMonster(x0 + i * 270, y0, 70, 38, baseSpeed: cfg.EnemySpeeds[lane], movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
-                    enemy.Sprite = type == EnemyType.turtle
-                        ? (dir > 0 ? Properties.Resources.turtle_right : Properties.Resources.turtle_left)
-                        : (dir > 0 ? Properties.Resources.crocodile_right : Properties.Resources.crocodile_left);
+                    var enemySet = type == EnemyType.turtle ? SpriteConfig.Turtle : SpriteConfig.Crocodile;
+                    float enemySpeed = type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed;
+                    var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: enemySpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
+                    enemy.Sprite = enemySet.Get(dir > 0);
                     enemies.Add(enemy);
                 }
             }
@@ -142,9 +142,9 @@ namespace JumfrogbyMark
             var riverLaneSettings = new (int dir, FriendType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                (-1, FriendType.FishBlue, 3, 753, 53,  -84, 500), // เลนแรก บนสุด
-                ( 1, FriendType.FishRed,  3, 12,  98,  -84, 500),
-                (-1, FriendType.FishRed,  3, 753, 143, -84, 500),
+                (-1, FriendType.FishBlue, 3, 753, 98,  -84, 1200), // เลนแรก บนสุด
+                ( 1, FriendType.FishRed,  3, 12,  98,  -84, 1000),
+                (-1, FriendType.FishRed,  3, 753, 143, -84, 1200),
             };
             riverLaneStarts.Clear();
             for (int lane = 0; lane < riverLanes; lane++)
@@ -153,10 +153,10 @@ namespace JumfrogbyMark
                 var (dir, type, count, x0, y0, minX, maxX) = riverLaneSettings[lane];
                 for (int i = 0; i < count; i++)
                 {
-                    var friend = new FriendMonster(x0 + i * 270, y0, 90, 36, baseSpeed: cfg.FriendSpeeds[lane], movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
-                    friend.Sprite = type == FriendType.FishBlue
-                        ? (dir > 0 ? Properties.Resources.fish_blue_right : Properties.Resources.fish_blue_left)
-                        : (dir > 0 ? Properties.Resources.fish_red_right : Properties.Resources.fish_red_left);
+                    var friendSet = type == FriendType.FishBlue ? SpriteConfig.FishBlue : SpriteConfig.FishRed;
+                    float friendSpeed = type == FriendType.FishBlue ? cfg.FishBlueSpeed : cfg.FishRedSpeed;
+                    var friend = new FriendMonster(x0 + i * friendSet.Spacing, y0, friendSet.Width, friendSet.Height, baseSpeed: friendSpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
+                    friend.Sprite = friendSet.Get(dir > 0);
                     friends.Add(friend);
                 }
             }
@@ -172,26 +172,34 @@ namespace JumfrogbyMark
         private struct LevelConfig
         {
             public float Time;
-            public float[] EnemySpeeds;
-            public float[] FriendSpeeds;
+            public float TurtleSpeed;
+            public float CrocodileSpeed;
+            public float FishBlueSpeed;
+            public float FishRedSpeed;
         }
         private static readonly LevelConfig[] Levels =
         {
             new LevelConfig { // ด่าน 1
-                Time = 120f, 
-                EnemySpeeds = new[] { 10f, 1.6f, 1.6f }, // ความเร็วแต่ละเลน
-                FriendSpeeds = new[] { 1.6f, 1.6f, 1.6f } 
+                Time = 120f,
+                TurtleSpeed = 2.6f,
+                CrocodileSpeed = 2.6f,
+                FishBlueSpeed = 2.6f,
+                FishRedSpeed = 2.6f
             },
             new LevelConfig { // ด่าน 2
-                Time = 30f,  
-                EnemySpeeds = new[] { 10f, 2.0f, 2.0f }, 
-                FriendSpeeds = new[] { 2.0f, 2.0f, 2.0f } 
-            },  
+                Time = 30f,
+                TurtleSpeed = 2.0f,
+                CrocodileSpeed = 2.0f,
+                FishBlueSpeed = 2.0f,
+                FishRedSpeed = 2.0f
+            },
             new LevelConfig { // ด่าน 3
-                Time = 25f,  
-                EnemySpeeds = new[] { 10f, 2.4f, 2.4f }, 
-                FriendSpeeds = new[] { 2.4f, 2.4f, 2.4f } 
-            },  
+                Time = 25f,
+                TurtleSpeed = 2.4f,
+                CrocodileSpeed = 2.4f,
+                FishBlueSpeed = 2.4f,
+                FishRedSpeed = 2.4f
+            },
         };
         private LevelConfig GetLevelConfig(int lvl)
         {

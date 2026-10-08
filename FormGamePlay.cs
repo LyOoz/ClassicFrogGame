@@ -22,7 +22,7 @@ namespace JumfrogbyMark
         {
             InitializeComponent();
             this.playerName = playerName;
-            this.frogSprite = Properties.Resources.frog_up;
+            this.frogSprite = SpriteConfig.FrogUp;
         }
 
         private void FormGamePlay_Load(object sender, EventArgs e)
@@ -54,8 +54,7 @@ namespace JumfrogbyMark
             // วาด sprite ลงทุกเฟรม
             Invalidate();
         }
-
-        // วาด background + sprite ทุกตัวในเกม
+        // วาด texture sprite 
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -97,32 +96,31 @@ namespace JumfrogbyMark
             switch (direction)
             {
                 case Keys.Up:
-                    frogSprite = Properties.Resources.frog_jump;
+                    frogSprite = SpriteConfig.FrogJump;
                     controller.PlayerFrog.MoveUp();
                     break;
                 case Keys.Down:
-                    frogSprite = Properties.Resources.frog_jump;
+                    frogSprite = SpriteConfig.FrogJump;
                     controller.PlayerFrog.MoveDown();
                     break;
                 case Keys.Left:
-                    frogSprite = Properties.Resources.frog_jump;
+                    frogSprite = SpriteConfig.FrogJump;
                     controller.PlayerFrog.MoveLeft();
                     break;
                 case Keys.Right:
-                    frogSprite = Properties.Resources.frog_jump;
+                    frogSprite = SpriteConfig.FrogJump;
                     controller.PlayerFrog.MoveRight();
                     break;
             }
             Invalidate();
-            // delay รอ animation จบ
             await Task.Delay(100);
-            // รูปท่ายืนตามปุม่
+            // รูปท่ายืนตามปุ่ม
             switch (direction)
             {
-                case Keys.Up: frogSprite = Properties.Resources.frog_up; break;
-                case Keys.Down: frogSprite = Properties.Resources.frog_down; break;
-                case Keys.Left: frogSprite = Properties.Resources.frog_left; break;
-                case Keys.Right: frogSprite = Properties.Resources.frog_right; break;
+                case Keys.Up: frogSprite = SpriteConfig.FrogUp; break;
+                case Keys.Down: frogSprite = SpriteConfig.FrogDown; break;
+                case Keys.Left: frogSprite = SpriteConfig.Frog.Left; break;
+                case Keys.Right: frogSprite = SpriteConfig.Frog.Right; break;
             }
             Invalidate();
 
