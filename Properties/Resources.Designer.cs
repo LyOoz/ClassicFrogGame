@@ -83,16 +83,6 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_GamePlay1 {
-            get {
-                object obj = ResourceManager.GetObject("bg-GamePlay1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bg_Gameplaystatus {
             get {
                 object obj = ResourceManager.GetObject("bg-Gameplaystatus", resourceCulture);
@@ -116,16 +106,6 @@ namespace JumfrogbyMark.Properties {
         internal static System.Drawing.Bitmap bg_setname {
             get {
                 object obj = ResourceManager.GetObject("bg-setname", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap bg_startgame {
-            get {
-                object obj = ResourceManager.GetObject("bg-startgame", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

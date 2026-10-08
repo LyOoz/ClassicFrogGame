@@ -10,13 +10,15 @@ namespace JumfrogbyMark
     internal class Soundplayer // static class
     {
         private static WindowsMediaPlayer sound = new WindowsMediaPlayer();
+        private static WindowsMediaPlayer sfxJump = new WindowsMediaPlayer();
+
         public static void PlayStartMusic() // sound startgame
         {
             sound.URL = @"assets\sound\sound-startgame.mp3";
             sound.settings.setMode("loop", true);
             sound.settings.volume = 50;
             sound.controls.play();
-            
+
         }
 
         public static void PlayGameMusic() // Sound Gameplay
@@ -27,6 +29,13 @@ namespace JumfrogbyMark
             sound.controls.play();
         }
 
+        public static void PlayJumpSound() // Sound frog moves
+        {
+            sfxJump.URL = @"assets\sound\sound-jump.mp3";
+            sfxJump.settings.volume = 30;
+            sfxJump.controls.play();
+        }
+
         public static void StopMusic()
         {
             sound.controls.stop();
@@ -34,6 +43,7 @@ namespace JumfrogbyMark
         public static bool ToggleMute()
         {
             sound.settings.mute = !sound.settings.mute;
+            sfxJump.settings.mute = sound.settings.mute;
             return sound.settings.mute;
         }
     }

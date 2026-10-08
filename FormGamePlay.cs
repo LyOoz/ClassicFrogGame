@@ -48,8 +48,11 @@ namespace JumfrogbyMark
         private bool isJumping = false; 
         private async void Jump(Keys direction)
         {
-            if (isJumping) return; 
+            if (isJumping) return;
             isJumping = true;
+
+
+            Soundplayer.PlayJumpSound();
 
             // เปลี่ยนรูปตามปุ่มเดิน
             switch (direction)
@@ -77,7 +80,7 @@ namespace JumfrogbyMark
             // delay รอ animation จบ
             await Task.Delay(100);
 
-            // กลับรูปท่ายืนตามปุ่ม
+            // รูปท่ายืนตามปุ่ม
             switch (direction)
             {
                 case Keys.Up: picFrog.BackgroundImage = Properties.Resources.frog_up; break;

@@ -121,9 +121,6 @@
   <data name="road1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\road.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bg-startgame" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\bg-startgame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="bg-setname" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\setname\bg-setname.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -150,9 +147,6 @@
   </data>
   <data name="pause1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bg-GamePlay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\bg-GamePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="lilypad_flower" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\lilypad_flower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -13,9 +13,7 @@ namespace JumfrogbyMark
         Victory
     }
 
-    /// คลาส GameController เป็นคลาสที่ใช้ควบคุมการทำงานของเกม
-    /// PlayerFrog, EnemyMonster, FriendMonster,
-    /// TargetLotus, JumpingFiled, River, Road, Item , GameTimer
+    /// GameController control PlayerFrog, EnemyMonster, FriendMonster, TargetLotus, JumpingFiled, River, Road, Item , GameTimer
     public class GameController
     {
         // object หลักของเกม

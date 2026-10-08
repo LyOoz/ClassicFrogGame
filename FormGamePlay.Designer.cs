@@ -158,7 +158,7 @@
             this.picFrog.BackColor = System.Drawing.Color.Transparent;
             this.picFrog.BackgroundImage = global::JumfrogbyMark.Properties.Resources.frog_up;
             this.picFrog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFrog.Location = new System.Drawing.Point(396, 510);
+            this.picFrog.Location = new System.Drawing.Point(389, 510);
             this.picFrog.Name = "picFrog";
             this.picFrog.Size = new System.Drawing.Size(51, 48);
             this.picFrog.TabIndex = 13;
@@ -204,7 +204,7 @@
             this.picHeart3.BackColor = System.Drawing.Color.Transparent;
             this.picHeart3.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart3.Location = new System.Drawing.Point(913, 533);
+            this.picHeart3.Location = new System.Drawing.Point(914, 533);
             this.picHeart3.Name = "picHeart3";
             this.picHeart3.Size = new System.Drawing.Size(22, 16);
             this.picHeart3.TabIndex = 17;
@@ -215,7 +215,7 @@
             this.picHeart4.BackColor = System.Drawing.Color.Transparent;
             this.picHeart4.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart4.Location = new System.Drawing.Point(934, 533);
+            this.picHeart4.Location = new System.Drawing.Point(935, 533);
             this.picHeart4.Name = "picHeart4";
             this.picHeart4.Size = new System.Drawing.Size(22, 16);
             this.picHeart4.TabIndex = 18;
