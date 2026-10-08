@@ -139,6 +139,14 @@ namespace JumfrogbyMark
                     float enemySpeed = type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed;
                     var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: enemySpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
                     enemy.Sprite = enemySet.Get(dir > 0);
+                    // ตั้งเฟรม animation เดินตามชนิดและทิศทาง
+                    if (type == EnemyType.turtle)
+                        enemy.SetWalkFrames(SpriteConfig.TurtleLeftFrames, SpriteConfig.TurtleRightFrames);
+                    else
+                    {
+                        // จระเข้มีเฟรมแค่ขวา → mirror เป็นซ้าย
+                        enemy.SetWalkFrames(MirrorFrames(SpriteConfig.CrocodileRightFrames), SpriteConfig.CrocodileRightFrames);
+                    }
                     enemies.Add(enemy);
                 }
             }
@@ -207,6 +215,25 @@ namespace JumfrogbyMark
                 FishRedSpeed = 2.4f
             },
         };
+        // ทำ mirror (กลับซ้าย-ขวา) ให้ชุดเฟรม sprite สำหรุบสัตว์ท่ีมีเฟรมแค่ทิศเดียว
+        private static Image[] MirrorFrames(Image[] frames)
+        {
+            var mirrored = new Image[frames.Length];
+            for (int i = 0; i < frames.Length; i++)
+            {
+                var src = frames[i];
+                var bmp = new Bitmap(src.Width, src.Height);
+                using (var g = Graphics.FromImage(bmp))
+                {
+                    g.TranslateTransform(bmp.Width, 0);
+                    g.ScaleTransform(-1, 1);
+                    g.DrawImage(src, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                }
+                mirrored[i] = bmp;
+            }
+            return mirrored;
+        }
+
         private LevelConfig GetLevelConfig(int lvl)
         {
             int i = lvl - 1;
@@ -233,10 +260,10 @@ namespace JumfrogbyMark
 
             // Update EnemyMonster , FriendMonster
             foreach (var enemy in enemies)
-                enemy.Update();
+                enemy.Update(deltaTime);
 
             foreach (var friend in friends)
-                friend.Update();
+                friend.Update(deltaTime);
 
             // 3. จัดการการเกิดและหมดอายุของไอเทมพิเศษกลางถนน (Item - 10 วินาที)
             if (!currentItem.IsActive)

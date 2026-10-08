@@ -7,14 +7,22 @@ using System.Threading.Tasks;
 using WMPLib;
 namespace JumfrogbyMark
 {
-    internal class Soundplayer // static class
+    public static class Soundplayer // static class
     {
         private static WindowsMediaPlayer sound = new WindowsMediaPlayer();
         private static WindowsMediaPlayer sfxJump = new WindowsMediaPlayer();
 
         public static void PlayStartMusic() // sound startgame
         {
-            sound.URL = @"assets\sound\sound-startgame.mp3";
+            sound.URL = @"assets\sfx\sound-startgame.mp3";
+            sound.settings.setMode("loop", true);
+            sound.settings.volume = 30;
+            sound.controls.play();
+
+        }
+        public static void PlayGameplayMusic() // sound startgame
+        {
+            sound.URL = @"assets\sfx\sound-gameplay.mp3";
             sound.settings.setMode("loop", true);
             sound.settings.volume = 30;
             sound.controls.play();
@@ -23,14 +31,14 @@ namespace JumfrogbyMark
 
         public static void PlayJumpSound() // Sound frog moves
         {
-            sfxJump.URL = @"assets\sound\sound-jump.mp3";
+            sfxJump.URL = @"assets\sfx\sound-jump.mp3";
             sfxJump.settings.volume = 20;
             sfxJump.controls.play();
         }
         public static void PlayDmgSound() // Sound got damge
         {
-            sfxJump.URL = @"assets\sound\sound-dmg.mp3";
-            sfxJump.settings.volume = 80;
+            sfxJump.URL = @"assets\sfx\sound-dmg.mp3";
+            sfxJump.settings.volume = 100;
             sfxJump.controls.play();
         }
 

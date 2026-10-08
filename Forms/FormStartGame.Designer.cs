@@ -32,10 +32,8 @@
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnSound = new System.Windows.Forms.PictureBox();
             this.btnSetName = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -85,26 +83,15 @@
             this.btnSetName.UseVisualStyleBackColor = false;
             this.btnSetName.Click += new System.EventHandler(this.btnSetName_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::JumfrogbyMark.Properties.Resources.nameplate;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(297, 202);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(439, 113);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
-            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblName.Font = new System.Drawing.Font("Ravie", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.BackColor = System.Drawing.Color.Transparent;
+            this.lblName.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.Khaki;
-            this.lblName.Location = new System.Drawing.Point(442, 241);
+            this.lblName.Location = new System.Drawing.Point(448, 244);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(248, 34);
+            this.lblName.Size = new System.Drawing.Size(196, 26);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "ClassicFrog001";
             this.lblName.Click += new System.EventHandler(this.lblName_Click);
@@ -118,7 +105,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnSetName);
             this.Controls.Add(this.btnSound);
             this.Controls.Add(this.btnPlay);
@@ -132,7 +118,6 @@
             this.Text = "ClassicFrog";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,7 +128,6 @@
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.PictureBox btnSound;
         private System.Windows.Forms.Button btnSetName;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblName;
     }
 }

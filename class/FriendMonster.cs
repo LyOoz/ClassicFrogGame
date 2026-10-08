@@ -24,7 +24,6 @@ namespace JumfrogbyMark
             this.type = type;
         }
 
-        // method
         /// ตรวจสอบว่ากบอยู่บนตัว friend monster มั้ย
         public bool IsFrogOnTop(PlayerFrog frog)
         {

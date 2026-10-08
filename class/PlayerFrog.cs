@@ -60,7 +60,6 @@ namespace JumfrogbyMark
             this.direction = FrogDirection.Up;
             this.isDead = false;
         }
-        // Method
         // method move frog
         public void MoveUp(int minY = 40) // min ขอบจอแกน y
         {

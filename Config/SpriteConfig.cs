@@ -19,6 +19,29 @@ namespace JumfrogbyMark
         public static readonly SpriteSet Crocodile = new SpriteSet(
             Properties.Resources.crocodile_left, Properties.Resources.crocodile_right, width: 100, height: 50, spacing: 360);
 
+        // เฟรม animation เดิน
+        public static readonly Image[] TurtleLeftFrames =
+        {
+            Properties.Resources.turtle_left_walk_0,
+            Properties.Resources.turtle_left_walk_1,
+            Properties.Resources.turtle_left_walk_2,
+            Properties.Resources.turtle_left_walk_3,
+        };
+        public static readonly Image[] TurtleRightFrames =
+        {
+            Properties.Resources.turtle_right_walk_0,
+            Properties.Resources.turtle_right_walk_1,
+            Properties.Resources.turtle_right_walk_2,
+            Properties.Resources.turtle_right_walk_3,
+        };
+        public static readonly Image[] CrocodileRightFrames =
+        {
+            Properties.Resources.crocodile_right_walk_0,
+            Properties.Resources.crocodile_right_walk_1,
+            Properties.Resources.crocodile_right_walk_2,
+            Properties.Resources.crocodile_right_walk_3,
+        };
+
         public static readonly SpriteSet FishBlue = new SpriteSet(
             Properties.Resources.fish_blue_left, Properties.Resources.fish_blue_right, width: 90, height: 36, spacing: 270);
         public static readonly SpriteSet FishRed = new SpriteSet(

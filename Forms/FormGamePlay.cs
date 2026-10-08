@@ -31,6 +31,7 @@ namespace JumfrogbyMark
 
         private void FormGamePlay_Load(object sender, EventArgs e)
         {
+            Soundplayer.PlayGameplayMusic();
             controller = new GameController();
             lblName.Text = playerName;
 
@@ -80,9 +81,9 @@ namespace JumfrogbyMark
             var g = e.Graphics;
 
             foreach (var m in controller.Friends)
-                if (m.Sprite != null) g.DrawImage(m.Sprite, (int)m.X, (int)m.Y, m.Width, m.Height);
+                if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
             foreach (var m in controller.Enemies)
-                if (m.Sprite != null) g.DrawImage(m.Sprite, (int)m.X, (int)m.Y, m.Width, m.Height);
+                if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
 
             // กบอยู่บนสุดเพื่อทับ monster ได้
             var frog = controller.PlayerFrog;

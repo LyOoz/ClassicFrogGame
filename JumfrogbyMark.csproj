@@ -130,13 +130,16 @@
     <None Include="assets\gameplay\fish_blue_right.png" />
     <None Include="assets\gameplay\fish_blue_left.png" />
     <None Include="assets\gameplay\bg-GameplayHud.png" />
-    <Content Include="assets\sound\sound-dmg.mp3">
+    <Content Include="assets\sfx\sound-dmg.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\sound\sound-jump.mp3">
+    <Content Include="assets\sfx\sound-gameplay.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="assets\sound\sound-startgame.mp3">
+    <Content Include="assets\sfx\sound-jump.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\sfx\sound-startgame.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\images.ico" />

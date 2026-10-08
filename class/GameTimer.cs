@@ -19,7 +19,7 @@ namespace JumfrogbyMark
         public bool IsTimeOut { get => isTimeOut; }
         public int SecondsRemaining => (int)Math.Ceiling(Math.Max(0, timeRemaining));
 
-        // คอนสตรัคเตอร์
+        // Constructor
         public GameTimer(float defaultLimitSeconds = 30.0f)
         {
             this.timeLimit = defaultLimitSeconds;
@@ -27,10 +27,6 @@ namespace JumfrogbyMark
             this.isRunning = false;
             this.isTimeOut = false;
         }
-
-        /// <summary>
-        /// เริ่มจับเวลาด่านใหม่
-        /// </summary>
         public void Start(float? customLimit = null)
         {
             if (customLimit.HasValue)
@@ -40,39 +36,20 @@ namespace JumfrogbyMark
             this.isRunning = true;
             this.isTimeOut = false;
         }
-
-        /// <summary>
-        /// หยุดเวลาชั่วคราว
-        /// </summary>
         public void Pause()
         {
             this.isRunning = false;
         }
-
-        /// <summary>
-        /// เล่นต่อ
-        /// </summary>
         public void Resume()
         {
             this.isRunning = true;
         }
-
-        /// <summary>
-        /// รีเซ็ตเวลากลับไปค่าเริ่มต้นของด่าน
-        /// </summary>
         public void Reset()
         {
             this.timeRemaining = this.timeLimit;
             this.isTimeOut = false;
             this.isRunning = true;
         }
-
-        /// <summary>
-        /// อัปเดตการลดลงของเวลา
-        /// </summary>
-        /// <param name="deltaTime">เวลาที่ผ่านไปในเฟรมนี้ (วินาที)</param>
-        /// <param name="frog">กบผู้เล่นที่จะถูกลดหัวใจเมื่อหมดเวลา</param>
-        /// <returns>true หากหมดเวลาและกบตาย</returns>
         public bool Update(float deltaTime, PlayerFrog frog = null)
         {
             if (!isRunning || isTimeOut)
@@ -89,7 +66,6 @@ namespace JumfrogbyMark
                 if (frog != null)
                 {
                     frog.TakeDamage();
-                    // รีเซ็ตเวลาสำหรับรอบต่อไป
                     Reset();
                 }
 
