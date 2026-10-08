@@ -43,20 +43,37 @@ namespace JumfrogbyMark
 
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
-            // GameTimer
+            // ให GameController.Update() เปนผูรันตรรกะเกมทั้งหมด (timer, monster, ชน, ตกน้ำ, ขี่เพื่อน, lotus)
             float deltaTime = moveTimer.Interval / 1000f;
-            controller.GameTimer.Update(deltaTime, controller.PlayerFrog);
+            controller.Update(deltaTime);
+
+            // อัปเดต HUD
             lblTime.Text = TimeSpan.FromSeconds(Math.Max(0, controller.GameTimer.TimeRemaining)).ToString(@"mm\:ss");
             lblScore.Text = controller.Score.ToString();
             lblLevel.Text = controller.Level + "/3";
-
-            foreach (var enemy in controller.Enemies)
-                enemy.Update();
-            foreach (var friend in controller.Friends)
-                friend.Update();
+            UpdateHeartsDisplay();
 
             // วาด sprite ลงทุกเฟรม
             Invalidate();
+
+            // เกมจบ -> หยุด timer (รอทำหน้า Game Over แยกภายหลัง)
+            if (controller.IsGameOver)
+            {
+                moveTimer.Stop();
+            }
+        }
+
+        // อัปเดตรูปหัวใจตามจำนวนหัวใจที่เหลือของกบ
+        private void UpdateHeartsDisplay()
+        {
+            int hearts = controller.PlayerFrog.Hearts;
+            PictureBox[] heartBoxes = { pigHeart1, picHeart2, picHeart3, picHeart4, picHeart5 };
+            for (int i = 0; i < heartBoxes.Length; i++)
+            {
+                heartBoxes[i].BackgroundImage = i < hearts
+                    ? Properties.Resources.heart_full
+                    : Properties.Resources.heart_empty;
+            }
         }
         // วาด texture sprite 
         protected override void OnPaint(PaintEventArgs e)

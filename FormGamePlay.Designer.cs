@@ -40,14 +40,12 @@
             this.picHeart3 = new System.Windows.Forms.PictureBox();
             this.picHeart4 = new System.Windows.Forms.PictureBox();
             this.picHeart5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pigHeart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSound
@@ -182,18 +180,6 @@
             this.picHeart5.TabIndex = 19;
             this.picHeart5.TabStop = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.BackgroundImage = global::JumfrogbyMark.Properties.Resources.turtle_right;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.ErrorImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(747, 289);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(84, 45);
-            this.pictureBox2.TabIndex = 21;
-            this.pictureBox2.TabStop = false;
-            // 
             // FormGamePlay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,7 +187,6 @@
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GameplayHud;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 561);
-            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.picHeart5);
             this.Controls.Add(this.picHeart4);
             this.Controls.Add(this.picHeart3);
@@ -228,7 +213,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picHeart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +230,5 @@
         private System.Windows.Forms.PictureBox picHeart3;
         private System.Windows.Forms.PictureBox picHeart4;
         private System.Windows.Forms.PictureBox picHeart5;
-        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
