@@ -215,15 +215,12 @@ namespace JumfrogbyMark
             return Levels[i];
         }
 
-        /// <summary>
-        /// อัปเดตตรรกะเกมทั้งหมดในแต่ละเฟรม (Game Loop)
-        /// </summary>
-        /// <param name="deltaTime">เวลาที่ผ่านไป (วินาที)</param>
+        //logic update game state
         public void Update(float deltaTime)
         {
             if (gameState != GameState.Playing) return;
 
-            // 1. อัปเดตนาฬิกาจับเวลา (GameTimer)
+            // Gametimer
             bool timeRanOut = gameTimer.Update(deltaTime, playerFrog);
             if (timeRanOut)
             {
@@ -234,7 +231,7 @@ namespace JumfrogbyMark
                 }
             }
 
-            // 2. อัปเดตการเคลื่อนที่ของศัตรูและเพื่อน
+            // Update EnemyMonster , FriendMonster
             foreach (var enemy in enemies)
                 enemy.Update();
 
@@ -261,7 +258,7 @@ namespace JumfrogbyMark
                 }
             }
 
-            // 4. ตรวจสอบการชนกับศัตรูบนถนน (EnemyMonster)
+            // Frog Collision Detection
             if (road.IsFrogOnRoad(playerFrog))
             {
                 foreach (var enemy in enemies)
@@ -270,6 +267,7 @@ namespace JumfrogbyMark
                     {
                         // กบชนศัตรู กบตายและลดหัวใจ 1 ดวง
                         bool isGameOver = playerFrog.TakeDamage();
+                        Soundplayer.PlayDmgSound();
                         gameTimer.Reset();
                         if (isGameOver)
                         {
@@ -280,11 +278,9 @@ namespace JumfrogbyMark
                     }
                 }
             }
-
-            // 5. ตรวจสอบแม่น้ำและการเกาะหลังเพื่อน (River & FriendMonster)
+            // Frog Collision Detection กับ River และ FriendMonster
             if (river.IsFrogInRiver(playerFrog))
             {
-                // ตรวจสอบว่าอยู่บนหลังเพื่อนหรือไม่
                 FriendMonster carryingFriend = null;
                 foreach (var friend in friends)
                 {
@@ -297,13 +293,14 @@ namespace JumfrogbyMark
 
                 if (carryingFriend != null)
                 {
-                    // กบลอยไปตามเพื่อนที่กำลังว่ายน้ำ
+                    // กบขี่คอ
                     carryingFriend.Carry(playerFrog);
 
-                    // ถ้าพาหลุดออกนอกจอ
+                    // หลุดออกนอกจอ
                     if (playerFrog.X < -playerFrog.Width || playerFrog.X > jumpingFiled.Width)
                     {
                         bool isGameOver = playerFrog.TakeDamage();
+                        Soundplayer.PlayDmgSound();
                         gameTimer.Reset();
                         if (isGameOver)
                         {
@@ -314,8 +311,9 @@ namespace JumfrogbyMark
                 }
                 else
                 {
-                    // กบตกน้ำในแม่น้ำ -> ตายและลดหัวใจ 1 ดวง
+                    // กบตกน้ำ ตายและลดหัวใจ 1 ดวง
                     bool isGameOver = playerFrog.TakeDamage();
+                    Soundplayer.PlayDmgSound();
                     gameTimer.Reset();
                     if (isGameOver)
                     {
@@ -368,32 +366,6 @@ namespace JumfrogbyMark
                 if (!lotus.IsOccupied) return false;
             }
             return true;
-        }
-
-        // --- การควบคุมการเคลื่อนที่ของกบ ---
-        public void MoveFrogUp()
-        {
-            if (gameState == GameState.Playing)
-            {
-                playerFrog.MoveUp(0);
-            }
-        }
-        public void MoveFrogDown()
-        {
-            if (gameState == GameState.Playing)
-                playerFrog.MoveDown(jumpingFiled.Height);
-        }
-
-        public void MoveFrogLeft()
-        {
-            if (gameState == GameState.Playing)
-                playerFrog.MoveLeft(0);
-        }
-
-        public void MoveFrogRight()
-        {
-            if (gameState == GameState.Playing)
-                playerFrog.MoveRight(jumpingFiled.Width);
         }
 
         // --- จัดการสถานะเกม ---

@@ -22,20 +22,19 @@ namespace JumfrogbyMark
         {
             this.type = type;
         }
-        /// ตรวจสอบการชนกับกบ ถ้าชน กบจะตายและหัวใจลดลง 1 ดวง
+        // ตรวจสอบการชนกับกบ
         public bool CheckCollision(PlayerFrog frog)
         {
 
             Rectangle enemyBox = this.Bounds;
             Rectangle frogBox = frog.Bounds;
 
-            // ตรวจสอบว่ากรอบทั้งสองทับซ้อนกันหรือไม่
             if (enemyBox.IntersectsWith(frogBox))
             {
-                return true;  // มีการชน
+                return true;  // ชน
             }
 
-            return false;     // ไม่ชน
+            return false; 
         }
     }
 }

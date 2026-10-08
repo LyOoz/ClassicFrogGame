@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p Forms Game Config Audio)",
+      "Bash(git mv *)"
+    ]
+  }
+}

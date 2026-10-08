@@ -5,7 +5,7 @@ namespace JumfrogbyMark
     public static class SpriteConfig
     {
         public static readonly SpriteSet Frog = new SpriteSet(
-            Properties.Resources.frog_left, Properties.Resources.frog_right, width: 50, height: 50, spacing: 40);
+            Properties.Resources.frog_left, Properties.Resources.frog_right, width: 60, height: 50, spacing: 40);
         public static readonly Image FrogUp = Properties.Resources.frog_up;
         public static readonly Image FrogDown = Properties.Resources.frog_down;
         public static readonly Image FrogJump = Properties.Resources.frog_jump;

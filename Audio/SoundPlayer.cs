@@ -16,23 +16,21 @@ namespace JumfrogbyMark
         {
             sound.URL = @"assets\sound\sound-startgame.mp3";
             sound.settings.setMode("loop", true);
-            sound.settings.volume = 50;
+            sound.settings.volume = 30;
             sound.controls.play();
 
-        }
-
-        public static void PlayGameMusic() // Sound Gameplay
-        {
-            sound.URL = @"";
-            sound.settings.setMode("loop", true);
-            sound.settings.volume = 50;
-            sound.controls.play();
         }
 
         public static void PlayJumpSound() // Sound frog moves
         {
             sfxJump.URL = @"assets\sound\sound-jump.mp3";
-            sfxJump.settings.volume = 30;
+            sfxJump.settings.volume = 20;
+            sfxJump.controls.play();
+        }
+        public static void PlayDmgSound() // Sound got damge
+        {
+            sfxJump.URL = @"assets\sound\sound-dmg.mp3";
+            sfxJump.settings.volume = 80;
             sfxJump.controls.play();
         }
 

@@ -43,11 +43,10 @@ namespace JumfrogbyMark
 
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
-            // ให GameController.Update() เปนผูรันตรรกะเกมทั้งหมด (timer, monster, ชน, ตกน้ำ, ขี่เพื่อน, lotus)
             float deltaTime = moveTimer.Interval / 1000f;
             controller.Update(deltaTime);
 
-            // อัปเดต HUD
+            // HUD STATUS
             lblTime.Text = TimeSpan.FromSeconds(Math.Max(0, controller.GameTimer.TimeRemaining)).ToString(@"mm\:ss");
             lblScore.Text = controller.Score.ToString();
             lblLevel.Text = controller.Level + "/3";
@@ -62,8 +61,6 @@ namespace JumfrogbyMark
                 moveTimer.Stop();
             }
         }
-
-        // อัปเดตรูปหัวใจตามจำนวนหัวใจที่เหลือของกบ
         private void UpdateHeartsDisplay()
         {
             int hearts = controller.PlayerFrog.Hearts;
@@ -125,7 +122,7 @@ namespace JumfrogbyMark
                 return true;
             }
 
-            switch (keyData) // ตรวจปุ่มแลว้สั่่งให้ method jump ทำงาน
+            switch (keyData) // ตรวจปุ่มสั่่งให้ method jump ทำงาน
             {
                 case Keys.Up:
                 case Keys.Down:
