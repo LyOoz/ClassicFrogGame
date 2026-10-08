@@ -79,9 +79,9 @@ namespace JumfrogbyMark
             {
                 DrawDebugLocation(g, "Frog", frog.X, frog.Y);
                 foreach (var m in controller.Friends)
-                    DrawDebugLocation(g, "F", m.X, m.Y);
+                    DrawDebugLocation(g, "F", frog.X, frog.Y);
                 foreach (var m in controller.Enemies)
-                    DrawDebugLocation(g, "E", m.X, m.Y);
+                    DrawDebugLocation(g, "E", frog.X, frog.Y);
             }
         }
 

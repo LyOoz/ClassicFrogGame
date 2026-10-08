@@ -120,7 +120,7 @@ namespace JumfrogbyMark
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
                 ( 1, EnemyType.turtle,     3, 12,  348, -84, 1000), // เลนแรก บนสุด
                 (-1, EnemyType.turtle,     3, 915, 400, -84, 1200),
-                ( 1, EnemyType.crocodile,  3, -16,  455, -84, 1000),
+                ( 1, EnemyType.crocodile,  3, 12,  455, -84, 1000),
             };
             roadLaneStarts.Clear();
             for (int lane = 0; lane < roadLanes; lane++)
@@ -142,9 +142,9 @@ namespace JumfrogbyMark
             var riverLaneSettings = new (int dir, FriendType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                (-1, FriendType.FishBlue, 3, 753, 98,  -84, 1200), // เลนแรก บนสุด
-                ( 1, FriendType.FishRed,  3, 12,  98,  -84, 1000),
-                (-1, FriendType.FishRed,  3, 753, 143, -84, 1200),
+                (-1, FriendType.FishBlue, 3, 930, 105,  -84, 1200), // เลนแรก บนสุด
+                ( 1, FriendType.FishRed,  3, 1,  160,  -84, 1000),
+                (-1, FriendType.FishRed,  3, 930, 415, -84, 1200),
             };
             riverLaneStarts.Clear();
             for (int lane = 0; lane < riverLanes; lane++)
