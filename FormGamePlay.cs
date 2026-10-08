@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,20 +16,19 @@ namespace JumfrogbyMark
         private GameController controller;
         private string playerName;
         private System.Windows.Forms.Timer moveTimer;
+        private Image frogSprite;
 
         public FormGamePlay(string playerName = "ClassicFrog001")
         {
             InitializeComponent();
             this.playerName = playerName;
+            this.frogSprite = Properties.Resources.frog_up;
         }
 
         private void FormGamePlay_Load(object sender, EventArgs e)
         {
             controller = new GameController();
             lblName.Text = playerName;
-            // default position frog
-            picFrog.Location = new Point(controller.PlayerFrog.X, controller.PlayerFrog.Y);
-            picFrog.BringToFront();
 
             // gameloop timer
             moveTimer = new System.Windows.Forms.Timer();
@@ -40,7 +39,7 @@ namespace JumfrogbyMark
 
         private void MoveTimer_Tick(object sender, EventArgs e)
         {
-            // GameTimer 
+            // GameTimer
             float deltaTime = moveTimer.Interval / 1000f;
             controller.GameTimer.Update(deltaTime, controller.PlayerFrog);
             lblTime.Text = TimeSpan.FromSeconds(Math.Max(0, controller.GameTimer.TimeRemaining)).ToString(@"mm\:ss");
@@ -48,35 +47,34 @@ namespace JumfrogbyMark
             lblLevel.Text = controller.Level + "/3";
 
             foreach (var enemy in controller.Enemies)
-                enemy.Update(-84, 820);
+                enemy.Update();
             foreach (var friend in controller.Friends)
-                friend.Update(-84, 500);
-            // EnemyMonster
-            // เลนแรก
-            SyncMonster(picTurtleR, controller.EnemyAt(0, 0));
-            // เลนสอง
-            SyncMonster(picTurtleL, controller.EnemyAt(1, 0));
-            // เลนสาม
-            SyncMonster(picCrocR, controller.EnemyAt(2, 0));
-            SyncMonster(picCrocR, controller.EnemyAt(2, 1));
-            // FriendMonster
-            // เลนแรก
-            SyncMonster(picFishBL, controller.FriendAt(0, 0));
-            // เลนสอง
-            SyncMonster(picFishRR, controller.FriendAt(1, 0));
-            // เลนสาม
-            SyncMonster(picFishRL, controller.FriendAt(2, 0));
+                friend.Update();
 
+            // วาด sprite ลงทุกเฟรม
+            Invalidate();
         }
 
-        // ให้ PictureBox ขยับ X ตาม Monster (Y คงตำแหน่่งเลนท่ีวางไว้ใน designer)
-        private void SyncMonster(PictureBox pic, Monster m)
+        // วาด background + sprite ทุกตัวในเกม
+        protected override void OnPaint(PaintEventArgs e)
         {
-            pic.Location = new Point((int)m.X, pic.Location.Y);
+            base.OnPaint(e);
+            if (controller == null) return;
+            var g = e.Graphics;
+
+            foreach (var m in controller.Friends)
+                if (m.Sprite != null) g.DrawImage(m.Sprite, (int)m.X, (int)m.Y, m.Width, m.Height);
+            foreach (var m in controller.Enemies)
+                if (m.Sprite != null) g.DrawImage(m.Sprite, (int)m.X, (int)m.Y, m.Width, m.Height);
+
+            // กบอยู่บนสุดเพื่อทับ monster ได้
+            var frog = controller.PlayerFrog;
+            g.DrawImage(frogSprite, frog.X, frog.Y, frog.Width, frog.Height);
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            switch (keyData) // ตรวจปุ่มแล้วสั่งให้ method jump ทำงาน
+            switch (keyData) // ตรวจปุ่มแลว้สั่่งให้ method jump ทำงาน
             {
                 case Keys.Up:
                 case Keys.Down:
@@ -89,52 +87,46 @@ namespace JumfrogbyMark
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private bool isJumping = false; 
+        private bool isJumping = false;
         private async void Jump(Keys direction)
         {
             if (isJumping) return;
             isJumping = true;
             Soundplayer.PlayJumpSound();
-            // เปลี่ยนรูปตามปุ่มเดิน
+            // เปลี่่ยนรูปตามปุม่เดิิน
             switch (direction)
             {
                 case Keys.Up:
-                    picFrog.BackgroundImage = Properties.Resources.frog_jump; 
+                    frogSprite = Properties.Resources.frog_jump;
                     controller.PlayerFrog.MoveUp();
                     break;
                 case Keys.Down:
-                    picFrog.BackgroundImage = Properties.Resources.frog_jump;
+                    frogSprite = Properties.Resources.frog_jump;
                     controller.PlayerFrog.MoveDown();
                     break;
                 case Keys.Left:
-                    picFrog.BackgroundImage = Properties.Resources.frog_jump;
+                    frogSprite = Properties.Resources.frog_jump;
                     controller.PlayerFrog.MoveLeft();
                     break;
                 case Keys.Right:
-                    picFrog.BackgroundImage = Properties.Resources.frog_jump;
+                    frogSprite = Properties.Resources.frog_jump;
                     controller.PlayerFrog.MoveRight();
                     break;
             }
-            UpdateFrogPosition();
+            Invalidate();
             // delay รอ animation จบ
             await Task.Delay(100);
-            // รูปท่ายืนตามปุ่ม
+            // รูปท่ายืนตามปุม่
             switch (direction)
             {
-                case Keys.Up: picFrog.BackgroundImage = Properties.Resources.frog_up; break;
-                case Keys.Down: picFrog.BackgroundImage = Properties.Resources.frog_down; break;
-                case Keys.Left: picFrog.BackgroundImage = Properties.Resources.frog_left; break;
-                case Keys.Right: picFrog.BackgroundImage = Properties.Resources.frog_right; break;
+                case Keys.Up: frogSprite = Properties.Resources.frog_up; break;
+                case Keys.Down: frogSprite = Properties.Resources.frog_down; break;
+                case Keys.Left: frogSprite = Properties.Resources.frog_left; break;
+                case Keys.Right: frogSprite = Properties.Resources.frog_right; break;
             }
+            Invalidate();
 
             isJumping = false;
-        }
-
-        private void UpdateFrogPosition()
-        {
-            // อัพเดทค่า x , y เมื่อกดเดิน
-            picFrog.Location = new Point(controller.PlayerFrog.X, controller.PlayerFrog.Y);
-            picFrog.BringToFront();
         }
 
         private void FormGamePlay_FormClosing(object sender, FormClosingEventArgs e)
@@ -143,9 +135,6 @@ namespace JumfrogbyMark
             Application.Exit();
         }
 
-        private void picFrog_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnSound_Click(object sender, EventArgs e)
         {

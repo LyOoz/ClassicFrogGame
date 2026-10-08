@@ -18,8 +18,8 @@ namespace JumfrogbyMark
         public FriendType Type { get => type; set => type = value; }
 
         // constructor
-        public FriendMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, FriendType type)
-            : base(x, y, width, height, baseSpeed, movingRight)
+        public FriendMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, FriendType type, int minX = -100, int maxX = 900)
+            : base(x, y, width, height, baseSpeed, movingRight, minX, maxX)
         {
             this.type = type;
         }

@@ -13,6 +13,8 @@ namespace JumfrogbyMark
         protected float baseSpeed;
         protected float speed;
         protected bool movingRight;
+        protected int minX;
+        protected int maxX;
 
         // properties
         public float X { get => x; set => x = value; }
@@ -21,11 +23,12 @@ namespace JumfrogbyMark
         public int Height { get => height; set => height = value; }
         public float Speed { get => speed; set => speed = value; }
         public bool MovingRight { get => movingRight; set => movingRight = value; }
+        public Image Sprite { get; set; }
 
         public Rectangle Bounds => new Rectangle((int)x, (int)y, width, height);
 
         // constructor
-        public Monster(float x, float y, int width, int height, float baseSpeed, bool movingRight)
+        public Monster(float x, float y, int width, int height, float baseSpeed, bool movingRight, int minX = -100, int maxX = 900)
         {
             this.x = x;
             this.y = y;
@@ -34,11 +37,10 @@ namespace JumfrogbyMark
             this.baseSpeed = baseSpeed;
             this.speed = baseSpeed;
             this.movingRight = movingRight;
+            this.minX = minX;
+            this.maxX = maxX;
         }
-
-
-        /// อัปเดตตำแหน่งการเคลื่อนที่
-        public virtual void Update(int minX = -100, int maxX = 900)
+        public virtual void Update()
         {
             if (movingRight)
             {

@@ -17,8 +17,8 @@ namespace JumfrogbyMark
         public EnemyType Type { get => type; set => type = value; }
 
         // constructor
-        public EnemyMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, EnemyType type)
-            : base(x, y, width, height, baseSpeed, movingRight)
+        public EnemyMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, EnemyType type, int minX = -100, int maxX = 900)
+            : base(x, y, width, height, baseSpeed, movingRight, minX, maxX)
         {
             this.type = type;
         }

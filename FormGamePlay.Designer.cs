@@ -37,36 +37,19 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTime = new System.Windows.Forms.Label();
-            this.picFrog = new System.Windows.Forms.PictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.pigHeart1 = new System.Windows.Forms.PictureBox();
             this.picHeart2 = new System.Windows.Forms.PictureBox();
             this.picHeart3 = new System.Windows.Forms.PictureBox();
             this.picHeart4 = new System.Windows.Forms.PictureBox();
             this.picHeart5 = new System.Windows.Forms.PictureBox();
-            this.picTurtleR = new System.Windows.Forms.PictureBox();
-            this.picTurtleL = new System.Windows.Forms.PictureBox();
-            this.picFishRR = new System.Windows.Forms.PictureBox();
-            this.picFishRL = new System.Windows.Forms.PictureBox();
-            this.picFishBL = new System.Windows.Forms.PictureBox();
-            this.Water = new System.Windows.Forms.PictureBox();
-            this.Road = new System.Windows.Forms.PictureBox();
-            this.picCrocR = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFrog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pigHeart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTurtleR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTurtleL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishRR)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishRL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishBL)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Water)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Road)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCrocR)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSound
@@ -170,18 +153,6 @@
             this.lblTime.TabIndex = 12;
             this.lblTime.Text = "xxxx";
             // 
-            // picFrog
-            // 
-            this.picFrog.BackColor = System.Drawing.Color.Transparent;
-            this.picFrog.BackgroundImage = global::JumfrogbyMark.Properties.Resources.frog_up;
-            this.picFrog.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFrog.Location = new System.Drawing.Point(389, 510);
-            this.picFrog.Name = "picFrog";
-            this.picFrog.Size = new System.Drawing.Size(51, 48);
-            this.picFrog.TabIndex = 13;
-            this.picFrog.TabStop = false;
-            this.picFrog.Click += new System.EventHandler(this.picFrog_Click);
-            // 
             // lblName
             // 
             this.lblName.AutoSize = true;
@@ -249,93 +220,14 @@
             this.picHeart5.TabIndex = 19;
             this.picHeart5.TabStop = false;
             // 
-            // picTurtleR
+            // button1
             // 
-            this.picTurtleR.BackColor = System.Drawing.Color.Transparent;
-            this.picTurtleR.BackgroundImage = global::JumfrogbyMark.Properties.Resources.turtle_right;
-            this.picTurtleR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTurtleR.Location = new System.Drawing.Point(12, 329);
-            this.picTurtleR.Name = "picTurtleR";
-            this.picTurtleR.Size = new System.Drawing.Size(64, 46);
-            this.picTurtleR.TabIndex = 21;
-            this.picTurtleR.TabStop = false;
-            // 
-            // picTurtleL
-            // 
-            this.picTurtleL.BackColor = System.Drawing.Color.Transparent;
-            this.picTurtleL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.turtle_left;
-            this.picTurtleL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picTurtleL.Location = new System.Drawing.Point(753, 380);
-            this.picTurtleL.Name = "picTurtleL";
-            this.picTurtleL.Size = new System.Drawing.Size(64, 46);
-            this.picTurtleL.TabIndex = 22;
-            this.picTurtleL.TabStop = false;
-            // 
-            // picFishRR
-            // 
-            this.picFishRR.BackColor = System.Drawing.Color.Transparent;
-            this.picFishRR.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_right;
-            this.picFishRR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishRR.Location = new System.Drawing.Point(12, 130);
-            this.picFishRR.Name = "picFishRR";
-            this.picFishRR.Size = new System.Drawing.Size(64, 46);
-            this.picFishRR.TabIndex = 23;
-            this.picFishRR.TabStop = false;
-            // 
-            // picFishRL
-            // 
-            this.picFishRL.BackColor = System.Drawing.Color.Transparent;
-            this.picFishRL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_red_left;
-            this.picFishRL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishRL.Location = new System.Drawing.Point(753, 200);
-            this.picFishRL.Name = "picFishRL";
-            this.picFishRL.Size = new System.Drawing.Size(64, 46);
-            this.picFishRL.TabIndex = 24;
-            this.picFishRL.TabStop = false;
-            // 
-            // picFishBL
-            // 
-            this.picFishBL.BackColor = System.Drawing.Color.Transparent;
-            this.picFishBL.BackgroundImage = global::JumfrogbyMark.Properties.Resources.fish_blue_left;
-            this.picFishBL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picFishBL.Location = new System.Drawing.Point(753, 66);
-            this.picFishBL.Name = "picFishBL";
-            this.picFishBL.Size = new System.Drawing.Size(64, 46);
-            this.picFishBL.TabIndex = 25;
-            this.picFishBL.TabStop = false;
-            // 
-            // Water
-            // 
-            this.Water.BackColor = System.Drawing.Color.Transparent;
-            this.Water.BackgroundImage = global::JumfrogbyMark.Properties.Resources.water1;
-            this.Water.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Water.Location = new System.Drawing.Point(-4, 19);
-            this.Water.Name = "Water";
-            this.Water.Size = new System.Drawing.Size(840, 246);
-            this.Water.TabIndex = 26;
-            this.Water.TabStop = false;
-            // 
-            // Road
-            // 
-            this.Road.BackColor = System.Drawing.Color.Transparent;
-            this.Road.BackgroundImage = global::JumfrogbyMark.Properties.Resources.road1;
-            this.Road.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Road.Location = new System.Drawing.Point(-4, 312);
-            this.Road.Name = "Road";
-            this.Road.Size = new System.Drawing.Size(840, 203);
-            this.Road.TabIndex = 27;
-            this.Road.TabStop = false;
-            // 
-            // picCrocR
-            // 
-            this.picCrocR.BackColor = System.Drawing.Color.Transparent;
-            this.picCrocR.BackgroundImage = global::JumfrogbyMark.Properties.Resources.crocodile_right;
-            this.picCrocR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picCrocR.Location = new System.Drawing.Point(12, 451);
-            this.picCrocR.Name = "picCrocR";
-            this.picCrocR.Size = new System.Drawing.Size(110, 48);
-            this.picCrocR.TabIndex = 20;
-            this.picCrocR.TabStop = false;
+            this.button1.Location = new System.Drawing.Point(765, 413);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FormGamePlay
             // 
@@ -344,19 +236,13 @@
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_Gameplaystatus;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 561);
-            this.Controls.Add(this.picFishBL);
-            this.Controls.Add(this.picFishRL);
-            this.Controls.Add(this.picFishRR);
-            this.Controls.Add(this.picTurtleL);
-            this.Controls.Add(this.picTurtleR);
-            this.Controls.Add(this.picCrocR);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.picHeart5);
             this.Controls.Add(this.picHeart4);
             this.Controls.Add(this.picHeart3);
             this.Controls.Add(this.picHeart2);
             this.Controls.Add(this.pigHeart1);
             this.Controls.Add(this.lblName);
-            this.Controls.Add(this.picFrog);
             this.Controls.Add(this.lblTime);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblScore);
@@ -365,8 +251,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnSound);
-            this.Controls.Add(this.Water);
-            this.Controls.Add(this.Road);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -377,20 +261,11 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGamePlay_FormClosing);
             this.Load += new System.EventHandler(this.FormGamePlay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFrog)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pigHeart1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTurtleR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picTurtleL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishRR)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishRL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picFishBL)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Water)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Road)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCrocR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,20 +280,12 @@
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTime;
-        private System.Windows.Forms.PictureBox picFrog;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.PictureBox pigHeart1;
         private System.Windows.Forms.PictureBox picHeart2;
         private System.Windows.Forms.PictureBox picHeart3;
         private System.Windows.Forms.PictureBox picHeart4;
         private System.Windows.Forms.PictureBox picHeart5;
-        private System.Windows.Forms.PictureBox picTurtleR;
-        private System.Windows.Forms.PictureBox picTurtleL;
-        private System.Windows.Forms.PictureBox picFishRR;
-        private System.Windows.Forms.PictureBox picFishRL;
-        private System.Windows.Forms.PictureBox picFishBL;
-        private System.Windows.Forms.PictureBox Water;
-        private System.Windows.Forms.PictureBox Road;
-        private System.Windows.Forms.PictureBox picCrocR;
+        private System.Windows.Forms.Button button1;
     }
 }
