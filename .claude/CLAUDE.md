@@ -38,18 +38,23 @@ Consequently, the collision / item / lotus / level-progression logic inside `Gam
 Other loop details:
 
 - **Sprites are drawn via GDI+ in `OnPaint`, not `PictureBox`es.** The per-monster `PictureBox`es were removed (they caused a "ghosting" bug: a `PictureBox` with `BackColor = Color.Transparent` fills transparent regions with the *form's* background color, not true alpha, so the frog visually bled over the monster underneath). `FormGamePlay.OnPaint` now draws every sprite in z-order with `Graphics.DrawImage` — friends first, then enemies, then the frog on top — so PNG alpha composites correctly over overlaps. Each `Monster` carries its own `Sprite` (an `Image`), set in `InitializeLevel`; the frog uses the form's `frogSprite` field. `MoveTimer_Tick` calls `Invalidate()` each frame to trigger the repaint.
+- **Debug Location overlay.** Press **F1** in `FormGamePlay` to toggle `showDebug`. When on, `OnPaint` calls `DrawDebugLocation` to draw a black-backed lime label above each creature — `Frog X,Y` for the frog, `E X,Y` for enemies, `F X,Y` for fish — showing its on-screen `(X, Y)`, updating every frame as they move. Labels near the top edge flip below the creature.
 - `EnemyAt(lane, pos)` / `FriendAt(lane, pos)` still translate a (lane, position-in-lane) pair into a flat-list index via the `roadLaneStarts` / `riverLaneStarts` index maps built in `InitializeLevel`.
 - Arrow keys are captured in `ProcessCmdKey` → `Jump()`, which moves the frog one step, swaps `frogSprite` to `frog_jump`, and reverts to a direction sprite after a 100 ms delay.
 
 ### Levels
 
-`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array (time limit + per-lane `EnemySpeeds` / `FriendSpeeds`) via `GetLevelConfig`, which clamps out-of-range levels. Lane layout is defined by the `roadLaneSettings` / `riverLaneSettings` arrays inside `InitializeLevel`; each entry is a tuple `(dir, type, count, x0, y0, minX, maxX)` — direction, monster type, count per lane, start X, start Y, and the left/right **wrap bounds** the monster bounces between. Each monster is constructed at `x0 + i * 270` (spread across the lane) and stores its own `minX`/`maxX`, so `Monster.Update()` takes no arguments and wraps using the bounds it was given. `FormGamePlay` hardcodes the level display as `controller.Level + "/3"`.
+`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array via `GetLevelConfig`, which clamps out-of-range levels. `LevelConfig` holds a `Time` limit plus **per-creature** speeds — `TurtleSpeed`, `CrocodileSpeed`, `FishBlueSpeed`, `FishRedSpeed` — so each species can be tuned independently per level. Lane layout is defined by the `roadLaneSettings` / `riverLaneSettings` arrays inside `InitializeLevel`; each entry is a tuple `(dir, type, count, x0, y0, minX, maxX)` — direction, monster type, count per lane, start X, start Y, and the left/right **wrap bounds** the monster bounces between. Each monster is constructed at `x0 + i * <creature>.Spacing` (spread across the lane using that creature's spacing from `SpriteConfig`) and stores its own `minX`/`maxX`, so `Monster.Update()` takes no arguments and wraps using the bounds it was given. `FormGamePlay` hardcodes the level display as `controller.Level + "/3"`.
+
+### SpriteConfig
+
+`SpriteConfig` (static class) is the single source of truth for sprite images and per-creature dimensions. Each creature is a `SpriteSet` carrying its own `Left`/`Right` images, `Width`, `Height`, and `Spacing`, with `Get(bool movingRight)` picking the facing image. The sets are `Frog`, `Turtle`, `Crocodile`, `FishBlue`, `FishRed`; the frog's directional/jump frames are exposed as `FrogUp`/`FrogDown`/`FrogJump`. `Lotus` and `Item` dimensions are `const`s. `GameController` builds each monster from the matching `SpriteSet` (width/height/spacing) and the matching per-creature speed; `FormGamePlay` uses `SpriteConfig.Frog*` for the frog sprite.
 
 ## Key Conventions
 
 - Source comments are in **Thai**; keep new comments consistent with the surrounding style.
 - All game classes live in namespace `JumfrogbyMark`.
-- Sprites come from `Properties.Resources` (e.g. `frog_up`, `frog_jump`, `sound_on`).
+- Game sprites and per-creature dimensions come from `SpriteConfig` (which itself wraps `Properties.Resources`, e.g. `frog_up`, `frog_jump`). UI-only icons like `sound_on`/`sound_off` are still referenced from `Properties.Resources` directly.
 - Audio is the static `Soundplayer` class (WMPLib / Windows Media Player); `ToggleMute` mutes both the music and SFX players.
 - **Watch for inconsistent magic-number dimensions.** The field is constructed at 396×510, but `PlayerFrog` move clamps default to 830/560 and the form's monster-update bounds use `-84..820` / `-84..500`. These do not all agree — treat them as a known area of confusion, not an intentional system.
 
