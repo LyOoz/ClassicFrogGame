@@ -29,11 +29,12 @@ Class hierarchy:
 - `Monster` (abstract) → `EnemyMonster` (road) and `FriendMonster` (river). Speed is set per-lane at construction (no per-level speed method).
 - `Zone` (abstract) → `River` and `Road`. `ContainsFrog` tests whether the frog's center is inside the zone.
 
-### Game loop — the important gotcha
+### Game loop
 
-`FormGamePlay` runs a `System.Windows.Forms.Timer` at **30 ms** and, in `MoveTimer_Tick`, drives the model **manually**: it calls `controller.GameTimer.Update(...)`, then `enemy.Update()` / `friend.Update()` directly, then calls `Invalidate()` to repaint. It does **not** call `controller.Update(deltaTime)`.
+`FormGamePlay` runs a `System.Windows.Forms.Timer` at **30 ms** and, in `MoveTimer_Tick`, calls **`controller.Update(deltaTime)`** — the single self-contained simulation step (timer, monster movement, item spawn/collect, road collision, river drowning, riding friends, lotus/goal checks). The form no longer drives the timer or monster X-positions itself; it only reads `GameTimer.TimeRemaining` / `Score` / `Level` back into the HUD labels, calls `UpdateHeartsDisplay()`, and `Invalidate()` to repaint.
 
-Consequently, the collision / item / lotus / level-progression logic inside `GameController.Update` is **not currently reachable from the running form** — the form only advances the timer and monster X-positions. Integrating `controller.Update` into the tick (and removing the form's duplicated monster/timer calls) is the key remaining wiring.
+- **Hearts HUD:** the 5 heart `PictureBox`es (`pigHeart1` … `picHeart5`) are refreshed every tick by `UpdateHeartsDisplay()`, swapping `BackgroundImage` between `Properties.Resources.heart_full` and `heart_empty` based on `PlayerFrog.Hearts`.
+- **Game Over:** when `controller.IsGameOver` becomes true the tick calls `moveTimer.Stop()`. There is still no dedicated Game Over / Congratulations screen (see Gaps).
 
 Other loop details:
 
@@ -56,7 +57,8 @@ Other loop details:
 - All game classes live in namespace `JumfrogbyMark`.
 - Game sprites and per-creature dimensions come from `SpriteConfig` (which itself wraps `Properties.Resources`, e.g. `frog_up`, `frog_jump`). UI-only icons like `sound_on`/`sound_off` are still referenced from `Properties.Resources` directly.
 - Audio is the static `Soundplayer` class (WMPLib / Windows Media Player); `ToggleMute` mutes both the music and SFX players.
-- **Watch for inconsistent magic-number dimensions.** The field is constructed at 396×510, but `PlayerFrog` move clamps default to 830/560 and the form's monster-update bounds use `-84..820` / `-84..500`. These do not all agree — treat them as a known area of confusion, not an intentional system.
+- **Field size now matches the form.** `GameController` defaults to `fieldWidth = 1008, fieldHeight = 561` (the `FormGamePlay` `ClientSize`), so the road/river collision zones span the whole play area. The frog spawns centered in the safe zone below the road: `startX = (fieldWidth - Frog.Width)/2`, `startY = fieldHeight - Frog.Height` (its center sits below the road's bottom edge, so it is not immediately in a collision lane). The frog hitbox is **50×50** (`SpriteConfig.Frog`) with `stepSize = 55`, matching the road lane pitch.
+- **Still inconsistent magic numbers (known confusion, not a system).** `PlayerFrog` move clamps still default to `MoveUp(minY=40)` / `MoveDown(maxY=560)` / `MoveLeft(minX=0)` / `MoveRight(maxX=1000)`, and the monster wrap bounds in `InitializeLevel` use `-84..1000` / `-84..1200`. These roughly agree with the 1008-wide field but are not derived from it — treat them as ad-hoc tuning values.
 
 ## Spec Requirements (from the course brief)
 
@@ -74,7 +76,6 @@ Other loop details:
 
 ## Current Gaps (not yet implemented)
 
-- **Game loop not integrated**: `FormGamePlay.MoveTimer_Tick` does not call `controller.Update(deltaTime)` (see gotcha above), so collision, item collection, lotus capture, and level progression do not run in the live game.
 - **Sub-levels**: `InitializeLevel` builds a single fixed layout (3 road lanes, 3 river lanes, 5 lotuses) for every level — only the time limit and per-lane speeds vary. The 5-sub-level lotus-count reduction is not wired up.
 - **Item types** are `BonusScore` / `ExtraHeart`; the spec's "+30 s time" item is not implemented.
 - No **Game Over** / **Congratulations** screens yet.
