@@ -64,6 +64,7 @@
             this.btnSound.Size = new System.Drawing.Size(79, 65);
             this.btnSound.TabIndex = 2;
             this.btnSound.TabStop = false;
+            this.btnSound.Click += new System.EventHandler(this.btnSound_Click);
             // 
             // btnPause
             // 
