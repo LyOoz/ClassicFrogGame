@@ -31,18 +31,19 @@ Class hierarchy:
 
 ### Game loop — the important gotcha
 
-`FormGamePlay` runs a `System.Windows.Forms.Timer` at **30 ms** and, in `MoveTimer_Tick`, drives the model **manually**: it calls `controller.GameTimer.Update(...)` and `enemy.Update(...)` / `friend.Update(...)` directly, then syncs sprite positions. It does **not** call `controller.Update(deltaTime)`.
+`FormGamePlay` runs a `System.Windows.Forms.Timer` at **30 ms** and, in `MoveTimer_Tick`, drives the model **manually**: it calls `controller.GameTimer.Update(...)`, then `enemy.Update()` / `friend.Update()` directly, then calls `Invalidate()` to repaint. It does **not** call `controller.Update(deltaTime)`.
 
 Consequently, the collision / item / lotus / level-progression logic inside `GameController.Update` is **not currently reachable from the running form** — the form only advances the timer and monster X-positions. Integrating `controller.Update` into the tick (and removing the form's duplicated monster/timer calls) is the key remaining wiring.
 
 Other loop details:
 
-- Monster sprites are **fixed `PictureBox`es** placed in the designer (one per lane). `SyncMonster` copies only the model's `X` (Y is fixed per-lane in the designer). `EnemyAt(lane, pos)` / `FriendAt(lane, pos)` translate a (lane, position-in-lane) pair into a flat-list index via the `roadLaneStarts` / `riverLaneStarts` index maps built in `InitializeLevel`.
-- Arrow keys are captured in `ProcessCmdKey` → `Jump()`, which moves the frog one step, swaps the sprite to `frog_jump`, and reverts to a direction sprite after a 100 ms delay.
+- **Sprites are drawn via GDI+ in `OnPaint`, not `PictureBox`es.** The per-monster `PictureBox`es were removed (they caused a "ghosting" bug: a `PictureBox` with `BackColor = Color.Transparent` fills transparent regions with the *form's* background color, not true alpha, so the frog visually bled over the monster underneath). `FormGamePlay.OnPaint` now draws every sprite in z-order with `Graphics.DrawImage` — friends first, then enemies, then the frog on top — so PNG alpha composites correctly over overlaps. Each `Monster` carries its own `Sprite` (an `Image`), set in `InitializeLevel`; the frog uses the form's `frogSprite` field. `MoveTimer_Tick` calls `Invalidate()` each frame to trigger the repaint.
+- `EnemyAt(lane, pos)` / `FriendAt(lane, pos)` still translate a (lane, position-in-lane) pair into a flat-list index via the `roadLaneStarts` / `riverLaneStarts` index maps built in `InitializeLevel`.
+- Arrow keys are captured in `ProcessCmdKey` → `Jump()`, which moves the frog one step, swaps `frogSprite` to `frog_jump`, and reverts to a direction sprite after a 100 ms delay.
 
 ### Levels
 
-`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array (time limit + per-lane `EnemySpeeds` / `FriendSpeeds`) via `GetLevelConfig`, which clamps out-of-range levels. Lane layout (direction, type, count, start X) is defined by the `roadLaneSettings` / `riverLaneSettings` arrays inside `InitializeLevel`. `FormGamePlay` hardcodes the level display as `controller.Level + "/3"`.
+`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array (time limit + per-lane `EnemySpeeds` / `FriendSpeeds`) via `GetLevelConfig`, which clamps out-of-range levels. Lane layout is defined by the `roadLaneSettings` / `riverLaneSettings` arrays inside `InitializeLevel`; each entry is a tuple `(dir, type, count, x0, y0, minX, maxX)` — direction, monster type, count per lane, start X, start Y, and the left/right **wrap bounds** the monster bounces between. Each monster is constructed at `x0 + i * 270` (spread across the lane) and stores its own `minX`/`maxX`, so `Monster.Update()` takes no arguments and wraps using the bounds it was given. `FormGamePlay` hardcodes the level display as `controller.Level + "/3"`.
 
 ## Key Conventions
 
@@ -74,4 +75,3 @@ Other loop details:
 - No **Game Over** / **Congratulations** screens yet.
 - No **`Highscore.txt`** persistence or high-score form.
 - Only the jump SFX is wired; the other SFX (pickup, water, roar, hit) are not.
-- `MoveTimer_Tick` maps both `EnemyAt(2,0)` and `EnemyAt(2,1)` to the same `picCrocR` sprite — likely a bug to fix when expanding monster rendering.

@@ -83,9 +83,9 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_Gameplaystatus {
+        internal static System.Drawing.Bitmap bg_GameplayHud {
             get {
-                object obj = ResourceManager.GetObject("bg-Gameplaystatus", resourceCulture);
+                object obj = ResourceManager.GetObject("bg-GameplayHud", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
