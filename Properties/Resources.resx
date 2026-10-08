@@ -124,14 +124,23 @@
   <data name="bg-startgame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\bg-startgame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="fish_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\fish_red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg-setname" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\setname\bg-setname.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg-btnSetName" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\bg-btnSetName.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg-panelSetName" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\setname\bg-panelSetName.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="nameplate" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\nameplate.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="water1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\water.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="turtle" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\turtle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="frog_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\frog_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="sound-off" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\sound-off.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,31 +154,52 @@
   <data name="bg-GamePlay1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\bg-GamePlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="crocodile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\crocodile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="lilypad_flower" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\lilypad_flower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sound-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\sound-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="treasure_chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\treasure_chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="frog_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\frog_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="heart_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\heart_full.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="frog_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\frog_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sound-on" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\sound-on.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="frog_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\frog_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="frog_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\assets\gameplay\frog_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bg-statusplayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\bg-statusplayer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="heart_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\heart_empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="treasure_chest" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\treasure_chest.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="bg-Gameplaystatus" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\bg-Gameplaystatus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="frog_jump" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\gameplay\frog_jump.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fish_red_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\fish_red_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crocodile_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\crocodile_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="turtle_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\turtle_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="turtle_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\turtle_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fish_red_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\assets\gameplay\fish_red_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -31,7 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStartGame));
             this.btnPlay = new System.Windows.Forms.Button();
             this.btnSound = new System.Windows.Forms.PictureBox();
+            this.btnSetName = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblName = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnPlay
@@ -44,7 +48,7 @@
             this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(384, 425);
+            this.btnPlay.Location = new System.Drawing.Point(371, 339);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(273, 98);
             this.btnPlay.TabIndex = 0;
@@ -57,12 +61,53 @@
             this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSound.Location = new System.Drawing.Point(697, 439);
+            this.btnSound.Location = new System.Drawing.Point(668, 414);
             this.btnSound.Name = "btnSound";
             this.btnSound.Size = new System.Drawing.Size(68, 65);
             this.btnSound.TabIndex = 1;
             this.btnSound.TabStop = false;
             this.btnSound.Click += new System.EventHandler(this.btnSound_Click);
+            // 
+            // btnSetName
+            // 
+            this.btnSetName.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetName.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSetName.BackgroundImage")));
+            this.btnSetName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSetName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSetName.FlatAppearance.BorderSize = 0;
+            this.btnSetName.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSetName.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnSetName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetName.Location = new System.Drawing.Point(371, 447);
+            this.btnSetName.Name = "btnSetName";
+            this.btnSetName.Size = new System.Drawing.Size(273, 98);
+            this.btnSetName.TabIndex = 2;
+            this.btnSetName.UseVisualStyleBackColor = false;
+            this.btnSetName.Click += new System.EventHandler(this.btnSetName_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = global::JumfrogbyMark.Properties.Resources.nameplate;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(297, 202);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(439, 113);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblName.Font = new System.Drawing.Font("Ravie", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.Khaki;
+            this.lblName.Location = new System.Drawing.Point(442, 241);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(248, 34);
+            this.lblName.TabIndex = 7;
+            this.lblName.Text = "ClassicFrog001";
+            this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
             // FormStartGame
             // 
@@ -72,6 +117,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.lblName);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnSetName);
             this.Controls.Add(this.btnSound);
             this.Controls.Add(this.btnPlay);
             this.DoubleBuffered = true;
@@ -84,7 +132,9 @@
             this.Text = "ClassicFrog";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,6 +142,9 @@
 
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.PictureBox btnSound;
+        private System.Windows.Forms.Button btnSetName;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblName;
     }
 }
 

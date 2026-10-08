@@ -20,6 +20,7 @@ namespace JumfrogbyMark
         private int width;
         private int height;
         private int hearts;
+        private string name;
         private int initialHearts;
         private int startX;
         private int startY;
@@ -33,6 +34,7 @@ namespace JumfrogbyMark
         public int Width { get => width; set => width = value; }
         public int Height { get => height; set => height = value; }
         public int Hearts { get => hearts; set => hearts = value; }
+        public string Name { get => name; set => name = value; }
         public int InitialHearts => initialHearts;
         public int StartX { get => startX; set => startX = value; }
         public int StartY { get => startY; set => startY = value; }
@@ -43,8 +45,9 @@ namespace JumfrogbyMark
         public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // Constructor frog
-        public PlayerFrog(int startX = 380, int startY = 515, int width = 40, int height = 40, int initialHearts = 5, int stepSize = 40)
+        public PlayerFrog(string name = "ClassicFrog001",int startX = 396, int startY = 510, int width = 40, int height = 40, int initialHearts = 5, int stepSize = 40)
         {
+            this.name = string.IsNullOrWhiteSpace(name) ? "ClassicFrog001" : name;
             this.startX = startX;
             this.startY = startY;
             this.x = startX;

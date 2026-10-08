@@ -52,6 +52,12 @@
     <Compile Include="FormGamePlay.Designer.cs">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSetName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetName.Designer.cs">
+      <DependentUpon>FormSetName.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormStartGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="Zone.cs" />
     <EmbeddedResource Include="FormGamePlay.resx">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetName.resx">
+      <DependentUpon>FormSetName.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormStartGame.resx">
       <DependentUpon>FormStartGame.cs</DependentUpon>
@@ -113,9 +122,12 @@
     <None Include="assets\gameplay\pause.png" />
     <None Include="assets\gameplay\water.png" />
     <None Include="assets\gameplay\road.png" />
-    <None Include="assets\gameplay\frog.png" />
     <None Include="assets\gameplay\frog_up.png" />
-    <Content Include="assets\sound\sound-startgame.mp3" />
+    <None Include="assets\setname\bg-panelSetName.png" />
+    <None Include="assets\setname\bg-setname.png" />
+    <Content Include="assets\sound\sound-startgame.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />
     <Content Include="assets\sound-off.png" />

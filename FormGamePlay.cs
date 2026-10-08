@@ -14,14 +14,18 @@ namespace JumfrogbyMark
     public partial class FormGamePlay : Form
     {
         private GameController controller;
-        public FormGamePlay()
+        private string playerName;
+
+        public FormGamePlay(string playerName = "ClassicFrog001")
         {
             InitializeComponent();
+            this.playerName = playerName;
         }
 
         private void FormGamePlay_Load(object sender, EventArgs e)
         {
             controller = new GameController();
+            lblName.Text = playerName;
             // default position frog
             picFrog.Location = new Point(controller.PlayerFrog.X, controller.PlayerFrog.Y);
             picFrog.BringToFront();
