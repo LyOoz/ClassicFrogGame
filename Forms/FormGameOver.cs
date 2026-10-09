@@ -12,13 +12,20 @@ namespace JumfrogbyMark.Forms
 {
     public partial class FormGameOver : Form
     {
-        public FormGameOver()
+        private readonly string playerName;
+
+        public FormGameOver(string playerName = "ClassicFrog001", int score = 0)
         {
             InitializeComponent();
+            this.playerName = playerName;
+            lblName.Text = playerName;
+            lblScore.Text = score.ToString();
         }
         private void btnRetry_Click(object sender, EventArgs e)
         {
-
+            FormGamePlay formGamePlay = new FormGamePlay(playerName);
+            formGamePlay.Show();
+            this.Hide();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

@@ -12,9 +12,26 @@ namespace JumfrogbyMark.Forms
 {
     public partial class FormNextLevel : Form
     {
-        public FormNextLevel()
+        private readonly string playerName;
+        private readonly int score;
+        private readonly int nextLevel;
+
+        public FormNextLevel(string playerName = "ClassicFrog001", int score = 0, int nextLevel = 2)
         {
             InitializeComponent();
+            this.playerName = playerName;
+            this.score = score;
+            this.nextLevel = nextLevel;
+            lblName.Text = playerName;
+            lblScore.Text = score.ToString();
+            btnNextLevel.Click += btnNextLevel_Click;
+        }
+
+        private void btnNextLevel_Click(object sender, EventArgs e)
+        {
+            FormGamePlay formGamePlay = new FormGamePlay(playerName, nextLevel, score);
+            formGamePlay.Show();
+            this.Hide();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

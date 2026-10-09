@@ -12,9 +12,22 @@ namespace JumfrogbyMark.Forms
 {
     public partial class FormGameWinner : Form
     {
-        public FormGameWinner()
+        private readonly string playerName;
+
+        public FormGameWinner(string playerName = "ClassicFrog001", int score = 0)
         {
             InitializeComponent();
+            this.playerName = playerName;
+            lblName.Text = playerName;
+            lblScore.Text = score.ToString();
+            btnPlayAgain.Click += btnPlayAgain_Click;
+        }
+
+        private void btnPlayAgain_Click(object sender, EventArgs e)
+        {
+            FormGamePlay formGamePlay = new FormGamePlay(playerName);
+            formGamePlay.Show();
+            this.Hide();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

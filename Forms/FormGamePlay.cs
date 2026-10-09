@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JumfrogbyMark.Forms;
 
 namespace JumfrogbyMark
 {
@@ -15,6 +16,8 @@ namespace JumfrogbyMark
     {
         private GameController controller;
         private string playerName;
+        private int startLevel;
+        private int startScore;
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
 
@@ -22,17 +25,19 @@ namespace JumfrogbyMark
         private bool showDebug = false;
         private readonly Font debugFont = new Font("Consolas", 8f);
 
-        public FormGamePlay(string playerName = "ClassicFrog001")
+        public FormGamePlay(string playerName = "ClassicFrog001", int startLevel = 1, int startScore = 0)
         {
             InitializeComponent();
             this.playerName = playerName;
+            this.startLevel = startLevel;
+            this.startScore = startScore;
             this.frogSprite = SpriteConfig.FrogUp;
         }
 
         private void FormGamePlay_Load(object sender, EventArgs e)
         {
             Soundplayer.PlayGameplayMusic();
-            controller = new GameController();
+            controller = new GameController(startLevel: startLevel, startScore: startScore);
             lblName.Text = playerName;
 
             // gameloop timer
@@ -56,11 +61,43 @@ namespace JumfrogbyMark
             // วาด sprite ลงทุกเฟรม
             Invalidate();
 
-            // เกมจบ -> หยุด timer หลังจบค้างหน้าจอ 1.5 วิ (รอทำหน้า Game Over แยกภายหลัง)
+            // เกมจบหรือผ่านด่าน
             if (controller.IsGameOver)
             {
-                moveTimer.Stop();
+                ShowGameOver();
             }
+            else if (controller.IsLevelComplete)
+            {
+                ShowNextLevel();
+            }
+            else if (controller.IsVictory)
+            {
+                ShowGameWinner();
+            }
+        }
+        private void ShowGameOver()
+        {
+            moveTimer.Stop();
+            FormGameOver formGameOver = new FormGameOver(playerName, controller.Score);
+            Soundplayer.StopMusic();
+            formGameOver.Show();
+            this.Hide();
+        }
+        private void ShowNextLevel()
+        {
+            moveTimer.Stop();
+            FormNextLevel formNextLevel = new FormNextLevel(playerName, controller.Score, controller.Level + 1);
+            Soundplayer.StopMusic();
+            formNextLevel.Show();
+            this.Hide();
+        }
+        private void ShowGameWinner()
+        {
+            moveTimer.Stop();
+            FormGameWinner formGameWinner = new FormGameWinner(playerName, controller.Score);
+            Soundplayer.StopMusic();
+            formGameWinner.Show();
+            this.Hide();
         }
         private void UpdateHeartsDisplay()
         {

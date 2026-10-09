@@ -12,6 +12,7 @@ namespace JumfrogbyMark
         Playing,
         Paused,
         GameOver,
+        LevelComplete,
         Victory
     }
 
@@ -56,14 +57,15 @@ namespace JumfrogbyMark
         public GameState State => gameState;
         public bool IsGameOver => gameState == GameState.GameOver;
         public bool IsPaused => gameState == GameState.Paused;
+        public bool IsLevelComplete => gameState == GameState.LevelComplete;
         public bool IsVictory => gameState == GameState.Victory;
 
         // constructor
-        public GameController(int fieldWidth = 1008, int fieldHeight = 561)
+        public GameController(int fieldWidth = 1008, int fieldHeight = 561, int startLevel = 1, int startScore = 0)
         {
             this.rng = new Random();
-            this.score = 0;
-            this.level = 1;
+            this.score = startScore;
+            this.level = startLevel;
             this.gameState = GameState.Playing;
             this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 1);
             this.river = new River(x: 0, y: 45, width: fieldWidth, height: 220);
@@ -80,8 +82,7 @@ namespace JumfrogbyMark
             this.enemies = new List<EnemyMonster>();
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
-            // default level 1
-            InitializeLevel(1);
+            InitializeLevel(startLevel);
         }
 
         // เรียง index ตาม (เลน, ตัวที่)
@@ -311,7 +312,6 @@ namespace JumfrogbyMark
                         Soundplayer.PlayDmgSound();
                         bool isGameOver = playerFrog.TakeDamage();
 
-                        gameTimer.Reset();
                         if (isGameOver)
                         {
                             gameState = GameState.GameOver;
@@ -336,9 +336,10 @@ namespace JumfrogbyMark
                         if (CheckAllLotusesOccupied())
                         {
                             score += 1000; // เก็บครบทุกใบ +1000 ทุกด่าน
-                            level++;
                             gameTimer.Reset();
-                            InitializeLevel(level);
+                            gameState = level >= Levels.Length
+                                ? GameState.Victory
+                                : GameState.LevelComplete;
                         }
                     }
                     else
@@ -372,7 +373,6 @@ namespace JumfrogbyMark
                     {
                         Soundplayer.PlayDmgSound();
                         bool isGameOver = playerFrog.TakeDamage();
-                        gameTimer.Reset();
                         if (isGameOver)
                         {
                             gameState = GameState.GameOver;
@@ -385,7 +385,6 @@ namespace JumfrogbyMark
                     // กบตกน้ำ ตายและลดหัวใจ 1 ดวง
                     Soundplayer.PlayDmgSound();
                     bool isGameOver = playerFrog.TakeDamage();
-                    gameTimer.Reset();
                     if (isGameOver)
                     {
                         gameState = GameState.GameOver;
