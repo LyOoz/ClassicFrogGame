@@ -140,13 +140,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\bg-startgame.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="assets\bg-btnStart.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\gameplay\bg-GamePlay.png" />
     <None Include="assets\gameplay\pause.png" />
     <None Include="assets\gameplay\water.png" />
     <None Include="assets\gameplay\road.png" />
@@ -161,6 +157,9 @@
     <None Include="assets\gameplay\bg-gameover_name.png" />
     <None Include="assets\gameplay\bg-winner_name.png" />
     <None Include="assets\gameplay\btn-playagain.png" />
+    <Content Include="assets\bg-btnHighestScore.png" />
+    <Content Include="assets\bg-btnSetName.png" />
+    <Content Include="assets\bg-StartGamNe.png" />
     <Content Include="assets\sfx\sound _items.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

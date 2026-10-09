@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormNextLevel));
             this.lblName = new System.Windows.Forms.Label();
-            this.lblLevel = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
             this.btnNextLevel = new System.Windows.Forms.Button();
             this.btnMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -47,17 +47,17 @@
             this.lblName.TabIndex = 16;
             this.lblName.Text = "ClassicFrog001";
             // 
-            // lblLevel
+            // lblScore
             // 
-            this.lblLevel.AutoSize = true;
-            this.lblLevel.BackColor = System.Drawing.Color.Transparent;
-            this.lblLevel.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLevel.ForeColor = System.Drawing.Color.Khaki;
-            this.lblLevel.Location = new System.Drawing.Point(552, 333);
-            this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(147, 26);
-            this.lblLevel.TabIndex = 17;
-            this.lblLevel.Text = "xxxxxxxxx";
+            this.lblScore.AutoSize = true;
+            this.lblScore.BackColor = System.Drawing.Color.Transparent;
+            this.lblScore.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.ForeColor = System.Drawing.Color.Khaki;
+            this.lblScore.Location = new System.Drawing.Point(552, 333);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(147, 26);
+            this.lblScore.TabIndex = 17;
+            this.lblScore.Text = "xxxxxxxxx";
             // 
             // btnNextLevel
             // 
@@ -100,7 +100,7 @@
             this.ClientSize = new System.Drawing.Size(1008, 561);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnNextLevel);
-            this.Controls.Add(this.lblLevel);
+            this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblName);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -118,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblName;
-        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Button btnNextLevel;
         private System.Windows.Forms.Button btnMenu;
     }
