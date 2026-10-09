@@ -54,7 +54,7 @@
             this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSound.Location = new System.Drawing.Point(915, 7);
+            this.btnSound.Location = new System.Drawing.Point(915, 12);
             this.btnSound.Name = "btnSound";
             this.btnSound.Size = new System.Drawing.Size(46, 38);
             this.btnSound.TabIndex = 2;
@@ -71,7 +71,7 @@
             this.btnPause.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPause.Location = new System.Drawing.Point(860, 7);
+            this.btnPause.Location = new System.Drawing.Point(860, 12);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(49, 38);
             this.btnPause.TabIndex = 3;
@@ -83,7 +83,7 @@
             this.lblLevel.BackColor = System.Drawing.Color.Transparent;
             this.lblLevel.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLevel.ForeColor = System.Drawing.Color.Khaki;
-            this.lblLevel.Location = new System.Drawing.Point(357, 13);
+            this.lblLevel.Location = new System.Drawing.Point(357, 18);
             this.lblLevel.Name = "lblLevel";
             this.lblLevel.Size = new System.Drawing.Size(52, 26);
             this.lblLevel.TabIndex = 7;
@@ -95,7 +95,7 @@
             this.lblScore.BackColor = System.Drawing.Color.Transparent;
             this.lblScore.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.Khaki;
-            this.lblScore.Location = new System.Drawing.Point(509, 11);
+            this.lblScore.Location = new System.Drawing.Point(509, 15);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(72, 26);
             this.lblScore.TabIndex = 8;
@@ -107,7 +107,7 @@
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.ForeColor = System.Drawing.Color.Khaki;
-            this.lblTime.Location = new System.Drawing.Point(726, 12);
+            this.lblTime.Location = new System.Drawing.Point(726, 15);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(72, 26);
             this.lblTime.TabIndex = 12;
@@ -119,7 +119,7 @@
             this.lblName.BackColor = System.Drawing.Color.Transparent;
             this.lblName.Font = new System.Drawing.Font("Ravie", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.Khaki;
-            this.lblName.Location = new System.Drawing.Point(65, 18);
+            this.lblName.Location = new System.Drawing.Point(65, 23);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(123, 17);
             this.lblName.TabIndex = 14;
@@ -130,7 +130,7 @@
             this.pigHeart1.BackColor = System.Drawing.Color.Transparent;
             this.pigHeart1.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.pigHeart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pigHeart1.Location = new System.Drawing.Point(189, 18);
+            this.pigHeart1.Location = new System.Drawing.Point(189, 23);
             this.pigHeart1.Name = "pigHeart1";
             this.pigHeart1.Size = new System.Drawing.Size(22, 16);
             this.pigHeart1.TabIndex = 15;
@@ -141,7 +141,7 @@
             this.picHeart2.BackColor = System.Drawing.Color.Transparent;
             this.picHeart2.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart2.Location = new System.Drawing.Point(211, 18);
+            this.picHeart2.Location = new System.Drawing.Point(211, 23);
             this.picHeart2.Name = "picHeart2";
             this.picHeart2.Size = new System.Drawing.Size(22, 16);
             this.picHeart2.TabIndex = 16;
@@ -152,7 +152,7 @@
             this.picHeart3.BackColor = System.Drawing.Color.Transparent;
             this.picHeart3.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart3.Location = new System.Drawing.Point(231, 18);
+            this.picHeart3.Location = new System.Drawing.Point(231, 23);
             this.picHeart3.Name = "picHeart3";
             this.picHeart3.Size = new System.Drawing.Size(22, 16);
             this.picHeart3.TabIndex = 17;
@@ -163,7 +163,7 @@
             this.picHeart4.BackColor = System.Drawing.Color.Transparent;
             this.picHeart4.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart4.Location = new System.Drawing.Point(252, 18);
+            this.picHeart4.Location = new System.Drawing.Point(252, 23);
             this.picHeart4.Name = "picHeart4";
             this.picHeart4.Size = new System.Drawing.Size(22, 16);
             this.picHeart4.TabIndex = 18;
@@ -174,7 +174,7 @@
             this.picHeart5.BackColor = System.Drawing.Color.Transparent;
             this.picHeart5.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
             this.picHeart5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picHeart5.Location = new System.Drawing.Point(274, 18);
+            this.picHeart5.Location = new System.Drawing.Point(274, 23);
             this.picHeart5.Name = "picHeart5";
             this.picHeart5.Size = new System.Drawing.Size(22, 16);
             this.picHeart5.TabIndex = 19;
@@ -186,7 +186,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GameplayHud;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.picHeart5);
             this.Controls.Add(this.picHeart4);
             this.Controls.Add(this.picHeart3);

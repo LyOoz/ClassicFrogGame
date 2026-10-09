@@ -70,7 +70,7 @@ namespace JumfrogbyMark
                 y = minY;
         }
 
-        public void MoveDown(int maxY = 560) // max ขอบจอแกน y 
+        public void MoveDown(int maxY = 660) // max ขอบจอแกน y 
         {
             direction = FrogDirection.Down;
             if (y + stepSize + height <= maxY)
@@ -79,7 +79,7 @@ namespace JumfrogbyMark
                 y = maxY - height;
         }
 
-        public void MoveLeft(int minX = 0) // min ขอบจอแกน x
+        public void MoveLeft(int minX = -10) // min ขอบจอแกน x
         {
             direction = FrogDirection.Left;
             if (x - stepSize >= minX)

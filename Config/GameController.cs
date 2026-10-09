@@ -65,15 +65,15 @@ namespace JumfrogbyMark
         // constructor
         private const int MaxLevel = 3;
 
-        public GameController(int fieldWidth = 1008, int fieldHeight = 561, int startLevel = 1, int startScore = 0)
+        public GameController(int fieldWidth = 1008, int fieldHeight = 661, int startLevel = 1, int startScore = 0)
         {
             this.rng = new Random();
             this.score = startScore;
             this.level = startLevel;
             this.gameState = GameState.Playing;
             this.jumpingFiled = new JumpingFiled(fieldWidth, fieldHeight, startY: 515, medianY: 270, goalY: 1);
-            this.river = new River(x: 0, y: 45, width: fieldWidth, height: 220);
-            this.road = new Road(x: 0, y: 315, width: fieldWidth, height: 195, lanesCount: 4);
+            this.river = new River(x: 0, y: 45, width: fieldWidth, height: 300);
+            this.road = new Road(x: 0, y: 315, width: fieldWidth, height: 295, lanesCount: 4);
             this.playerFrog = new PlayerFrog(
                 startX: (fieldWidth - SpriteConfig.Frog.Width) / 2,
                 startY: fieldHeight - SpriteConfig.Frog.Height,
@@ -86,7 +86,8 @@ namespace JumfrogbyMark
             this.enemies = new List<EnemyMonster>();
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
-            InitializeLevel(startLevel);
+            // InitializeLevel(startLevel);
+            InitializeLevel(3);
         }
 
         // เรียง index ตาม (เลน, ตัวที่)
@@ -115,17 +116,43 @@ namespace JumfrogbyMark
             this.enemies.Clear();
             this.friends.Clear();
             this.targetLotuses.Clear();
-
+            (int x, int y)[] lotusSettings;
             // config lotus
-            var lotusSettings = new (int x, int y)[]
+            if (level == 1)
             {
-                // x , y
-                (58,  55),
-                (260, 55),
-                (461, 55),
-                (663, 55),
-                (865, 55),
-            };
+                lotusSettings = new (int x, int y)[]
+                {
+                (58,  85),
+                (260, 85),
+                (461, 85),
+                (663, 85),
+                (865, 85),
+                };
+            }
+            else if (level == 2)
+            {
+                lotusSettings = new (int x, int y)[]
+                {
+                (58,  85),
+                (260, 85),
+                (461, 85),
+                (663, 85),
+                (865, 85),
+                };
+            }
+            else // ด่าน 3
+            {
+                lotusSettings = new (int x, int y)[]
+                {
+                (75,  70),
+                (275, 70),
+                (475, 70),
+                (675, 70),
+                (875, 70),
+                };
+            }
+
+            // Sprite lotus
             for (int i = 0; i < lotusSettings.Length; i++)
             {
                 var (lx, ly) = lotusSettings[i];
@@ -133,25 +160,33 @@ namespace JumfrogbyMark
                 lotus.Sprite = SpriteConfig.Lotus;
                 targetLotuses.Add(lotus);
             }
-            
+
             // config เลน EnemyMonster
-            var roadLaneSettings = new (int dir, EnemyType type, int count, int x0, int y0, int minX, int maxX)[]
+            var roadLaneSettings = new (int dir, EnemyType type, int count, int y0, int minX, int maxX)[]
             {
-                // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                ( 1, EnemyType.turtle,     3, 12,  348, -84, 1000), // เลนแรก บนสุด
-                (-1, EnemyType.turtle,     3, 915, 390, -84, 1200),
-                ( 1, EnemyType.crocodile,  3, 12,  455, -84, 1000),
-                (-1, EnemyType.crocodile,  3, 915, 495, -84, 1200),
+                // start = randomx0 , y0 , end = minX maxX
+                // -1=ซ้าย 1=ขวา , type, จำนวนตัว,  y0, minX, maxX
+                ( 1, EnemyType.turtle,     3, 448, -84, 1000), // เลนแรกด่าน 1,2
+                (-1, EnemyType.turtle,     3, 490, -84, 1200),
+                ( 1, EnemyType.crocodile,  3, 555, -84, 1000),
+                (-1, EnemyType.crocodile,  3, 368, -84, 1200), // เลนแรกด่าน 3
             };
             roadLaneStarts.Clear();
+
+            // Sprite EnemyMonster
             for (int lane = 0; lane < cfg.RoadLanes; lane++)
             {
                 roadLaneStarts.Add(enemies.Count);
-                var (dir, type, count, x0, y0, minX, maxX) = roadLaneSettings[lane];
+                var (dir, type, count, y0, minX, maxX) = roadLaneSettings[lane];
+
+                // สุ่มค่า x0 ใหม่ในแต่ละเลนโดยอิงจาก minX และ maxX
+                int x0 = rng.Next(minX, maxX - 200);
+
                 for (int i = 0; i < count; i++)
                 {
                     var enemySet = type == EnemyType.turtle ? SpriteConfig.Turtle : SpriteConfig.Crocodile;
                     float enemySpeed = type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed;
+
                     var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: enemySpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
                     enemy.Sprite = enemySet.Get(dir > 0);
 
@@ -167,19 +202,23 @@ namespace JumfrogbyMark
             }
 
             // config เลน FriendMonster
-            var riverLaneSettings = new (int dir, FriendType type, int count, int x0, int y0, int minX, int maxX)[]
+            var riverLaneSettings = new (int dir, FriendType type, int count, int y0, int minX, int maxX)[]            
             {
-                // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
-                (-1, FriendType.FishBlue, 3, 930, 140,  -84, 1200), // เลนแรก บนสุด
-                ( 1, FriendType.FishRed,  3, 1,  195,  -84, 1000),
-                (-1, FriendType.FishRed,  3, 930, 250, -84, 1200),
-                (-1, FriendType.FishRed,  3, 930, 250, -84, 1200),
+                // start = randomx0 , y0 , end = minX maxX
+                // -1=ซ้าย 1=ขวา , type, จำนวนตัว, y0, minX, maxX
+               (-1, FriendType.FishBlue,  3, 180, -84, 1200), // เลนแรกด่าน 1,2
+               ( 1, FriendType.FishRed,   3, 235, -84, 1000),
+               (-1, FriendType.FishBlue,  3, 290, -84, 1200),
+               (-1, FriendType.FishRed,   3, 125, -84, 1200), // เลนแรกด่าน 3
+
             };
             riverLaneStarts.Clear();
+            // Sprite FriendMonster
             for (int lane = 0; lane < cfg.RiverLanes; lane++)
             {
                 riverLaneStarts.Add(friends.Count);
-                var (dir, type, count, x0, y0, minX, maxX) = riverLaneSettings[lane];
+                var (dir, type, count, y0, minX, maxX) = riverLaneSettings[lane];
+                int x0 = rng.Next(minX + 50, maxX - 300);
                 for (int i = 0; i < count; i++)
                 {
                     var friendSet = type == FriendType.FishBlue ? SpriteConfig.FishBlue : SpriteConfig.FishRed;
@@ -204,6 +243,7 @@ namespace JumfrogbyMark
             public int RoadLanes;
             public int RiverLanes;
             public int LotusScore;
+            public int LevelClearBonus;
             public float TurtleSpeed;
             public float CrocodileSpeed;
             public float FishBlueSpeed;
@@ -216,30 +256,33 @@ namespace JumfrogbyMark
                 RoadLanes = 3,
                 RiverLanes = 3,
                 LotusScore = 100,
-                TurtleSpeed = 2.0f,
-                CrocodileSpeed = 2.0f,
-                FishBlueSpeed = 2.0f,
-                FishRedSpeed = 2.0f
+                LevelClearBonus = 1000,
+                TurtleSpeed = 1.7f,
+                CrocodileSpeed = 2.6f,
+                FishBlueSpeed = 2.2f,
+                FishRedSpeed = 2.3f
             },
             new LevelConfig { // ด่าน 2
                 Time = 1200f,
                 RoadLanes = 4,
                 RiverLanes = 3,
                 LotusScore = 750,
+                LevelClearBonus = 2000,
                 TurtleSpeed = 2.6f,
-                CrocodileSpeed = 2.6f,
-                FishBlueSpeed = 2.6f,
-                FishRedSpeed = 2.6f
+                CrocodileSpeed = 3.6f,
+                FishBlueSpeed = 3.1f,
+                FishRedSpeed = 3.6f
             },
             new LevelConfig { // ด่าน 3
                 Time = 900f,
                 RoadLanes = 4,
                 RiverLanes = 4,
                 LotusScore = 1000,
+                LevelClearBonus = 3000,
                 TurtleSpeed = 3.2f,
-                CrocodileSpeed = 3.2f,
-                FishBlueSpeed = 3.2f,
-                FishRedSpeed = 3.2f
+                CrocodileSpeed = 4.2f,
+                FishBlueSpeed = 4.2f,
+                FishRedSpeed = 3.5f
             },
         };
         private static int Clamp(int value, int min, int max)
@@ -364,7 +407,7 @@ namespace JumfrogbyMark
 
                         if (CheckAllLotusesOccupied())
                         {
-                            score += 1000; // เก็บครบทุกใบ +1000 ทุกด่าน
+                            score += GetLevelConfig(level).LevelClearBonus;
                             gameTimer.Reset();
                             gameState = level >= MaxLevel
                                 ? GameState.Victory
