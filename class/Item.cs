@@ -18,8 +18,8 @@ namespace JumfrogbyMark
         private int height;
         private bool isActive;
         private bool isCollected;
-        private float duration;          // เวลาที่คงอยู่ (10 วินาที)
-        private float remainingTime;     // เวลาที่เหลืออยู่
+        private float duration;          
+        private float remainingTime;   
         private ItemType type;
         private int heartBonus;
         private float timeBonusSeconds;

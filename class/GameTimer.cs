@@ -61,7 +61,7 @@ namespace JumfrogbyMark
             if (timeRemaining > 0)
                 isTimeOut = false;
         }
-        public bool Update(float deltaTime, PlayerFrog frog = null)
+        public bool Update(float deltaTime)
         {
             if (!isRunning || isTimeOut)
                 return false;
@@ -72,13 +72,6 @@ namespace JumfrogbyMark
             {
                 timeRemaining = 0;
                 isTimeOut = true;
-
-                // หากเลยเวลากบจะตาย และหัวใจลดลง 1 ดวง
-                if (frog != null)
-                {
-                    frog.TakeDamage();
-                    Reset();
-                }
 
                 return true; // หมดเวลา
             }

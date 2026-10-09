@@ -321,21 +321,10 @@ namespace JumfrogbyMark
             if (gameState != GameState.Playing) return;
 
             // Gametimer
-            bool timeRanOut = gameTimer.Update(deltaTime, IsGodMode ? null : playerFrog);
+            bool timeRanOut = gameTimer.Update(deltaTime);
             if (timeRanOut)
             {
-                if (IsGodMode)
-                {
-                    gameTimer.Reset();
-                    return;
-                }
-
-                if (playerFrog.IsDead)
-                {
-                    gameState = GameState.GameOver;
-                    return;
-                }
-                Soundplayer.PlayDmgSound();
+                gameState = GameState.GameOver;
                 return;
             }
 
