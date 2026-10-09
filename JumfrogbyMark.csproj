@@ -130,6 +130,9 @@
     <None Include="assets\gameplay\fish_blue_right.png" />
     <None Include="assets\gameplay\fish_blue_left.png" />
     <None Include="assets\gameplay\bg-GameplayHud.png" />
+    <Content Include="assets\sfx\sound _items.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\sfx\sound-dmg.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -144,6 +147,9 @@
     </Content>
     <Content Include="assets\images.ico" />
     <None Include="assets\sound-on.png" />
+    <Content Include="assets\sfx\sound_score.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="assets\sound-off.png" />
   </ItemGroup>
   <ItemGroup>

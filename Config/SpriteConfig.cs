@@ -19,7 +19,6 @@ namespace JumfrogbyMark
         public static readonly SpriteSet Crocodile = new SpriteSet(
             Properties.Resources.crocodile_left, Properties.Resources.crocodile_right, width: 100, height: 50, spacing: 360);
 
-        // เฟรม animation เดิน
         public static readonly Image[] TurtleLeftFrames =
         {
             Properties.Resources.turtle_left_walk_0,
@@ -47,8 +46,9 @@ namespace JumfrogbyMark
         public static readonly SpriteSet FishRed = new SpriteSet(
             Properties.Resources.fish_red_left, Properties.Resources.fish_red_right, width: 90, height: 36, spacing: 270);
 
-        public const int LotusWidth = 50;
-        public const int LotusHeight = 35;
+        public const int LotusWidth = 85;
+        public const int LotusHeight = 45;
+        public static readonly Image Lotus = Properties.Resources.lilypad_flower;
 
         public const int ItemWidth = 32;
         public const int ItemHeight = 32;

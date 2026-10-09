@@ -18,7 +18,7 @@ namespace JumfrogbyMark
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
 
-        // debug Location (X, Y) on frog
+        // debug Location (X, Y)
         private bool showDebug = false;
         private readonly Font debugFont = new Font("Consolas", 8f);
 
@@ -56,7 +56,7 @@ namespace JumfrogbyMark
             // วาด sprite ลงทุกเฟรม
             Invalidate();
 
-            // เกมจบ -> หยุด timer (รอทำหน้า Game Over แยกภายหลัง)
+            // เกมจบ -> หยุด timer หลังจบค้างหน้าจอ 1.5 วิ (รอทำหน้า Game Over แยกภายหลัง)
             if (controller.IsGameOver)
             {
                 moveTimer.Stop();
@@ -80,12 +80,16 @@ namespace JumfrogbyMark
             if (controller == null) return;
             var g = e.Graphics;
 
+            // วาดใบบัวเป้าหมายที่ยังไม่ถูกเก็บ
+            foreach (var lotus in controller.TargetLotuses)
+                if (!lotus.IsOccupied && lotus.Sprite != null)
+                    g.DrawImage(lotus.Sprite, lotus.X, lotus.Y, lotus.Width, lotus.Height);
+
             foreach (var m in controller.Friends)
                 if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
             foreach (var m in controller.Enemies)
                 if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
 
-            // กบอยู่บนสุดเพื่อทับ monster ได้
             var frog = controller.PlayerFrog;
             g.DrawImage(frogSprite, frog.X, frog.Y, frog.Width, frog.Height);
 
@@ -93,10 +97,8 @@ namespace JumfrogbyMark
             if (showDebug)
             {
                 DrawDebugLocation(g, "Frog", frog.X, frog.Y);
-                foreach (var m in controller.Friends)
-                    DrawDebugLocation(g, "F", frog.X, frog.Y);
-                foreach (var m in controller.Enemies)
-                    DrawDebugLocation(g, "E", frog.X, frog.Y);
+                foreach (var lotus in controller.TargetLotuses)
+                    DrawDebugLocation(g, "L", lotus.X, lotus.Y);
             }
         }
 
@@ -129,7 +131,10 @@ namespace JumfrogbyMark
                 case Keys.Down:
                 case Keys.Left:
                 case Keys.Right:
-                    Jump(keyData);
+                    if (controller != null && !controller.IsGameOver && !controller.IsPaused)
+                    {
+                        Jump(keyData);
+                    }
                     return true;
             }
 

@@ -41,6 +41,20 @@ namespace JumfrogbyMark
             sfxJump.settings.volume = 100;
             sfxJump.controls.play();
         }
+        public static void PlayTakeLotus() 
+        {
+            sfxJump.URL = @"assets\sfx\sound_score.mp3";
+            sfxJump.settings.volume = 100;
+            sfxJump.controls.play();
+        }
+
+        public static void PlayTakeItem()
+        {
+            sfxJump.URL = @"assets\sfx\sound_items.mp3";
+            sfxJump.settings.volume = 100;
+            sfxJump.controls.play();
+        }
+
 
         public static void StopMusic()
         {

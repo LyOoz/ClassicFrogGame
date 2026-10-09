@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace JumfrogbyMark
 {
-    public class TargetLotus // class baibua
+    public class TargetLotus 
     {
         // field
         private int x;
@@ -12,6 +12,7 @@ namespace JumfrogbyMark
         private int height;
         private bool isOccupied;
         private int scoreValue;
+        private Image sprite;
 
         // properties
         public int X { get => x; set => x = value; }
@@ -20,6 +21,7 @@ namespace JumfrogbyMark
         public int Height { get => height; set => height = value; }
         public bool IsOccupied { get => isOccupied; set => isOccupied = value; }
         public int ScoreValue { get => scoreValue; set => scoreValue = value; }
+        public Image Sprite { get => sprite; set => sprite = value; }
 
         public Rectangle Bounds => new Rectangle(x, y, width, height);
 
@@ -33,15 +35,11 @@ namespace JumfrogbyMark
             this.isOccupied = false;
             this.scoreValue = scoreValue;
         }
-        // Method
-        /// ตรวจสอบว่ากบกระโดดมาถึงใบบัวนี้หรือไม่
+        /// ตรวจสอบว่ากบกระโดดมาถึง
         public bool CheckReached(PlayerFrog frog)
         {
-            // ตรวจสอบว่าขอบเขตของกบตัดกับใบบัว
             return this.Bounds.IntersectsWith(frog.Bounds);
         }
-
-
         /// เมื่อกบกระโดดมาถึงใบบัว
         public bool Occupy()
         {
@@ -52,10 +50,7 @@ namespace JumfrogbyMark
             }
             return false;
         }
-
-        /// <summary>
         /// รีเซ็ตสถานะใบบัว
-        /// </summary>
         public void Reset()
         {
             isOccupied = false;

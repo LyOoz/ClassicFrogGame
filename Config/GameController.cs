@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace JumfrogbyMark
@@ -82,7 +84,6 @@ namespace JumfrogbyMark
             InitializeLevel(1);
         }
 
-        // constructor ของ สัตว์แต่ละประเภท
         // เรียง index ตาม (เลน, ตัวที่)
         public EnemyMonster EnemyAt(int lane, int pos)
         {
@@ -110,15 +111,24 @@ namespace JumfrogbyMark
             this.friends.Clear();
             this.targetLotuses.Clear();
 
-            // สร้างใบบัวเป้าหมาย
-            int lotusCount = 5;
-            int segmentW = jumpingFiled.Width / lotusCount;
-            for (int i = 0; i < lotusCount; i++)
+            // config lotus
+            var lotusSettings = new (int x, int y)[]
             {
-                int lotusX = i * segmentW + (segmentW / 2) - 25;
-                targetLotuses.Add(new TargetLotus(lotusX, 5, width: SpriteConfig.LotusWidth, height: SpriteConfig.LotusHeight, scoreValue: 500));
+                // x , y
+                (58,  55),
+                (260, 55),
+                (461, 55),
+                (663, 55),
+                (865, 55),
+            };
+            for (int i = 0; i < lotusSettings.Length; i++)
+            {
+                var (lx, ly) = lotusSettings[i];
+                var lotus = new TargetLotus(lx, ly, width: SpriteConfig.LotusWidth, height: SpriteConfig.LotusHeight, scoreValue: cfg.LotusScore);
+                lotus.Sprite = SpriteConfig.Lotus;
+                targetLotuses.Add(lotus);
             }
-
+            
             // config เลน EnemyMonster
             int roadLanes = 3;
             var roadLaneSettings = new (int dir, EnemyType type, int count, int x0, int y0, int minX, int maxX)[]
@@ -186,6 +196,7 @@ namespace JumfrogbyMark
         private struct LevelConfig
         {
             public float Time;
+            public int LotusScore;
             public float TurtleSpeed;
             public float CrocodileSpeed;
             public float FishBlueSpeed;
@@ -195,6 +206,7 @@ namespace JumfrogbyMark
         {
             new LevelConfig { // ด่าน 1
                 Time = 120f,
+                LotusScore = 100,
                 TurtleSpeed = 2.6f,
                 CrocodileSpeed = 2.6f,
                 FishBlueSpeed = 2.6f,
@@ -202,6 +214,7 @@ namespace JumfrogbyMark
             },
             new LevelConfig { // ด่าน 2
                 Time = 30f,
+                LotusScore = 750,
                 TurtleSpeed = 2.0f,
                 CrocodileSpeed = 2.0f,
                 FishBlueSpeed = 2.0f,
@@ -209,13 +222,14 @@ namespace JumfrogbyMark
             },
             new LevelConfig { // ด่าน 3
                 Time = 25f,
+                LotusScore = 1000,
                 TurtleSpeed = 2.4f,
                 CrocodileSpeed = 2.4f,
                 FishBlueSpeed = 2.4f,
                 FishRedSpeed = 2.4f
             },
         };
-        // ทำ mirror (กลับซ้าย-ขวา) ให้ชุดเฟรม sprite สำหรุบสัตว์ท่ีมีเฟรมแค่ทิศเดียว
+        // ทำชุดเฟรม sprite สำหรุบสัตว์ที่มีเฟรมแค่ทิศเดียว
         private static Image[] MirrorFrames(Image[] frames)
         {
             var mirrored = new Image[frames.Length];
@@ -233,7 +247,6 @@ namespace JumfrogbyMark
             }
             return mirrored;
         }
-
         private LevelConfig GetLevelConfig(int lvl)
         {
             int i = lvl - 1;
@@ -242,7 +255,7 @@ namespace JumfrogbyMark
             return Levels[i];
         }
 
-        //logic update game state
+        // logic update game state
         public void Update(float deltaTime)
         {
             if (gameState != GameState.Playing) return;
@@ -256,6 +269,8 @@ namespace JumfrogbyMark
                     gameState = GameState.GameOver;
                     return;
                 }
+                Soundplayer.PlayDmgSound();
+                return;
             }
 
             // Update EnemyMonster , FriendMonster
@@ -292,19 +307,48 @@ namespace JumfrogbyMark
                 {
                     if (enemy.CheckCollision(playerFrog))
                     {
-                        // กบชนศัตรู กบตายและลดหัวใจ 1 ดวง
-                        bool isGameOver = playerFrog.TakeDamage();
+                        // กบชนศัตรูลดหัวใจ
                         Soundplayer.PlayDmgSound();
+                        bool isGameOver = playerFrog.TakeDamage();
+
                         gameTimer.Reset();
                         if (isGameOver)
                         {
                             gameState = GameState.GameOver;
-                            return;
                         }
-                        break;
+                        return;
                     }
                 }
             }
+            // TargetLotus
+            foreach (var lotus in targetLotuses)
+            {
+                // กบกระโดดมาถึง
+                if (lotus.CheckReached(playerFrog))
+                {
+                    if (!lotus.IsOccupied)
+                    {
+                        lotus.Occupy();
+                        score += lotus.ScoreValue;
+                        Soundplayer.PlayTakeLotus();
+                        playerFrog.ResetToStart();
+
+                        if (CheckAllLotusesOccupied())
+                        {
+                            score += 1000; // เก็บครบทุกใบ +1000 ทุกด่าน
+                            level++;
+                            gameTimer.Reset();
+                            InitializeLevel(level);
+                        }
+                    }
+                    else
+                    {
+                        playerFrog.ResetToStart();
+                    }
+                    return;
+                }
+            }
+
             // Frog Collision Detection กับ River และ FriendMonster
             if (river.IsFrogInRiver(playerFrog))
             {
@@ -326,66 +370,33 @@ namespace JumfrogbyMark
                     // หลุดออกนอกจอ
                     if (playerFrog.X < -playerFrog.Width || playerFrog.X > jumpingFiled.Width)
                     {
-                        bool isGameOver = playerFrog.TakeDamage();
                         Soundplayer.PlayDmgSound();
+                        bool isGameOver = playerFrog.TakeDamage();
                         gameTimer.Reset();
                         if (isGameOver)
                         {
                             gameState = GameState.GameOver;
-                            return;
                         }
+                        return;
                     }
                 }
                 else
                 {
                     // กบตกน้ำ ตายและลดหัวใจ 1 ดวง
-                    bool isGameOver = playerFrog.TakeDamage();
                     Soundplayer.PlayDmgSound();
+                    bool isGameOver = playerFrog.TakeDamage();
                     gameTimer.Reset();
                     if (isGameOver)
                     {
                         gameState = GameState.GameOver;
-                        return;
                     }
-                }
-            }
-
-            // 6. ตรวจสอบว่ากบกระโดดถึงใบบัวเป้าหมาย (TargetLotus) หรือไม่
-            foreach (var lotus in targetLotuses)
-            {
-                if (lotus.CheckReached(playerFrog))
-                {
-                    if (!lotus.IsOccupied)
-                    {
-                        lotus.Occupy();
-                        score += lotus.ScoreValue + (int)(gameTimer.TimeRemaining * 10);
-                        playerFrog.ResetToStart();
-                        gameTimer.Reset();
-
-                        // ตรวจสอบว่าพิชิตใบบัวครบทุกใบหรือยัง
-                        if (CheckAllLotusesOccupied())
-                        {
-                            score += 1000;
-                            level++;
-                            InitializeLevel(level);
-                        }
-                    }
-                    else
-                    {
-                        // ชนใบบัวที่มีคนจองแล้ว -> ถอยกลับ
-                        playerFrog.ResetToStart();
-                    }
-                    break;
+                    return;
                 }
             }
 
             // ล็อคตำแหน่งกบไม่ให้ออกนอกขอบเขตสนาม
             jumpingFiled.ClampFrogPosition(playerFrog);
         }
-
-        /// <summary>
-        /// ตรวจสอบว่าใบบัวทุกใบถูกพิชิตแล้วหรือไม่
-        /// </summary>
         private bool CheckAllLotusesOccupied()
         {
             foreach (var lotus in targetLotuses)
