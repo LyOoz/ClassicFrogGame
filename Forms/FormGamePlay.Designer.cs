@@ -76,6 +76,7 @@
             this.btnPause.Size = new System.Drawing.Size(49, 38);
             this.btnPause.TabIndex = 3;
             this.btnPause.UseVisualStyleBackColor = false;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
             // lblLevel
             // 

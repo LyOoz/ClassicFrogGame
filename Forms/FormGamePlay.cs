@@ -20,6 +20,10 @@ namespace JumfrogbyMark
         private int startScore;
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
+        private PictureBox pauseWindow;
+        private Button btnPauseContinue;
+        private Button btnPauseMenu;
+        private Button btnPauseRestart;
 
         // debug Location (X, Y) , godmode
         private bool showDebug = false;
@@ -33,6 +37,7 @@ namespace JumfrogbyMark
             this.startLevel = startLevel;
             this.startScore = startScore;
             this.frogSprite = SpriteConfig.FrogUp;
+            InitializePauseOverlay();
         }
 
         private void FormGamePlay_Load(object sender, EventArgs e)
@@ -172,6 +177,12 @@ namespace JumfrogbyMark
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
+            if (keyData == Keys.Escape && controller != null && !controller.IsGameOver && !controller.IsLevelComplete && !controller.IsVictory)
+            {
+                TogglePause();
+                return true;
+            }
+
             // F1 debug Location
             if (keyData == Keys.F1)
             {
@@ -260,6 +271,119 @@ namespace JumfrogbyMark
             {
                 btnSound.BackgroundImage = Properties.Resources.sound_on;
             }
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            TogglePause();
+        }
+
+        private void InitializePauseOverlay()
+        {
+            int windowSize = 520;
+            int windowX = (ClientSize.Width - windowSize) / 2;
+            int windowY = (ClientSize.Height - windowSize) / 2;
+            int buttonWidth = 260;
+            int buttonHeight = 66;
+            int buttonX = windowX + (windowSize - buttonWidth) / 2;
+
+            pauseWindow = new PictureBox
+            {
+                BackColor = Color.Transparent,
+                BackgroundImage = Properties.Resources.pause_window,
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Location = new Point(windowX, windowY),
+                Size = new Size(windowSize, windowSize),
+                Visible = false,
+                TabStop = false
+            };
+
+            btnPauseContinue = CreatePauseButton(Properties.Resources.btn_continue, buttonX, windowY + 160, buttonWidth, buttonHeight);
+            btnPauseMenu = CreatePauseButton(Properties.Resources.btn_menu, buttonX, windowY + 245, buttonWidth, buttonHeight);
+            btnPauseRestart = CreatePauseButton(Properties.Resources.btn_restart, buttonX, windowY + 330, buttonWidth, buttonHeight);
+
+            btnPauseContinue.Click += btnPauseContinue_Click;
+            btnPauseMenu.Click += btnPauseMenu_Click;
+            btnPauseRestart.Click += btnPauseRestart_Click;
+
+            Controls.Add(pauseWindow);
+            Controls.Add(btnPauseContinue);
+            Controls.Add(btnPauseMenu);
+            Controls.Add(btnPauseRestart);
+            SetPauseOverlayVisible(false);
+        }
+
+        private Button CreatePauseButton(Image image, int x, int y, int width, int height)
+        {
+            var button = new Button
+            {
+                BackColor = Color.Transparent,
+                BackgroundImage = image,
+                BackgroundImageLayout = ImageLayout.Stretch,
+                Cursor = Cursors.Hand,
+                FlatStyle = FlatStyle.Flat,
+                Location = new Point(x, y),
+                Size = new Size(width, height),
+                UseVisualStyleBackColor = false,
+                Visible = false
+            };
+
+            button.FlatAppearance.BorderSize = 0;
+            button.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            button.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            return button;
+        }
+
+        private void TogglePause()
+        {
+            if (controller == null || controller.IsGameOver || controller.IsLevelComplete || controller.IsVictory) return;
+
+            controller.TogglePause();
+            SetPauseOverlayVisible(controller.IsPaused);
+            Invalidate();
+        }
+
+        private void SetPauseOverlayVisible(bool visible)
+        {
+            if (pauseWindow == null) return;
+
+            pauseWindow.Visible = visible;
+            btnPauseContinue.Visible = visible;
+            btnPauseMenu.Visible = visible;
+            btnPauseRestart.Visible = visible;
+
+            if (visible)
+            {
+                pauseWindow.BringToFront();
+                btnPauseContinue.BringToFront();
+                btnPauseMenu.BringToFront();
+                btnPauseRestart.BringToFront();
+            }
+        }
+
+        private void btnPauseContinue_Click(object sender, EventArgs e)
+        {
+            if (controller != null && controller.IsPaused)
+                TogglePause();
+        }
+
+        private void btnPauseMenu_Click(object sender, EventArgs e)
+        {
+            moveTimer?.Stop();
+            Soundplayer.StopMusic();
+            FormStartGame formStartGame = new FormStartGame();
+            formStartGame.Show();
+            this.Hide();
+        }
+
+        private void btnPauseRestart_Click(object sender, EventArgs e)
+        {
+            controller?.RestartGame();
+            frogSprite = SpriteConfig.FrogUp;
+            isJumping = false;
+            SetPauseOverlayVisible(false);
+            Invalidate();
+
         }
     }
 }

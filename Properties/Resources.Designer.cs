@@ -143,9 +143,39 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn_continue {
+            get {
+                object obj = ResourceManager.GetObject("btn_continue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_menu {
+            get {
+                object obj = ResourceManager.GetObject("btn_menu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap btn_playagain {
             get {
                 object obj = ResourceManager.GetObject("btn-playagain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_restart {
+            get {
+                object obj = ResourceManager.GetObject("btn_restart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -376,6 +406,16 @@ namespace JumfrogbyMark.Properties {
         internal static System.Drawing.Bitmap nameplate {
             get {
                 object obj = ResourceManager.GetObject("nameplate", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause_window {
+            get {
+                object obj = ResourceManager.GetObject("pause_window", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
