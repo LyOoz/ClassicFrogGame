@@ -23,6 +23,7 @@ namespace JumfrogbyMark
         private Button btnPauseContinue;
         private Button btnPauseMenu;
         private Button btnPauseRestart;
+        private bool scoreSaved;
 
         // debug Location (X, Y) , godmode
         private bool showDebug = false;
@@ -257,6 +258,7 @@ namespace JumfrogbyMark
         }
         private void FormGamePlay_FormClosing(object sender, FormClosingEventArgs e)
         {
+            SaveCurrentScoreIfAny();
             moveTimer?.Stop();
             Application.Exit();
         }
@@ -353,6 +355,7 @@ namespace JumfrogbyMark
 
         private void btnPauseMenu_Click(object sender, EventArgs e)
         {
+            SaveCurrentScoreIfAny();
             moveTimer?.Stop();
             Soundplayer.StopMusic();
             FormStartGame formStartGame = new FormStartGame();
@@ -362,12 +365,22 @@ namespace JumfrogbyMark
 
         private void btnPauseRestart_Click(object sender, EventArgs e)
         {
+            SaveCurrentScoreIfAny();
             controller?.RestartGame();
+            scoreSaved = false;
             frogSprite = SpriteConfig.FrogUp;
             isJumping = false;
             SetPauseOverlayVisible(false);
             Invalidate();
 
+        }
+
+        private void SaveCurrentScoreIfAny()
+        {
+            if (scoreSaved || controller == null || controller.Score <= 0) return;
+
+            HighScoreManager.SaveScore(playerName, controller.Score);
+            scoreSaved = true;
         }
     }
 }

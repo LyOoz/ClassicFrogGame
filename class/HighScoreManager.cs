@@ -43,6 +43,8 @@ namespace JumfrogbyMark
 
         public static void SaveScore(string playerName, int score)
         {
+            if (score <= 0) return;
+
             var entries = Load().ToList();
             entries.Add(new HighScoreEntry
             {
