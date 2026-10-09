@@ -47,10 +47,23 @@ namespace JumfrogbyMark
             sfxJump.settings.volume = 100;
             sfxJump.controls.play();
         }
-
         public static void PlayTakeItem()
         {
             sfxJump.URL = @"assets\sfx\sound_items.mp3";
+            sfxJump.settings.volume = 100;
+            sfxJump.controls.play();
+        }
+        public static void PlayWinner()
+        {
+            sfxJump.settings.setMode("loop", false);
+            sfxJump.URL = @"assets\sfx\sound-winner.mp3";
+            sfxJump.settings.volume = 100;
+            sfxJump.controls.play();
+        }
+        public static void PlayGameOver()
+        {
+            sfxJump.settings.setMode("loop", false);
+            sfxJump.URL = @"assets\sfx\sound-loser.mp3";
             sfxJump.settings.volume = 100;
             sfxJump.controls.play();
         }

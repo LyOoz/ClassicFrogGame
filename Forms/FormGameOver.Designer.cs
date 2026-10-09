@@ -111,6 +111,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClassicFrog";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormGameOver_FormClosing);
+            this.Load += new System.EventHandler(this.FormGameOver_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

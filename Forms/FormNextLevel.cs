@@ -26,6 +26,10 @@ namespace JumfrogbyMark.Forms
             lblScore.Text = score.ToString();
             btnNextLevel.Click += btnNextLevel_Click;
         }
+        private void FormNextLevel_Load(object sender, EventArgs e)
+        {
+            Soundplayer.PlayWinner();
+        }
 
         private void btnNextLevel_Click(object sender, EventArgs e)
         {
@@ -34,15 +38,10 @@ namespace JumfrogbyMark.Forms
             this.Hide();
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
-        {
-            FormStartGame formStartGame = new FormStartGame();
-            formStartGame.Show();
-            this.Hide();
-        }
         private void FormNextLevel_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

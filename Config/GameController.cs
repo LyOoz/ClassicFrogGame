@@ -54,13 +54,17 @@ namespace JumfrogbyMark
         public GameTimer GameTimer => gameTimer;
         public int Score => score;
         public int Level => level;
+        public int NextLevel => level + 1;
         public GameState State => gameState;
         public bool IsGameOver => gameState == GameState.GameOver;
         public bool IsPaused => gameState == GameState.Paused;
         public bool IsLevelComplete => gameState == GameState.LevelComplete;
         public bool IsVictory => gameState == GameState.Victory;
+        public bool IsGodMode { get; set; }
 
         // constructor
+        private const int MaxLevel = 3;
+
         public GameController(int fieldWidth = 1008, int fieldHeight = 561, int startLevel = 1, int startScore = 0)
         {
             this.rng = new Random();
@@ -106,7 +110,7 @@ namespace JumfrogbyMark
         // method create object แต่ละอัน
         public void InitializeLevel(int newLevel)
         {
-            this.level = newLevel;
+            this.level = Clamp(newLevel, 1, MaxLevel);
             LevelConfig cfg = GetLevelConfig(newLevel);
             this.enemies.Clear();
             this.friends.Clear();
@@ -131,16 +135,16 @@ namespace JumfrogbyMark
             }
             
             // config เลน EnemyMonster
-            int roadLanes = 3;
             var roadLaneSettings = new (int dir, EnemyType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
                 ( 1, EnemyType.turtle,     3, 12,  348, -84, 1000), // เลนแรก บนสุด
                 (-1, EnemyType.turtle,     3, 915, 390, -84, 1200),
                 ( 1, EnemyType.crocodile,  3, 12,  455, -84, 1000),
+                (-1, EnemyType.crocodile,  3, 915, 495, -84, 1200),
             };
             roadLaneStarts.Clear();
-            for (int lane = 0; lane < roadLanes; lane++)
+            for (int lane = 0; lane < cfg.RoadLanes; lane++)
             {
                 roadLaneStarts.Add(enemies.Count);
                 var (dir, type, count, x0, y0, minX, maxX) = roadLaneSettings[lane];
@@ -150,12 +154,12 @@ namespace JumfrogbyMark
                     float enemySpeed = type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed;
                     var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: enemySpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
                     enemy.Sprite = enemySet.Get(dir > 0);
-                    // ตั้งเฟรม animation เดินตามชนิดและทิศทาง
+
                     if (type == EnemyType.turtle)
                         enemy.SetWalkFrames(SpriteConfig.TurtleLeftFrames, SpriteConfig.TurtleRightFrames);
                     else
                     {
-                        // จระเข้มีเฟรมแค่ขวา → mirror เป็นซ้าย
+                        // จระเข้มีเฟรมแค่ขวา mirror เป็นซ้าย
                         enemy.SetWalkFrames(MirrorFrames(SpriteConfig.CrocodileRightFrames), SpriteConfig.CrocodileRightFrames);
                     }
                     enemies.Add(enemy);
@@ -163,16 +167,16 @@ namespace JumfrogbyMark
             }
 
             // config เลน FriendMonster
-            int riverLanes = 3;
             var riverLaneSettings = new (int dir, FriendType type, int count, int x0, int y0, int minX, int maxX)[]
             {
                 // -1=ซ้าย 1=ขวา , type, จำนวนตัว, start(default x, default y), end(x, y)
                 (-1, FriendType.FishBlue, 3, 930, 140,  -84, 1200), // เลนแรก บนสุด
                 ( 1, FriendType.FishRed,  3, 1,  195,  -84, 1000),
                 (-1, FriendType.FishRed,  3, 930, 250, -84, 1200),
+                (-1, FriendType.FishRed,  3, 930, 250, -84, 1200),
             };
             riverLaneStarts.Clear();
-            for (int lane = 0; lane < riverLanes; lane++)
+            for (int lane = 0; lane < cfg.RiverLanes; lane++)
             {
                 riverLaneStarts.Add(friends.Count);
                 var (dir, type, count, x0, y0, minX, maxX) = riverLaneSettings[lane];
@@ -197,6 +201,8 @@ namespace JumfrogbyMark
         private struct LevelConfig
         {
             public float Time;
+            public int RoadLanes;
+            public int RiverLanes;
             public int LotusScore;
             public float TurtleSpeed;
             public float CrocodileSpeed;
@@ -206,30 +212,42 @@ namespace JumfrogbyMark
         private static readonly LevelConfig[] Levels =
         {
             new LevelConfig { // ด่าน 1
-                Time = 120f,
+                Time = 1500f,
+                RoadLanes = 3,
+                RiverLanes = 3,
                 LotusScore = 100,
-                TurtleSpeed = 2.6f,
-                CrocodileSpeed = 2.6f,
-                FishBlueSpeed = 2.6f,
-                FishRedSpeed = 2.6f
-            },
-            new LevelConfig { // ด่าน 2
-                Time = 30f,
-                LotusScore = 750,
                 TurtleSpeed = 2.0f,
                 CrocodileSpeed = 2.0f,
                 FishBlueSpeed = 2.0f,
                 FishRedSpeed = 2.0f
             },
+            new LevelConfig { // ด่าน 2
+                Time = 1200f,
+                RoadLanes = 4,
+                RiverLanes = 3,
+                LotusScore = 750,
+                TurtleSpeed = 2.6f,
+                CrocodileSpeed = 2.6f,
+                FishBlueSpeed = 2.6f,
+                FishRedSpeed = 2.6f
+            },
             new LevelConfig { // ด่าน 3
-                Time = 25f,
+                Time = 900f,
+                RoadLanes = 4,
+                RiverLanes = 4,
                 LotusScore = 1000,
-                TurtleSpeed = 2.4f,
-                CrocodileSpeed = 2.4f,
-                FishBlueSpeed = 2.4f,
-                FishRedSpeed = 2.4f
+                TurtleSpeed = 3.2f,
+                CrocodileSpeed = 3.2f,
+                FishBlueSpeed = 3.2f,
+                FishRedSpeed = 3.2f
             },
         };
+        private static int Clamp(int value, int min, int max)
+        {
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
+        }
         // ทำชุดเฟรม sprite สำหรุบสัตว์ที่มีเฟรมแค่ทิศเดียว
         private static Image[] MirrorFrames(Image[] frames)
         {
@@ -262,9 +280,15 @@ namespace JumfrogbyMark
             if (gameState != GameState.Playing) return;
 
             // Gametimer
-            bool timeRanOut = gameTimer.Update(deltaTime, playerFrog);
+            bool timeRanOut = gameTimer.Update(deltaTime, IsGodMode ? null : playerFrog);
             if (timeRanOut)
             {
+                if (IsGodMode)
+                {
+                    gameTimer.Reset();
+                    return;
+                }
+
                 if (playerFrog.IsDead)
                 {
                     gameState = GameState.GameOver;
@@ -308,6 +332,11 @@ namespace JumfrogbyMark
                 {
                     if (enemy.CheckCollision(playerFrog))
                     {
+                        if (IsGodMode)
+                        {
+                            return;
+                        }
+
                         // กบชนศัตรูลดหัวใจ
                         Soundplayer.PlayDmgSound();
                         bool isGameOver = playerFrog.TakeDamage();
@@ -337,7 +366,7 @@ namespace JumfrogbyMark
                         {
                             score += 1000; // เก็บครบทุกใบ +1000 ทุกด่าน
                             gameTimer.Reset();
-                            gameState = level >= Levels.Length
+                            gameState = level >= MaxLevel
                                 ? GameState.Victory
                                 : GameState.LevelComplete;
                         }
@@ -371,6 +400,12 @@ namespace JumfrogbyMark
                     // หลุดออกนอกจอ
                     if (playerFrog.X < -playerFrog.Width || playerFrog.X > jumpingFiled.Width)
                     {
+                        if (IsGodMode)
+                        {
+                            jumpingFiled.ClampFrogPosition(playerFrog);
+                            return;
+                        }
+
                         Soundplayer.PlayDmgSound();
                         bool isGameOver = playerFrog.TakeDamage();
                         if (isGameOver)
@@ -382,6 +417,12 @@ namespace JumfrogbyMark
                 }
                 else
                 {
+                    if (IsGodMode)
+                    {
+                        jumpingFiled.ClampFrogPosition(playerFrog);
+                        return;
+                    }
+
                     // กบตกน้ำ ตายและลดหัวใจ 1 ดวง
                     Soundplayer.PlayDmgSound();
                     bool isGameOver = playerFrog.TakeDamage();

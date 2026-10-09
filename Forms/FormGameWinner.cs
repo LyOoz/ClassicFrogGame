@@ -22,6 +22,11 @@ namespace JumfrogbyMark.Forms
             lblScore.Text = score.ToString();
             btnPlayAgain.Click += btnPlayAgain_Click;
         }
+        private void FormGameWinner_Load(object sender, EventArgs e)
+        {
+            Soundplayer.PlayWinner();
+        }
+
 
         private void btnPlayAgain_Click(object sender, EventArgs e)
         {

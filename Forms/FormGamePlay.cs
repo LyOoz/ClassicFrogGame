@@ -21,9 +21,10 @@ namespace JumfrogbyMark
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
 
-        // debug Location (X, Y)
+        // debug Location (X, Y) , godmode
         private bool showDebug = false;
         private readonly Font debugFont = new Font("Consolas", 8f);
+        private readonly Font godModeFont = new Font("Consolas", 14f, FontStyle.Bold);
 
         public FormGamePlay(string playerName = "ClassicFrog001", int startLevel = 1, int startScore = 0)
         {
@@ -86,7 +87,7 @@ namespace JumfrogbyMark
         private void ShowNextLevel()
         {
             moveTimer.Stop();
-            FormNextLevel formNextLevel = new FormNextLevel(playerName, controller.Score, controller.Level + 1);
+            FormNextLevel formNextLevel = new FormNextLevel(playerName, controller.Score, controller.NextLevel);
             Soundplayer.StopMusic();
             formNextLevel.Show();
             this.Hide();
@@ -137,6 +138,11 @@ namespace JumfrogbyMark
                 foreach (var lotus in controller.TargetLotuses)
                     DrawDebugLocation(g, "L", lotus.X, lotus.Y);
             }
+
+            if (controller.IsGodMode)
+            {
+                DrawGodModeStatus(g);
+            }
         }
 
         // debug
@@ -152,12 +158,28 @@ namespace JumfrogbyMark
             g.DrawString(text, debugFont, Brushes.Lime, tx + 2, ty + 1);
         }
 
+        private void DrawGodModeStatus(Graphics g)
+        {
+            const string text = "GODMODE";
+            var size = g.MeasureString(text, godModeFont);
+            g.FillRectangle(Brushes.Black, 12, 12, size.Width + 12, size.Height + 8);
+            g.DrawString(text, godModeFont, Brushes.Gold, 18, 16);
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             // F1 debug Location
             if (keyData == Keys.F1)
             {
                 showDebug = !showDebug;
+                Invalidate();
+                return true;
+            }
+
+            // F2 debug God Mode
+            if (keyData == Keys.F2 && controller != null)
+            {
+                controller.IsGodMode = !controller.IsGodMode;
                 Invalidate();
                 return true;
             }

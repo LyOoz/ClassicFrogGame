@@ -32,7 +32,6 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
             this.btnNextLevel = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblName
@@ -69,28 +68,11 @@
             this.btnNextLevel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnNextLevel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnNextLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNextLevel.Location = new System.Drawing.Point(294, 448);
+            this.btnNextLevel.Location = new System.Drawing.Point(438, 448);
             this.btnNextLevel.Name = "btnNextLevel";
             this.btnNextLevel.Size = new System.Drawing.Size(175, 63);
             this.btnNextLevel.TabIndex = 18;
             this.btnNextLevel.UseVisualStyleBackColor = false;
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.BackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnMenu.BackgroundImage")));
-            this.btnMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnMenu.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMenu.FlatAppearance.BorderSize = 0;
-            this.btnMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Location = new System.Drawing.Point(557, 448);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(175, 63);
-            this.btnMenu.TabIndex = 19;
-            this.btnMenu.UseVisualStyleBackColor = false;
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // FormNextLevel
             // 
@@ -98,7 +80,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_winner_name;
             this.ClientSize = new System.Drawing.Size(1008, 561);
-            this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnNextLevel);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.lblName);
@@ -110,6 +91,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClassicForg";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormNextLevel_FormClosing);
+            this.Load += new System.EventHandler(this.FormNextLevel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,6 +102,5 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.Button btnNextLevel;
-        private System.Windows.Forms.Button btnMenu;
     }
 }

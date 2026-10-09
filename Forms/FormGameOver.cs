@@ -21,6 +21,11 @@ namespace JumfrogbyMark.Forms
             lblName.Text = playerName;
             lblScore.Text = score.ToString();
         }
+        private void FormGameOver_Load(object sender, EventArgs e)
+        {
+            Soundplayer.PlayGameOver();
+        }
+
         private void btnRetry_Click(object sender, EventArgs e)
         {
             FormGamePlay formGamePlay = new FormGamePlay(playerName);
@@ -38,5 +43,6 @@ namespace JumfrogbyMark.Forms
         {
             Application.Exit();
         }
+
     }
 }
