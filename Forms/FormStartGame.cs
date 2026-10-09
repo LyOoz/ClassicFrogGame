@@ -64,7 +64,10 @@ namespace JumfrogbyMark
 
         private void btnHighestScore_Click(object sender, EventArgs e)
         {
-
+            using (var formHighScore = new JumfrogbyMark.Forms.FormHighScore())
+            {
+                formHighScore.ShowDialog(this);
+            }
         }
         private void FormStartGame_FormClosing(object sender, FormClosingEventArgs e)
         {

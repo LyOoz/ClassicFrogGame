@@ -58,6 +58,9 @@
     <Compile Include="Forms\FormGamePlay.Designer.cs">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormHighScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FormGameWinner.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +92,7 @@
     <Compile Include="Config\SpriteConfig.cs" />
     <Compile Include="Config\GameController.cs" />
     <Compile Include="Class\GameTimer.cs" />
+    <Compile Include="Class\HighScoreManager.cs" />
     <Compile Include="Class\Item.cs" />
     <Compile Include="Class\JumpingFiled.cs" />
     <Compile Include="Class\Monster.cs" />
@@ -106,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGameWinner.resx">
       <DependentUpon>FormGameWinner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormHighScore.resx">
+      <DependentUpon>FormHighScore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNextLevel.resx">
       <DependentUpon>FormNextLevel.cs</DependentUpon>
@@ -160,6 +167,7 @@
     <Content Include="assets\bg-btnHighestScore.png" />
     <Content Include="assets\bg-btnSetName.png" />
     <Content Include="assets\bg-StartGamNe.png" />
+    <None Include="assets\highestscore\bg-score.png" />
     <Content Include="assets\sfx\sound _items.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
