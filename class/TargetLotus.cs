@@ -50,10 +50,5 @@ namespace JumfrogbyMark
             }
             return false;
         }
-        /// รีเซ็ตสถานะใบบัว
-        public void Reset()
-        {
-            isOccupied = false;
-        }
     }
 }

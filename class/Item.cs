@@ -17,9 +17,8 @@ namespace JumfrogbyMark
         private int width;
         private int height;
         private bool isActive;
-        private bool isCollected;
-        private float duration;          
-        private float remainingTime;   
+        private float duration;
+        private float remainingTime;
         private ItemType type;
         private int heartBonus;
         private float timeBonusSeconds;
@@ -30,9 +29,6 @@ namespace JumfrogbyMark
         public int Width { get => width; set => width = value; }
         public int Height { get => height; set => height = value; }
         public bool IsActive => isActive;
-        public bool IsCollected => isCollected;
-        public float RemainingTime => remainingTime;
-        public float Duration => duration;
         public ItemType Type => type;
         public int HeartBonus => heartBonus;
         public float TimeBonusSeconds => timeBonusSeconds;
@@ -47,7 +43,6 @@ namespace JumfrogbyMark
             this.duration = durationSeconds;
             this.remainingTime = durationSeconds;
             this.isActive = false;
-            this.isCollected = false;
             this.type = ItemType.ExtraTime;
             this.heartBonus = 1;
             this.timeBonusSeconds = 10.0f;
@@ -71,13 +66,12 @@ namespace JumfrogbyMark
 
             this.remainingTime = duration; // 10 วินาที
             this.isActive = true;
-            this.isCollected = false;
         }
 
         /// อัปเดตเวลาถอยหลัง 10 วินาที
         public void Update(float deltaTime)
         {
-            if (!isActive || isCollected) return;
+            if (!isActive) return;
 
             remainingTime -= deltaTime;
             if (remainingTime <= 0)
@@ -90,13 +84,11 @@ namespace JumfrogbyMark
         /// ตรวจสอบการเก็บไอเทมโดยกบ
         public bool CheckCollect(PlayerFrog frog)
         {
-            if (!isActive || isCollected) return false;
+            if (!isActive) return false;
 
             if (this.Bounds.IntersectsWith(frog.Bounds))
             {
-                isCollected = true;
                 isActive = false;
-
                 return true;
             }
             return false;
@@ -106,7 +98,6 @@ namespace JumfrogbyMark
         public void Reset()
         {
             isActive = false;
-            isCollected = false;
             remainingTime = duration;
         }
     }

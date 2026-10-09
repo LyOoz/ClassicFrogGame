@@ -1,23 +1,17 @@
 using System;
-using System.Drawing;
 
 namespace JumfrogbyMark
 {
-
     public class GameTimer
     {
         // field
-        private float timeLimit;       
-        private float timeRemaining;    
+        private float timeLimit;
+        private float timeRemaining;
         private bool isRunning;
         private bool isTimeOut;
 
         // Properties
-        public float TimeLimit { get => timeLimit; set => timeLimit = value; }
-        public float TimeRemaining { get => timeRemaining; }
-        public bool IsRunning { get => isRunning; set => isRunning = value; }
-        public bool IsTimeOut { get => isTimeOut; }
-        public int SecondsRemaining => (int)Math.Ceiling(Math.Max(0, timeRemaining));
+        public float TimeRemaining => timeRemaining;
 
         // Constructor
         public GameTimer(float defaultLimitSeconds = 30.0f)

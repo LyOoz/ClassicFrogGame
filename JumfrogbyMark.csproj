@@ -160,14 +160,13 @@
     <None Include="assets\gameplay\fish_blue_right.png" />
     <None Include="assets\gameplay\fish_blue_left.png" />
     <None Include="assets\gameplay\bg-GameplayHud.png" />
-    <None Include="assets\gameplay\bg-gameover.png" />
     <None Include="assets\gameplay\bg-gameover_name.png" />
     <None Include="assets\gameplay\bg-winner_name.png" />
     <None Include="assets\gameplay\btn-playagain.png" />
     <Content Include="assets\bg-btnHighestScore.png" />
     <Content Include="assets\bg-btnSetName.png" />
-    <Content Include="assets\bg-StartGamNe.png" />
     <None Include="assets\highestscore\bg-score.png" />
+    <None Include="assets\setname\bg-setnamenew.png" />
     <Content Include="assets\sfx\sound _items.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -8,19 +8,12 @@ namespace JumfrogbyMark
         turtle,
         crocodile
     }
-    public class EnemyMonster : Monster 
+    public class EnemyMonster : Monster
     {
-        // field
-        private EnemyType type;
-
-        // properties
-        public EnemyType Type { get => type; set => type = value; }
-
         // constructor
         public EnemyMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, EnemyType type, int minX = -100, int maxX = 900)
             : base(x, y, width, height, baseSpeed, movingRight, minX, maxX)
         {
-            this.type = type;
         }
         // ตรวจสอบการชนกับกบ
         public bool CheckCollision(PlayerFrog frog)

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace JumfrogbyMark
 {
@@ -20,8 +17,6 @@ namespace JumfrogbyMark
         private PlayerFrog playerFrog;
         private List<EnemyMonster> enemies;
         private List<FriendMonster> friends;
-        private readonly List<int> roadLaneStarts = new List<int>();
-        private readonly List<int> riverLaneStarts = new List<int>();
         private List<TargetLotus> targetLotuses;
         private JumpingFiled jumpingFiled;
         private River river;
@@ -43,15 +38,11 @@ namespace JumfrogbyMark
         public List<EnemyMonster> Enemies => enemies;
         public List<FriendMonster> Friends => friends;
         public List<TargetLotus> TargetLotuses => targetLotuses;
-        public JumpingFiled JumpingFiled => jumpingFiled;
-        public River River => river;
-        public Road Road => road;
         public Item CurrentItem => currentItem;
         public GameTimer GameTimer => gameTimer;
         public int Score => score;
         public int Level => level;
         public int NextLevel => level + 1;
-        public GameState State => gameState;
         public bool IsGameOver => gameState == GameState.GameOver;
         public bool IsPaused => gameState == GameState.Paused;
         public bool IsLevelComplete => gameState == GameState.LevelComplete;
@@ -149,12 +140,10 @@ namespace JumfrogbyMark
                 ( 1, EnemyType.crocodile,  3, 555, -84, 1000),
                 (-1, EnemyType.crocodile,  3, 368, -84, 1200), // เลนแรกด่าน 3
             };
-            roadLaneStarts.Clear();
 
             // Sprite EnemyMonster
             for (int lane = 0; lane < cfg.RoadLanes; lane++)
             {
-                roadLaneStarts.Add(enemies.Count);
                 var (dir, type, count, y0, minX, maxX) = roadLaneSettings[lane];
 
                 // สุ่มค่า x0 ใหม่ในแต่ละเลน
@@ -190,11 +179,9 @@ namespace JumfrogbyMark
                (-1, FriendType.FishRed,   3, 125, -84, 1200), // เลนแรกด่าน 3
 
             };
-            riverLaneStarts.Clear();
             // Sprite FriendMonster
             for (int lane = 0; lane < cfg.RiverLanes; lane++)
             {
-                riverLaneStarts.Add(friends.Count);
                 var (dir, type, count, y0, minX, maxX) = riverLaneSettings[lane];
                 // สุ่มค่า x0 ใหม่ในแต่ละเลน
                 int x0 = rng.Next(minX + 50, maxX - 300);

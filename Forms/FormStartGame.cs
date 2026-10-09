@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JumfrogbyMark
@@ -53,13 +45,9 @@ namespace JumfrogbyMark
                 if (formSet.ShowDialog() == DialogResult.OK)
                 {
                     playerName = formSet.PlayerName;
-                    lblName.Text = playerName; 
+                    lblName.Text = playerName;
                 }
             }
-        }
-        private void lblName_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btnHighestScore_Click(object sender, EventArgs e)

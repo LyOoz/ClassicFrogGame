@@ -63,16 +63,6 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_btnSetName {
-            get {
-                object obj = ResourceManager.GetObject("bg-btnSetName", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bg_btnStart {
             get {
                 object obj = ResourceManager.GetObject("bg-btnStart", resourceCulture);
@@ -103,16 +93,6 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_panelSetName {
-            get {
-                object obj = ResourceManager.GetObject("bg-panelSetName", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap bg_score {
             get {
                 object obj = ResourceManager.GetObject("bg-score", resourceCulture);
@@ -123,9 +103,9 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bg_setname {
+        internal static System.Drawing.Bitmap bg_setnamenew {
             get {
-                object obj = ResourceManager.GetObject("bg-setname", resourceCulture);
+                object obj = ResourceManager.GetObject("bg-setnamenew", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

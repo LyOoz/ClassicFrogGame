@@ -20,13 +20,10 @@ namespace JumfrogbyMark
         private int width;
         private int height;
         private int hearts;
-        private string name;
         private int initialHearts;
         private int startX;
         private int startY;
         private int stepSize;
-        private FrogDirection direction;
-        private bool isDead;
 
         // properties
         public int X { get => x; set => x = value; }
@@ -34,20 +31,13 @@ namespace JumfrogbyMark
         public int Width { get => width; set => width = value; }
         public int Height { get => height; set => height = value; }
         public int Hearts { get => hearts; set => hearts = value; }
-        public string Name { get => name; set => name = value; }
         public int InitialHearts => initialHearts;
-        public int StartX { get => startX; set => startX = value; }
-        public int StartY { get => startY; set => startY = value; }
-        public int StepSize { get => stepSize; set => stepSize = value; }
-        public FrogDirection Direction { get => direction; set => direction = value; }
-        public bool IsDead => isDead;
 
         public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // Constructor frog
-        public PlayerFrog(string name = "ClassicFrog001",int startX = 396, int startY = 490, int width = 50, int height = 50, int initialHearts = 5, int stepSize = 55)
+        public PlayerFrog(int startX = 396, int startY = 490, int width = 50, int height = 50, int initialHearts = 5, int stepSize = 55)
         {
-            this.name = string.IsNullOrWhiteSpace(name) ? "ClassicFrog001" : name;
             this.startX = startX;
             this.startY = startY;
             this.x = startX;
@@ -57,22 +47,18 @@ namespace JumfrogbyMark
             this.initialHearts = initialHearts;
             this.hearts = initialHearts;
             this.stepSize = stepSize;
-            this.direction = FrogDirection.Up;
-            this.isDead = false;
         }
         // method move frog
         public void MoveUp(int minY = 40) // min ขอบจอแกน y
         {
-            direction = FrogDirection.Up;
             if (y - stepSize >= minY)
                 y -= stepSize;
             else
                 y = minY;
         }
 
-        public void MoveDown(int maxY = 660) // max ขอบจอแกน y 
+        public void MoveDown(int maxY = 660) // max ขอบจอแกน y
         {
-            direction = FrogDirection.Down;
             if (y + stepSize + height <= maxY)
                 y += stepSize;
             else
@@ -81,7 +67,6 @@ namespace JumfrogbyMark
 
         public void MoveLeft(int minX = -10) // min ขอบจอแกน x
         {
-            direction = FrogDirection.Left;
             if (x - stepSize >= minX)
                 x -= stepSize;
             else
@@ -90,7 +75,6 @@ namespace JumfrogbyMark
 
         public void MoveRight(int maxX = 1000) // max ขอบจอแกน x
         {
-            direction = FrogDirection.Right;
             if (x + stepSize + width <= maxX)
                 x += stepSize;
             else
@@ -108,7 +92,6 @@ namespace JumfrogbyMark
             if (hearts <= 0)
             {
                 hearts = 0;
-                isDead = true;
                 return true; // Game Over
             }
 
@@ -121,14 +104,12 @@ namespace JumfrogbyMark
         {
             x = startX;
             y = startY;
-            direction = FrogDirection.Up;
         }
 
-        /// reset all frog properties 
+        /// reset all frog properties
         public void ResetAll()
         {
             hearts = initialHearts;
-            isDead = false;
             ResetToStart();
         }
 

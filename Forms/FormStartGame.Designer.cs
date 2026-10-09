@@ -95,8 +95,7 @@
             this.lblName.Size = new System.Drawing.Size(196, 26);
             this.lblName.TabIndex = 7;
             this.lblName.Text = "ClassicFrog001";
-            this.lblName.Click += new System.EventHandler(this.lblName_Click);
-            // 
+            //
             // btnHighestScore
             // 
             this.btnHighestScore.BackColor = System.Drawing.Color.Transparent;

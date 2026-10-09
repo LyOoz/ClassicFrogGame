@@ -11,17 +11,10 @@ namespace JumfrogbyMark
 
     public class FriendMonster : Monster
     {
-        // field
-        private FriendType type;
-
-        // properties
-        public FriendType Type { get => type; set => type = value; }
-
         // constructor
         public FriendMonster(float x, float y, int width, int height, float baseSpeed, bool movingRight, FriendType type, int minX = -100, int maxX = 900)
             : base(x, y, width, height, baseSpeed, movingRight, minX, maxX)
         {
-            this.type = type;
         }
 
         /// ตรวจสอบว่ากบอยู่บนตัว friend monster มั้ย
