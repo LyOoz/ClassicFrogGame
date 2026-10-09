@@ -87,7 +87,7 @@ namespace JumfrogbyMark
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
             // InitializeLevel(startLevel);
-            InitializeLevel(3);
+            InitializeLevel(startLevel);
         }
 
         // เรียง index ตาม (เลน, ตัวที่)

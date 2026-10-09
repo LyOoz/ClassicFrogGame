@@ -47,7 +47,7 @@
             this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(371, 339);
+            this.btnPlay.Location = new System.Drawing.Point(371, 409);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(273, 98);
             this.btnPlay.TabIndex = 0;
@@ -60,7 +60,7 @@
             this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSound.Location = new System.Drawing.Point(668, 414);
+            this.btnSound.Location = new System.Drawing.Point(650, 480);
             this.btnSound.Name = "btnSound";
             this.btnSound.Size = new System.Drawing.Size(68, 65);
             this.btnSound.TabIndex = 1;
@@ -77,7 +77,7 @@
             this.btnSetName.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSetName.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSetName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetName.Location = new System.Drawing.Point(371, 447);
+            this.btnSetName.Location = new System.Drawing.Point(371, 513);
             this.btnSetName.Name = "btnSetName";
             this.btnSetName.Size = new System.Drawing.Size(273, 98);
             this.btnSetName.TabIndex = 2;
@@ -90,7 +90,7 @@
             this.lblName.BackColor = System.Drawing.Color.Transparent;
             this.lblName.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.Khaki;
-            this.lblName.Location = new System.Drawing.Point(448, 244);
+            this.lblName.Location = new System.Drawing.Point(438, 285);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(196, 26);
             this.lblName.TabIndex = 7;
@@ -107,9 +107,9 @@
             this.btnHighestScore.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnHighestScore.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnHighestScore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHighestScore.Location = new System.Drawing.Point(22, 12);
+            this.btnHighestScore.Location = new System.Drawing.Point(23, 12);
             this.btnHighestScore.Name = "btnHighestScore";
-            this.btnHighestScore.Size = new System.Drawing.Size(212, 119);
+            this.btnHighestScore.Size = new System.Drawing.Size(209, 105);
             this.btnHighestScore.TabIndex = 8;
             this.btnHighestScore.UseVisualStyleBackColor = false;
             this.btnHighestScore.Click += new System.EventHandler(this.btnHighestScore_Click);
@@ -120,8 +120,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.btnHighestScore);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnSetName);

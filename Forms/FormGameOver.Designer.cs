@@ -98,7 +98,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_gameover_name;
-            this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnRetry);
             this.Controls.Add(this.lblScore);
