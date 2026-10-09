@@ -50,6 +50,17 @@ namespace JumfrogbyMark
             this.isTimeOut = false;
             this.isRunning = true;
         }
+        public void AddTime(float seconds)
+        {
+            if (seconds <= 0) return;
+
+            timeRemaining += seconds;
+            if (timeRemaining > timeLimit)
+                timeRemaining = timeLimit;
+
+            if (timeRemaining > 0)
+                isTimeOut = false;
+        }
         public bool Update(float deltaTime, PlayerFrog frog = null)
         {
             if (!isRunning || isTimeOut)

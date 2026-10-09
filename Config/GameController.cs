@@ -15,11 +15,8 @@ namespace JumfrogbyMark
         LevelComplete,
         Victory
     }
-
-    /// GameController control PlayerFrog, EnemyMonster, FriendMonster, TargetLotus, JumpingFiled, River, Road, Item , GameTimer
     public class GameController
     {
-        // object หลักของเกม
         private PlayerFrog playerFrog;
         private List<EnemyMonster> enemies;
         private List<FriendMonster> friends;
@@ -40,7 +37,6 @@ namespace JumfrogbyMark
 
         // ตัวจับเวลาสุ่มเกิดไอเทม
         private float itemSpawnTimer;
-        private const float ItemSpawnInterval = 15.0f; // เกิดไอเทมทุกๆ 15 วินาที
 
         // Properties
         public PlayerFrog PlayerFrog => playerFrog;
@@ -88,24 +84,6 @@ namespace JumfrogbyMark
             this.targetLotuses = new List<TargetLotus>();
             // InitializeLevel(startLevel);
             InitializeLevel(startLevel);
-        }
-
-        // เรียง index ตาม (เลน, ตัวที่)
-        public EnemyMonster EnemyAt(int lane, int pos)
-        {
-            if (lane < 0 || lane >= roadLaneStarts.Count) return null;
-            int start = roadLaneStarts[lane];
-            int next = (lane + 1 < roadLaneStarts.Count) ? roadLaneStarts[lane + 1] : enemies.Count;
-            int idx = start + pos;
-            return (idx >= start && idx < next) ? enemies[idx] : null;
-        }
-        public FriendMonster FriendAt(int lane, int pos)
-        {
-            if (lane < 0 || lane >= riverLaneStarts.Count) return null;
-            int start = riverLaneStarts[lane];
-            int next = (lane + 1 < riverLaneStarts.Count) ? riverLaneStarts[lane + 1] : friends.Count;
-            int idx = start + pos;
-            return (idx >= start && idx < next) ? friends[idx] : null;
         }
 
         // method create object แต่ละอัน
@@ -179,7 +157,7 @@ namespace JumfrogbyMark
                 roadLaneStarts.Add(enemies.Count);
                 var (dir, type, count, y0, minX, maxX) = roadLaneSettings[lane];
 
-                // สุ่มค่า x0 ใหม่ในแต่ละเลนโดยอิงจาก minX และ maxX
+                // สุ่มค่า x0 ใหม่ในแต่ละเลน
                 int x0 = rng.Next(minX, maxX - 200);
 
                 for (int i = 0; i < count; i++)
@@ -218,6 +196,7 @@ namespace JumfrogbyMark
             {
                 riverLaneStarts.Add(friends.Count);
                 var (dir, type, count, y0, minX, maxX) = riverLaneSettings[lane];
+                // สุ่มค่า x0 ใหม่ในแต่ละเลน
                 int x0 = rng.Next(minX + 50, maxX - 300);
                 for (int i = 0; i < count; i++)
                 {
@@ -228,10 +207,9 @@ namespace JumfrogbyMark
                     friends.Add(friend);
                 }
             }
-
             playerFrog.ResetToStart();
             currentItem.Reset();
-            itemSpawnTimer = 3.0f; // รอ 3 วินาทีก่อนสุ่มเกิดไอเทมชิ้นแรก
+            itemSpawnTimer = cfg.ItemFirstSpawnDelay;
             gameTimer.Start(cfg.Time);
             gameState = GameState.Playing;
         }
@@ -248,6 +226,11 @@ namespace JumfrogbyMark
             public float CrocodileSpeed;
             public float FishBlueSpeed;
             public float FishRedSpeed;
+            public float ItemFirstSpawnDelay;
+            public float ItemSpawnInterval;
+            public float ItemExtraHeartChance;
+            public int ItemHeartBonus;
+            public float ItemTimeBonusSeconds;
         }
         private static readonly LevelConfig[] Levels =
         {
@@ -260,29 +243,44 @@ namespace JumfrogbyMark
                 TurtleSpeed = 1.7f,
                 CrocodileSpeed = 2.6f,
                 FishBlueSpeed = 2.2f,
-                FishRedSpeed = 2.3f
+                FishRedSpeed = 2.3f,
+                ItemFirstSpawnDelay = 6.0f,
+                ItemSpawnInterval = 18.0f, // ระยะเวลารอก่อนกล่องไอเท็มเกิดรอบถัดไป หลังจากกล่องก่อนหน้าหาย
+                ItemExtraHeartChance = 0.40f, // โอกาสเกิดไอเท็มหัวใจ 0.4 = 40% และเวลา 60%
+                ItemHeartBonus = 1, // ได้หัวใจเพิ่มกี่ดวง
+                ItemTimeBonusSeconds = 10.0f // ได้เวลาเพิ่มเท่าไหร่
             },
             new LevelConfig { // ด่าน 2
                 Time = 1200f,
                 RoadLanes = 4,
                 RiverLanes = 3,
-                LotusScore = 750,
-                LevelClearBonus = 2000,
+                LotusScore = 250,
+                LevelClearBonus = 1200,
                 TurtleSpeed = 2.6f,
                 CrocodileSpeed = 3.6f,
                 FishBlueSpeed = 3.1f,
-                FishRedSpeed = 3.6f
+                FishRedSpeed = 3.6f,
+                ItemFirstSpawnDelay = 7.0f,
+                ItemSpawnInterval = 20.0f,
+                ItemExtraHeartChance = 0.35f,
+                ItemHeartBonus = 1,
+                ItemTimeBonusSeconds = 8.0f
             },
             new LevelConfig { // ด่าน 3
                 Time = 900f,
                 RoadLanes = 4,
                 RiverLanes = 4,
-                LotusScore = 1000,
-                LevelClearBonus = 3000,
+                LotusScore = 500,
+                LevelClearBonus = 2000,
                 TurtleSpeed = 3.2f,
                 CrocodileSpeed = 4.2f,
                 FishBlueSpeed = 4.2f,
-                FishRedSpeed = 3.5f
+                FishRedSpeed = 3.5f,
+                ItemFirstSpawnDelay = 8.0f,
+                ItemSpawnInterval = 22.0f,
+                ItemExtraHeartChance = 0.30f,
+                ItemHeartBonus = 1,
+                ItemTimeBonusSeconds = 6.0f
             },
         };
         private static int Clamp(int value, int min, int max)
@@ -348,23 +346,25 @@ namespace JumfrogbyMark
             foreach (var friend in friends)
                 friend.Update(deltaTime);
 
-            // 3. จัดการการเกิดและหมดอายุของไอเทมพิเศษกลางถนน (Item - 10 วินาที)
+            // จัดการการเกิดและหมดอายุของไอเทมกลางถนน
+            LevelConfig cfg = GetLevelConfig(level);
             if (!currentItem.IsActive)
             {
                 itemSpawnTimer -= deltaTime;
                 if (itemSpawnTimer <= 0)
                 {
-                    currentItem.SpawnRandom(road.RoadBounds, rng);
-                    itemSpawnTimer = ItemSpawnInterval;
+                    currentItem.SpawnRandom(road.RoadBounds, rng, cfg.ItemExtraHeartChance, cfg.ItemHeartBonus, cfg.ItemTimeBonusSeconds);
+                    itemSpawnTimer = cfg.ItemSpawnInterval;
                 }
             }
             else
             {
                 currentItem.Update(deltaTime);
-                // ตรวจสอบกบเก็บไอเทม
+                // กบเก็บไอเทม
                 if (currentItem.CheckCollect(playerFrog))
                 {
-                    score += currentItem.ScoreBonus;
+                    ApplyItemEffect(currentItem);
+                    Soundplayer.PlayTakeItem();
                 }
             }
 
@@ -440,7 +440,7 @@ namespace JumfrogbyMark
                     // กบขี่คอ
                     carryingFriend.Carry(playerFrog);
 
-                    // หลุดออกนอกจอ
+                    // ขี่คอหลุดออกนอกจอ
                     if (playerFrog.X < -playerFrog.Width || playerFrog.X > jumpingFiled.Width)
                     {
                         if (IsGodMode)
@@ -480,6 +480,33 @@ namespace JumfrogbyMark
             // ล็อคตำแหน่งกบไม่ให้ออกนอกขอบเขตสนาม
             jumpingFiled.ClampFrogPosition(playerFrog);
         }
+
+        private void ApplyItemEffect(Item item)
+        {
+            if (item.Type == ItemType.ExtraHeart)
+            {
+                if (playerFrog.Hearts < playerFrog.InitialHearts)
+                {
+                    playerFrog.Hearts = Math.Min(playerFrog.InitialHearts, playerFrog.Hearts + item.HeartBonus);
+                }
+                else
+                {
+                    gameTimer.AddTime(item.TimeBonusSeconds * 0.5f);
+                }
+
+                return;
+            }
+
+            gameTimer.AddTime(item.TimeBonusSeconds);
+        }
+
+        public void MovePlayer(FrogDirection direction)
+        {
+            if (gameState != GameState.Playing) return;
+
+            jumpingFiled.MoveFrog(playerFrog, direction);
+        }
+
         private bool CheckAllLotusesOccupied()
         {
             foreach (var lotus in targetLotuses)
@@ -489,7 +516,6 @@ namespace JumfrogbyMark
             return true;
         }
 
-        // --- จัดการสถานะเกม ---
         public void TogglePause()
         {
             if (gameState == GameState.Playing)

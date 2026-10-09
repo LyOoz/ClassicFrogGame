@@ -5,18 +5,13 @@ namespace JumfrogbyMark
 {
     public enum ItemType
     {
-        BonusScore,  // เพิ่มคะแนนพิเศษ
-        ExtraHeart   // เพิ่มหัวใจพิเศษ
+        ExtraHeart,
+        ExtraTime
     }
 
-    /// <summary>
-    /// คลาส Item เป็นคลาสซึ่งเป็นตัวแทนของไอเทมพิเศษ
-    /// ซึ่งจะเกิดในตำแหน่งสุ่มกลางถนน กบจะต้องกระโดดข้ามถนนไปเก็บไอเทมเหล่านี้
-    /// โดยจะปรากฏอยู่นาน 10 วินาที
-    /// </summary>
     public class Item
     {
-        // ฟิลด์
+        // field
         private int x;
         private int y;
         private int width;
@@ -26,9 +21,10 @@ namespace JumfrogbyMark
         private float duration;          // เวลาที่คงอยู่ (10 วินาที)
         private float remainingTime;     // เวลาที่เหลืออยู่
         private ItemType type;
-        private int scoreBonus;
+        private int heartBonus;
+        private float timeBonusSeconds;
 
-        // คุณสมบัติ (Properties)
+        // Properties
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public int Width { get => width; set => width = value; }
@@ -38,11 +34,12 @@ namespace JumfrogbyMark
         public float RemainingTime => remainingTime;
         public float Duration => duration;
         public ItemType Type => type;
-        public int ScoreBonus => scoreBonus;
+        public int HeartBonus => heartBonus;
+        public float TimeBonusSeconds => timeBonusSeconds;
 
         public Rectangle Bounds => new Rectangle(x, y, width, height);
 
-        // คอนสตรัคเตอร์
+        // constructor
         public Item(int width = 30, int height = 30, float durationSeconds = 10.0f)
         {
             this.width = width;
@@ -51,16 +48,13 @@ namespace JumfrogbyMark
             this.remainingTime = durationSeconds;
             this.isActive = false;
             this.isCollected = false;
-            this.type = ItemType.BonusScore;
-            this.scoreBonus = 300;
+            this.type = ItemType.ExtraTime;
+            this.heartBonus = 1;
+            this.timeBonusSeconds = 10.0f;
         }
 
-        /// <summary>
-        /// สุ่มเกิดไอเทมพิเศษกลางถนน ปรากฏอยู่นาน 10 วินาที
-        /// </summary>
-        /// <param name="roadArea">พื้นที่ของถนน</param>
-        /// <param name="rng">ตัวสร้างเลขสุ่ม</param>
-        public void SpawnRandom(Rectangle roadArea, Random rng)
+        /// สุ่มเกิดไอเทมพิเศษกลางถนน
+        public void SpawnRandom(Rectangle roadArea, Random rng, float extraHeartChance, int heartBonus, float timeBonusSeconds)
         {
             int minX = roadArea.Left + 50;
             int maxX = roadArea.Right - width - 50;
@@ -70,19 +64,17 @@ namespace JumfrogbyMark
             this.x = rng.Next(minX, Math.Max(minX + 1, maxX));
             this.y = rng.Next(minY, Math.Max(minY + 1, maxY));
 
-            // สุ่มประเภทไอเทม (โอกาสได้หัวใจ 20%, คะแนน 80%)
-            this.type = rng.NextDouble() < 0.20 ? ItemType.ExtraHeart : ItemType.BonusScore;
-            this.scoreBonus = type == ItemType.ExtraHeart ? 100 : 300;
+            float heartChance = Math.Max(0.0f, Math.Min(1.0f, extraHeartChance));
+            this.type = rng.NextDouble() < heartChance ? ItemType.ExtraHeart : ItemType.ExtraTime;
+            this.heartBonus = Math.Max(1, heartBonus);
+            this.timeBonusSeconds = Math.Max(0.0f, timeBonusSeconds);
 
             this.remainingTime = duration; // 10 วินาที
             this.isActive = true;
             this.isCollected = false;
         }
 
-        /// <summary>
         /// อัปเดตเวลาถอยหลัง 10 วินาที
-        /// </summary>
-        /// <param name="deltaTime">เวลาที่ผ่านไปในเฟรมนี้ (วินาที)</param>
         public void Update(float deltaTime)
         {
             if (!isActive || isCollected) return;
@@ -95,11 +87,7 @@ namespace JumfrogbyMark
             }
         }
 
-        /// <summary>
         /// ตรวจสอบการเก็บไอเทมโดยกบ
-        /// </summary>
-        /// <param name="frog">กบผู้เล่น</param>
-        /// <returns>true หากกบเก็บไอเทมได้</returns>
         public bool CheckCollect(PlayerFrog frog)
         {
             if (!isActive || isCollected) return false;
@@ -109,20 +97,12 @@ namespace JumfrogbyMark
                 isCollected = true;
                 isActive = false;
 
-                // ผลของไอเทม
-                if (type == ItemType.ExtraHeart && frog.Hearts < 5)
-                {
-                    frog.Hearts++;
-                }
-
                 return true;
             }
             return false;
         }
 
-        /// <summary>
         /// รีเซ็ตสถานะไอเทม
-        /// </summary>
         public void Reset()
         {
             isActive = false;

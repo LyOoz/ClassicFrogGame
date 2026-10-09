@@ -50,8 +50,9 @@ namespace JumfrogbyMark
         public const int LotusHeight = 45;
         public static readonly Image Lotus = Properties.Resources.lilypad_flower;
 
-        public const int ItemWidth = 32;
-        public const int ItemHeight = 32;
+        public const int ItemWidth = 50;
+        public const int ItemHeight = 50;
+        public static readonly Image ItemChest = Properties.Resources.treasure_chest;
     }
     public class SpriteSet
     {

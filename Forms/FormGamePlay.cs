@@ -111,23 +111,27 @@ namespace JumfrogbyMark
                     : Properties.Resources.heart_empty;
             }
         }
-        // วาด texture sprite 
+        // drawsprite
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
             if (controller == null) return;
             var g = e.Graphics;
 
-            // วาดใบบัวเป้าหมายที่ยังไม่ถูกเก็บ
+            // lotus
             foreach (var lotus in controller.TargetLotuses)
                 if (!lotus.IsOccupied && lotus.Sprite != null)
                     g.DrawImage(lotus.Sprite, lotus.X, lotus.Y, lotus.Width, lotus.Height);
-
+            // frog friends and enemies
             foreach (var m in controller.Friends)
                 if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
             foreach (var m in controller.Enemies)
                 if (m.CurrentFrame != null) g.DrawImage(m.CurrentFrame, (int)m.X, (int)m.Y, m.Width, m.Height);
-
+            // tresure box
+            var item = controller.CurrentItem;
+            if (item != null && item.IsActive && SpriteConfig.ItemChest != null)
+                g.DrawImage(SpriteConfig.ItemChest, item.X, item.Y, item.Width, item.Height);
+            // frox
             var frog = controller.PlayerFrog;
             g.DrawImage(frogSprite, frog.X, frog.Y, frog.Width, frog.Height);
 
@@ -211,19 +215,19 @@ namespace JumfrogbyMark
             {
                 case Keys.Up:
                     frogSprite = SpriteConfig.FrogJump;
-                    controller.PlayerFrog.MoveUp();
+                    controller.MovePlayer(FrogDirection.Up);
                     break;
                 case Keys.Down:
                     frogSprite = SpriteConfig.FrogJumpDown;
-                    controller.PlayerFrog.MoveDown();
+                    controller.MovePlayer(FrogDirection.Down);
                     break;
                 case Keys.Left:
                     frogSprite = SpriteConfig.FrogJumpLeft;
-                    controller.PlayerFrog.MoveLeft();
+                    controller.MovePlayer(FrogDirection.Left);
                     break;
                 case Keys.Right:
                     frogSprite = SpriteConfig.FrogJumpRight;
-                    controller.PlayerFrog.MoveRight();
+                    controller.MovePlayer(FrogDirection.Right);
                     break;
             }
             Invalidate();
