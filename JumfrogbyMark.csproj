@@ -46,11 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormGameOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGameOver.Designer.cs">
+      <DependentUpon>FormGameOver.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGamePlay.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\FormGamePlay.Designer.cs">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormGameWinner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGameWinner.Designer.cs">
+      <DependentUpon>FormGameWinner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormNextLevel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormNextLevel.Designer.cs">
+      <DependentUpon>FormNextLevel.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormSetName.cs">
       <SubType>Form</SubType>
@@ -80,8 +98,17 @@
     <Compile Include="Audio\SoundPlayer.cs" />
     <Compile Include="Class\TargetLotus.cs" />
     <Compile Include="Class\Zone.cs" />
+    <EmbeddedResource Include="Forms\FormGameOver.resx">
+      <DependentUpon>FormGameOver.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGamePlay.resx">
       <DependentUpon>FormGamePlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormGameWinner.resx">
+      <DependentUpon>FormGameWinner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNextLevel.resx">
+      <DependentUpon>FormNextLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSetName.resx">
       <DependentUpon>FormSetName.cs</DependentUpon>
@@ -130,6 +157,10 @@
     <None Include="assets\gameplay\fish_blue_right.png" />
     <None Include="assets\gameplay\fish_blue_left.png" />
     <None Include="assets\gameplay\bg-GameplayHud.png" />
+    <None Include="assets\gameplay\bg-gameover.png" />
+    <None Include="assets\gameplay\bg-gameover_name.png" />
+    <None Include="assets\gameplay\bg-winner_name.png" />
+    <None Include="assets\gameplay\btn-playagain.png" />
     <Content Include="assets\sfx\sound _items.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

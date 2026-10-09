@@ -60,5 +60,15 @@ namespace JumfrogbyMark
         {
 
         }
+
+        private void btnHighestScore_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void FormStartGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }

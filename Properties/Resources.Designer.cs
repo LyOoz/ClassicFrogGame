@@ -83,6 +83,16 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_gameover_name {
+            get {
+                object obj = ResourceManager.GetObject("bg-gameover_name", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bg_GameplayHud {
             get {
                 object obj = ResourceManager.GetObject("bg-GameplayHud", resourceCulture);
@@ -123,6 +133,46 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bg_winner {
+            get {
+                object obj = ResourceManager.GetObject("bg-winner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg_winner_name {
+            get {
+                object obj = ResourceManager.GetObject("bg-winner_name", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bg_winner_name1 {
+            get {
+                object obj = ResourceManager.GetObject("bg-winner_name1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap btn_playagain {
+            get {
+                object obj = ResourceManager.GetObject("btn-playagain", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap crocodile_left {
             get {
                 object obj = ResourceManager.GetObject("crocodile_left", resourceCulture);
@@ -136,6 +186,46 @@ namespace JumfrogbyMark.Properties {
         internal static System.Drawing.Bitmap crocodile_right {
             get {
                 object obj = ResourceManager.GetObject("crocodile_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crocodile_right_walk_0 {
+            get {
+                object obj = ResourceManager.GetObject("crocodile_right_walk_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crocodile_right_walk_1 {
+            get {
+                object obj = ResourceManager.GetObject("crocodile_right_walk_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crocodile_right_walk_2 {
+            get {
+                object obj = ResourceManager.GetObject("crocodile_right_walk_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap crocodile_right_walk_3 {
+            get {
+                object obj = ResourceManager.GetObject("crocodile_right_walk_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,6 +463,46 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap turtle_left_walk_0 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_left_walk_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_left_walk_1 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_left_walk_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_left_walk_2 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_left_walk_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_left_walk_3 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_left_walk_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap turtle_left_walk_sheet {
             get {
                 object obj = ResourceManager.GetObject("turtle_left_walk_sheet", resourceCulture);
@@ -393,6 +523,46 @@ namespace JumfrogbyMark.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap turtle_right_walk_0 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_right_walk_0", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_right_walk_1 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_right_walk_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_right_walk_2 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_right_walk_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap turtle_right_walk_3 {
+            get {
+                object obj = ResourceManager.GetObject("turtle_right_walk_3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap turtle_right_walk_sheet {
             get {
                 object obj = ResourceManager.GetObject("turtle_right_walk_sheet", resourceCulture);
@@ -406,126 +576,6 @@ namespace JumfrogbyMark.Properties {
         internal static System.Drawing.Bitmap water1 {
             get {
                 object obj = ResourceManager.GetObject("water1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap crocodile_right_walk_0 {
-            get {
-                object obj = ResourceManager.GetObject("crocodile_right_walk_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap crocodile_right_walk_1 {
-            get {
-                object obj = ResourceManager.GetObject("crocodile_right_walk_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap crocodile_right_walk_2 {
-            get {
-                object obj = ResourceManager.GetObject("crocodile_right_walk_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap crocodile_right_walk_3 {
-            get {
-                object obj = ResourceManager.GetObject("crocodile_right_walk_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_left_walk_0 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_left_walk_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_left_walk_1 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_left_walk_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_left_walk_2 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_left_walk_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_left_walk_3 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_left_walk_3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_right_walk_0 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_right_walk_0", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_right_walk_1 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_right_walk_1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_right_walk_2 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_right_walk_2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap turtle_right_walk_3 {
-            get {
-                object obj = ResourceManager.GetObject("turtle_right_walk_3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -33,6 +33,7 @@
             this.btnSound = new System.Windows.Forms.PictureBox();
             this.btnSetName = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
+            this.btnHighestScore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,6 +97,23 @@
             this.lblName.Text = "ClassicFrog001";
             this.lblName.Click += new System.EventHandler(this.lblName_Click);
             // 
+            // btnHighestScore
+            // 
+            this.btnHighestScore.BackColor = System.Drawing.Color.Transparent;
+            this.btnHighestScore.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHighestScore.BackgroundImage")));
+            this.btnHighestScore.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnHighestScore.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHighestScore.FlatAppearance.BorderSize = 0;
+            this.btnHighestScore.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnHighestScore.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnHighestScore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHighestScore.Location = new System.Drawing.Point(22, 12);
+            this.btnHighestScore.Name = "btnHighestScore";
+            this.btnHighestScore.Size = new System.Drawing.Size(212, 119);
+            this.btnHighestScore.TabIndex = 8;
+            this.btnHighestScore.UseVisualStyleBackColor = false;
+            this.btnHighestScore.Click += new System.EventHandler(this.btnHighestScore_Click);
+            // 
             // FormStartGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -104,6 +122,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.Controls.Add(this.btnHighestScore);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnSetName);
             this.Controls.Add(this.btnSound);
@@ -116,6 +135,7 @@
             this.Name = "FormStartGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ClassicFrog";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStartGame_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnSound)).EndInit();
             this.ResumeLayout(false);
@@ -129,6 +149,7 @@
         private System.Windows.Forms.PictureBox btnSound;
         private System.Windows.Forms.Button btnSetName;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Button btnHighestScore;
     }
 }
 
