@@ -20,7 +20,6 @@ namespace JumfrogbyMark
         private int startScore;
         private System.Windows.Forms.Timer moveTimer;
         private Image frogSprite;
-        private PictureBox pauseWindow;
         private Button btnPauseContinue;
         private Button btnPauseMenu;
         private Button btnPauseRestart;
@@ -43,6 +42,7 @@ namespace JumfrogbyMark
         private void FormGamePlay_Load(object sender, EventArgs e)
         {
             Soundplayer.PlayGameplayMusic();
+            UpdateSoundButton();
             controller = new GameController(startLevel: startLevel, startScore: startScore);
             lblName.Text = playerName;
 
@@ -262,15 +262,14 @@ namespace JumfrogbyMark
         }
         private void btnSound_Click(object sender, EventArgs e)
         {
-            bool isMuted = Soundplayer.ToggleMute();
-            if (isMuted)
-            {
-                btnSound.BackgroundImage = Properties.Resources.sound_off;
-            }
-            else
-            {
-                btnSound.BackgroundImage = Properties.Resources.sound_on;
-            }
+            Soundplayer.ToggleMute();
+            UpdateSoundButton();
+        }
+        private void UpdateSoundButton()
+        {
+            btnSound.BackgroundImage = Soundplayer.IsMuted
+                ? Properties.Resources.sound_off
+                : Properties.Resources.sound_on;
         }
 
         private void btnPause_Click(object sender, EventArgs e)
@@ -280,33 +279,20 @@ namespace JumfrogbyMark
 
         private void InitializePauseOverlay()
         {
-            int windowSize = 520;
-            int windowX = (ClientSize.Width - windowSize) / 2;
-            int windowY = (ClientSize.Height - windowSize) / 2;
             int buttonWidth = 260;
             int buttonHeight = 66;
-            int buttonX = windowX + (windowSize - buttonWidth) / 2;
+            int buttonGap = 19;
+            int buttonX = (ClientSize.Width - buttonWidth) / 2;
+            int buttonY = (ClientSize.Height - ((buttonHeight * 3) + (buttonGap * 2))) / 2;
 
-            pauseWindow = new PictureBox
-            {
-                BackColor = Color.Transparent,
-                BackgroundImage = Properties.Resources.pause_window,
-                BackgroundImageLayout = ImageLayout.Stretch,
-                Location = new Point(windowX, windowY),
-                Size = new Size(windowSize, windowSize),
-                Visible = false,
-                TabStop = false
-            };
-
-            btnPauseContinue = CreatePauseButton(Properties.Resources.btn_continue, buttonX, windowY + 160, buttonWidth, buttonHeight);
-            btnPauseMenu = CreatePauseButton(Properties.Resources.btn_menu, buttonX, windowY + 245, buttonWidth, buttonHeight);
-            btnPauseRestart = CreatePauseButton(Properties.Resources.btn_restart, buttonX, windowY + 330, buttonWidth, buttonHeight);
+            btnPauseContinue = CreatePauseButton(Properties.Resources.btn_continue, buttonX, buttonY, buttonWidth, buttonHeight);
+            btnPauseMenu = CreatePauseButton(Properties.Resources.btn_menu, buttonX, buttonY + buttonHeight + buttonGap, buttonWidth, buttonHeight);
+            btnPauseRestart = CreatePauseButton(Properties.Resources.btn_restart, buttonX, buttonY + ((buttonHeight + buttonGap) * 2), buttonWidth, buttonHeight);
 
             btnPauseContinue.Click += btnPauseContinue_Click;
             btnPauseMenu.Click += btnPauseMenu_Click;
             btnPauseRestart.Click += btnPauseRestart_Click;
 
-            Controls.Add(pauseWindow);
             Controls.Add(btnPauseContinue);
             Controls.Add(btnPauseMenu);
             Controls.Add(btnPauseRestart);
@@ -345,16 +331,14 @@ namespace JumfrogbyMark
 
         private void SetPauseOverlayVisible(bool visible)
         {
-            if (pauseWindow == null) return;
+            if (btnPauseContinue == null) return;
 
-            pauseWindow.Visible = visible;
             btnPauseContinue.Visible = visible;
             btnPauseMenu.Visible = visible;
             btnPauseRestart.Visible = visible;
 
             if (visible)
             {
-                pauseWindow.BringToFront();
                 btnPauseContinue.BringToFront();
                 btnPauseMenu.BringToFront();
                 btnPauseRestart.BringToFront();

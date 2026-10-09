@@ -23,6 +23,7 @@ namespace JumfrogbyMark
         private void Form1_Load(object sender, EventArgs e)
         {
             Soundplayer.PlayStartMusic();
+            UpdateSoundButton();
             lblName.Text = playerName;
         }
         private void btnPlay_Click(object sender, EventArgs e)
@@ -35,15 +36,15 @@ namespace JumfrogbyMark
 
         private void btnSound_Click(object sender, EventArgs e)
         {
-            bool isMuted = Soundplayer.ToggleMute();
-            if (isMuted)
-            {
-                btnSound.BackgroundImage = Properties.Resources.sound_off;
-            }
-            else
-            {
-                btnSound.BackgroundImage = Properties.Resources.sound_on;
-            }
+            Soundplayer.ToggleMute();
+            UpdateSoundButton();
+        }
+
+        private void UpdateSoundButton()
+        {
+            btnSound.BackgroundImage = Soundplayer.IsMuted
+                ? Properties.Resources.sound_off
+                : Properties.Resources.sound_on;
         }
         private void btnSetName_Click(object sender, EventArgs e)
         {

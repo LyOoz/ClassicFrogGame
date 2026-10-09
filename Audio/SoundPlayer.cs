@@ -11,12 +11,16 @@ namespace JumfrogbyMark
     {
         private static WindowsMediaPlayer sound = new WindowsMediaPlayer();
         private static WindowsMediaPlayer sfxJump = new WindowsMediaPlayer();
+        private static bool isMuted = false;
+
+        public static bool IsMuted => isMuted;
 
         public static void PlayStartMusic() // sound startgame
         {
             sound.URL = @"assets\sfx\sound-startgame.mp3";
             sound.settings.setMode("loop", true);
             sound.settings.volume = 30;
+            ApplyMute();
             sound.controls.play();
 
         }
@@ -25,6 +29,7 @@ namespace JumfrogbyMark
             sound.URL = @"assets\sfx\sound-gameplay.mp3";
             sound.settings.setMode("loop", true);
             sound.settings.volume = 30;
+            ApplyMute();
             sound.controls.play();
 
         }
@@ -75,9 +80,15 @@ namespace JumfrogbyMark
         }
         public static bool ToggleMute()
         {
-            sound.settings.mute = !sound.settings.mute;
-            sfxJump.settings.mute = sound.settings.mute;
-            return sound.settings.mute;
+            isMuted = !isMuted;
+            ApplyMute();
+            return isMuted;
+        }
+
+        private static void ApplyMute()
+        {
+            sound.settings.mute = isMuted;
+            sfxJump.settings.mute = isMuted;
         }
     }
 }
