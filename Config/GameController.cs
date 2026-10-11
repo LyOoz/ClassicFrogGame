@@ -70,7 +70,7 @@ namespace JumfrogbyMark
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
             // InitializeLevel(3);
-            InitializeLevel(startLevel);
+            InitializeLevel(2);
         }
 
         // method create object แต่ละอัน
