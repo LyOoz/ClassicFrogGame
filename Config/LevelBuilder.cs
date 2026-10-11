@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace JumfrogbyMark
 {
@@ -11,11 +10,10 @@ namespace JumfrogbyMark
             Random rng,
             List<EnemyMonster> enemies,
             List<FriendMonster> friends,
-            List<TargetLotus> targetLotuses,
-            Func<Image[], Image[]> mirrorFrames)
+            List<TargetLotus> targetLotuses)
         {
             BuildLotuses(cfg, targetLotuses);
-            BuildRoadLanes(cfg, rng, enemies, mirrorFrames);
+            BuildRoadLanes(cfg, rng, enemies);
             BuildRiverLanes(cfg, rng, friends);
         }
 
@@ -33,8 +31,7 @@ namespace JumfrogbyMark
         private static void BuildRoadLanes(
             LevelConfig cfg,
             Random rng,
-            List<EnemyMonster> enemies,
-            Func<Image[], Image[]> mirrorFrames)
+            List<EnemyMonster> enemies)
         {
             for (int lane = 0; lane < cfg.RoadLanes; lane++)
             {
@@ -54,7 +51,7 @@ namespace JumfrogbyMark
                     }
                     else
                     {
-                        enemy.SetWalkFrames(mirrorFrames(SpriteConfig.CrocodileRightFrames), SpriteConfig.CrocodileRightFrames);
+                        enemy.SetWalkFrames(SpriteConfig.CrocodileLeftFrames, SpriteConfig.CrocodileRightFrames);
                     }
 
                     enemies.Add(enemy);

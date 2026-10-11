@@ -40,6 +40,7 @@ namespace JumfrogbyMark
             Properties.Resources.crocodile_right_walk_2,
             Properties.Resources.crocodile_right_walk_3,
         };
+        public static readonly Image[] CrocodileLeftFrames = MirrorFrames(CrocodileRightFrames);
 
         public static readonly SpriteSet FishBlue = new SpriteSet(
             Properties.Resources.fish_blue_left, Properties.Resources.fish_blue_right, width: 90, height: 36, spacing: 270);
@@ -53,6 +54,24 @@ namespace JumfrogbyMark
         public const int ItemWidth = 50;
         public const int ItemHeight = 50;
         public static readonly Image ItemChest = Properties.Resources.treasure_chest;
+
+        private static Image[] MirrorFrames(Image[] frames)
+        {
+            var mirrored = new Image[frames.Length];
+            for (int i = 0; i < frames.Length; i++)
+            {
+                var src = frames[i];
+                var bmp = new Bitmap(src.Width, src.Height);
+                using (var g = Graphics.FromImage(bmp))
+                {
+                    g.TranslateTransform(bmp.Width, 0);
+                    g.ScaleTransform(-1, 1);
+                    g.DrawImage(src, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                }
+                mirrored[i] = bmp;
+            }
+            return mirrored;
+        }
     }
     public class SpriteSet
     {

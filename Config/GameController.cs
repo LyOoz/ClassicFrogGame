@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace JumfrogbyMark
 {
@@ -83,7 +82,7 @@ namespace JumfrogbyMark
             this.friends.Clear();
             this.targetLotuses.Clear();
 
-            LevelBuilder.Build(cfg, rng, enemies, friends, targetLotuses, MirrorFrames);
+            LevelBuilder.Build(cfg, rng, enemies, friends, targetLotuses);
             playerFrog.ResetToStart();
             currentItem.Reset();
             itemSpawnTimer = cfg.ItemFirstSpawnDelay;
@@ -96,24 +95,6 @@ namespace JumfrogbyMark
             if (value < min) return min;
             if (value > max) return max;
             return value;
-        }
-        // ทำชุดเฟรม sprite สำหรุบสัตว์ที่มีเฟรมแค่ทิศเดียว
-        private static Image[] MirrorFrames(Image[] frames)
-        {
-            var mirrored = new Image[frames.Length];
-            for (int i = 0; i < frames.Length; i++)
-            {
-                var src = frames[i];
-                var bmp = new Bitmap(src.Width, src.Height);
-                using (var g = Graphics.FromImage(bmp))
-                {
-                    g.TranslateTransform(bmp.Width, 0);
-                    g.ScaleTransform(-1, 1);
-                    g.DrawImage(src, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                }
-                mirrored[i] = bmp;
-            }
-            return mirrored;
         }
         // logic update game state
         public void Update(float deltaTime)
