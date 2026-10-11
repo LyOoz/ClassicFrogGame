@@ -3,13 +3,9 @@ using System.Drawing;
 
 namespace JumfrogbyMark
 {
-    public abstract class Monster // base class monster
+    public abstract class Monster : GameObject // base class monster
     {
         // field
-        protected float x;
-        protected float y;
-        protected int width;
-        protected int height;
         protected float speed;
         protected bool movingRight;
         protected int minX;
@@ -23,13 +19,7 @@ namespace JumfrogbyMark
         protected const float AnimInterval = 0.15f;
 
         // properties
-        public float X { get => x; set => x = value; }
-        public float Y { get => y; set => y = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
         public Image Sprite { get; set; }
-
-        public Rectangle Bounds => new Rectangle((int)x, (int)y, width, height);
 
         // ตั้งเฟรม animation เดิน
         public void SetWalkFrames(Image[] left, Image[] right)

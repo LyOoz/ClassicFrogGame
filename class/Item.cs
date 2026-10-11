@@ -9,13 +9,9 @@ namespace JumfrogbyMark
         ExtraTime
     }
 
-    public class Item
+    public class Item : GameObject
     {
         // field
-        private int x;
-        private int y;
-        private int width;
-        private int height;
         private bool isActive;
         private float duration;
         private float remainingTime;
@@ -24,16 +20,10 @@ namespace JumfrogbyMark
         private float timeBonusSeconds;
 
         // Properties
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
         public bool IsActive => isActive;
         public ItemType Type => type;
         public int HeartBonus => heartBonus;
         public float TimeBonusSeconds => timeBonusSeconds;
-
-        public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // constructor
         public Item(int width = 30, int height = 30, float durationSeconds = 10.0f)
@@ -86,7 +76,7 @@ namespace JumfrogbyMark
         {
             if (!isActive) return false;
 
-            if (this.Bounds.IntersectsWith(frog.Bounds))
+            if (IntersectsWith(frog))
             {
                 isActive = false;
                 return true;

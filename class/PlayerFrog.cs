@@ -12,13 +12,9 @@ namespace JumfrogbyMark
         Right
     }
 
-    public class PlayerFrog
+    public class PlayerFrog : GameObject
     {
         // field
-        private int x;
-        private int y;
-        private int width;
-        private int height;
         private int hearts;
         private int initialHearts;
         private int startX;
@@ -26,14 +22,8 @@ namespace JumfrogbyMark
         private int stepSize;
 
         // properties
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
         public int Hearts { get => hearts; set => hearts = value; }
         public int InitialHearts => initialHearts;
-
-        public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // Constructor frog
         public PlayerFrog(int startX = 396, int startY = 490, int width = 50, int height = 50, int initialHearts = 5, int stepSize = 55)

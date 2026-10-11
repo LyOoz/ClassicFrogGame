@@ -3,27 +3,17 @@ using System.Drawing;
 
 namespace JumfrogbyMark
 {
-    public class TargetLotus 
+    public class TargetLotus : GameObject
     {
         // field
-        private int x;
-        private int y;
-        private int width;
-        private int height;
         private bool isOccupied;
         private int scoreValue;
         private Image sprite;
 
         // properties
-        public int X { get => x; set => x = value; }
-        public int Y { get => y; set => y = value; }
-        public int Width { get => width; set => width = value; }
-        public int Height { get => height; set => height = value; }
         public bool IsOccupied { get => isOccupied; set => isOccupied = value; }
         public int ScoreValue { get => scoreValue; set => scoreValue = value; }
         public Image Sprite { get => sprite; set => sprite = value; }
-
-        public Rectangle Bounds => new Rectangle(x, y, width, height);
 
         // constuctor
         public TargetLotus(int x, int y, int width = 50, int height = 40, int scoreValue = 500)
@@ -38,7 +28,7 @@ namespace JumfrogbyMark
         /// ตรวจสอบว่ากบกระโดดมาถึง
         public bool CheckReached(PlayerFrog frog)
         {
-            return this.Bounds.IntersectsWith(frog.Bounds);
+            return IntersectsWith(frog);
         }
         /// เมื่อกบกระโดดมาถึงใบบัว
         public bool Occupy()

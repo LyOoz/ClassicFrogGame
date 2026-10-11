@@ -22,7 +22,7 @@ namespace JumfrogbyMark
         {
             Rectangle frogRect = frog.Bounds;
             Point frogCenter = new Point(frogRect.X + frogRect.Width / 2, frogRect.Y + frogRect.Height / 2);
-            return this.Bounds.Contains(frogCenter) || this.Bounds.IntersectsWith(frogRect);
+            return this.Bounds.Contains(frogCenter) || IntersectsWith(frog);
         }
         /// ขี่คอตามเพื่อน
         public void Carry(PlayerFrog frog)

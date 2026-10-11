@@ -150,7 +150,7 @@ namespace JumfrogbyMark
         }
 
         // debug
-        private void DrawDebugLocation(Graphics g, string tag, int x, int y)
+        private void DrawDebugLocation(Graphics g, string tag, float x, float y)
         {
             string text = string.Format("{0} {1},{2}", tag, x, y);
             var size = g.MeasureString(text, debugFont);

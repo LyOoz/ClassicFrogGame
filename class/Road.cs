@@ -6,7 +6,7 @@ namespace JumfrogbyMark
     public class Road : Zone
     {
         // Properties
-        public Rectangle RoadBounds => bounds;
+        public Rectangle RoadBounds => Bounds;
 
         // Constructor
         public Road(int x = 0, int y = 315, int width = 830, int height = 200, int lanesCount = 4)

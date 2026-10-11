@@ -18,16 +18,7 @@ namespace JumfrogbyMark
         // ตรวจสอบการชนกับกบ
         public bool CheckCollision(PlayerFrog frog)
         {
-
-            Rectangle enemyBox = this.Bounds;
-            Rectangle frogBox = frog.Bounds;
-
-            if (enemyBox.IntersectsWith(frogBox))
-            {
-                return true;  // ชน
-            }
-
-            return false; 
+            return IntersectsWith(frog);
         }
     }
 }
