@@ -49,9 +49,6 @@ namespace JumfrogbyMark
         public bool IsVictory => gameState == GameState.Victory;
         public bool IsGodMode { get; set; }
 
-        // constructor
-        private const int MaxLevel = 3;
-
         public GameController(int fieldWidth = 1008, int fieldHeight = 661, int startLevel = 1, int startScore = 0)
         {
             this.rng = new Random();
@@ -73,15 +70,15 @@ namespace JumfrogbyMark
             this.enemies = new List<EnemyMonster>();
             this.friends = new List<FriendMonster>();
             this.targetLotuses = new List<TargetLotus>();
-            // InitializeLevel(startLevel);
+            // InitializeLevel(3);
             InitializeLevel(startLevel);
         }
 
         // method create object แต่ละอัน
         public void InitializeLevel(int newLevel)
         {
-            this.level = Clamp(newLevel, 1, MaxLevel);
-            LevelConfig cfg = GetLevelConfig(newLevel);
+            this.level = Clamp(newLevel, 1, LevelConfigManager.MaxLevel);
+            LevelConfig cfg = LevelConfigManager.GetLevelConfig(newLevel);
             this.enemies.Clear();
             this.friends.Clear();
             this.targetLotuses.Clear();
@@ -91,33 +88,33 @@ namespace JumfrogbyMark
             {
                 lotusSettings = new (int x, int y)[]
                 {
-                (58,  85),
-                (260, 85),
-                (461, 85),
-                (663, 85),
-                (865, 85),
+                    (58,  85),
+                    (260, 85),
+                    (461, 85),
+                    (663, 85),
+                    (865, 85),
                 };
             }
             else if (level == 2)
             {
                 lotusSettings = new (int x, int y)[]
                 {
-                (58,  85),
-                (260, 85),
-                (461, 85),
-                (663, 85),
-                (865, 85),
+                    (58,  85),
+                    (260, 85),
+                    (461, 85),
+                    (663, 85),
+                    (865, 85),
                 };
             }
             else // ด่าน 3
             {
                 lotusSettings = new (int x, int y)[]
                 {
-                (75,  70),
-                (275, 70),
-                (475, 70),
-                (675, 70),
-                (875, 70),
+                    (75,  70),
+                    (275, 70),
+                    (475, 70),
+                    (675, 70),
+                    (875, 70),
                 };
             }
 
@@ -201,75 +198,6 @@ namespace JumfrogbyMark
             gameState = GameState.Playing;
         }
 
-        // Config แต่ละด่าน
-        private struct LevelConfig
-        {
-            public float Time;
-            public int RoadLanes;
-            public int RiverLanes;
-            public int LotusScore;
-            public int LevelClearBonus;
-            public float TurtleSpeed;
-            public float CrocodileSpeed;
-            public float FishBlueSpeed;
-            public float FishRedSpeed;
-            public float ItemFirstSpawnDelay;
-            public float ItemSpawnInterval;
-            public float ItemExtraHeartChance;
-            public int ItemHeartBonus;
-            public float ItemTimeBonusSeconds;
-        }
-        private static readonly LevelConfig[] Levels =
-        {
-            new LevelConfig { // ด่าน 1
-                Time = 1500f,
-                RoadLanes = 3,
-                RiverLanes = 3,
-                LotusScore = 100,
-                LevelClearBonus = 1000,
-                TurtleSpeed = 1.7f,
-                CrocodileSpeed = 2.6f,
-                FishBlueSpeed = 2.2f,
-                FishRedSpeed = 2.3f,
-                ItemFirstSpawnDelay = 6.0f,
-                ItemSpawnInterval = 18.0f, // ระยะเวลารอก่อนกล่องไอเท็มเกิดรอบถัดไป หลังจากกล่องก่อนหน้าหาย
-                ItemExtraHeartChance = 0.40f, // โอกาสเกิดไอเท็มหัวใจ 0.4 = 40% และเวลา 60%
-                ItemHeartBonus = 1, // ได้หัวใจเพิ่มกี่ดวง
-                ItemTimeBonusSeconds = 10.0f // ได้เวลาเพิ่มเท่าไหร่
-            },
-            new LevelConfig { // ด่าน 2
-                Time = 1200f,
-                RoadLanes = 4,
-                RiverLanes = 3,
-                LotusScore = 250,
-                LevelClearBonus = 1200,
-                TurtleSpeed = 2.6f,
-                CrocodileSpeed = 3.6f,
-                FishBlueSpeed = 3.1f,
-                FishRedSpeed = 3.6f,
-                ItemFirstSpawnDelay = 7.0f,
-                ItemSpawnInterval = 20.0f,
-                ItemExtraHeartChance = 0.35f,
-                ItemHeartBonus = 1,
-                ItemTimeBonusSeconds = 8.0f
-            },
-            new LevelConfig { // ด่าน 3
-                Time = 900f,
-                RoadLanes = 4,
-                RiverLanes = 4,
-                LotusScore = 500,
-                LevelClearBonus = 2000,
-                TurtleSpeed = 3.2f,
-                CrocodileSpeed = 4.2f,
-                FishBlueSpeed = 4.2f,
-                FishRedSpeed = 3.5f,
-                ItemFirstSpawnDelay = 8.0f,
-                ItemSpawnInterval = 22.0f,
-                ItemExtraHeartChance = 0.30f,
-                ItemHeartBonus = 1,
-                ItemTimeBonusSeconds = 6.0f
-            },
-        };
         private static int Clamp(int value, int min, int max)
         {
             if (value < min) return min;
@@ -294,14 +222,6 @@ namespace JumfrogbyMark
             }
             return mirrored;
         }
-        private LevelConfig GetLevelConfig(int lvl)
-        {
-            int i = lvl - 1;
-            if (i < 0) i = 0;
-            if (i >= Levels.Length) i = Levels.Length - 1;
-            return Levels[i];
-        }
-
         // logic update game state
         public void Update(float deltaTime)
         {
@@ -323,7 +243,7 @@ namespace JumfrogbyMark
                 friend.Update(deltaTime);
 
             // จัดการการเกิดและหมดอายุของไอเทมกลางถนน
-            LevelConfig cfg = GetLevelConfig(level);
+            LevelConfig cfg = LevelConfigManager.GetLevelConfig(level);
             if (!currentItem.IsActive)
             {
                 itemSpawnTimer -= deltaTime;
@@ -383,9 +303,9 @@ namespace JumfrogbyMark
 
                         if (CheckAllLotusesOccupied())
                         {
-                            score += GetLevelConfig(level).LevelClearBonus;
+                            score += LevelConfigManager.GetLevelConfig(level).LevelClearBonus;
                             gameTimer.Reset();
-                            gameState = level >= MaxLevel
+                            gameState = level >= LevelConfigManager.MaxLevel
                                 ? GameState.Victory
                                 : GameState.LevelComplete;
                         }

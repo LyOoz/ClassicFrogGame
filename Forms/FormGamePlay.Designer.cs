@@ -96,7 +96,7 @@
             this.lblScore.BackColor = System.Drawing.Color.Transparent;
             this.lblScore.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.Khaki;
-            this.lblScore.Location = new System.Drawing.Point(509, 15);
+            this.lblScore.Location = new System.Drawing.Point(509, 17);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(72, 26);
             this.lblScore.TabIndex = 8;
@@ -108,7 +108,7 @@
             this.lblTime.BackColor = System.Drawing.Color.Transparent;
             this.lblTime.Font = new System.Drawing.Font("Ravie", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.ForeColor = System.Drawing.Color.Khaki;
-            this.lblTime.Location = new System.Drawing.Point(726, 15);
+            this.lblTime.Location = new System.Drawing.Point(724, 18);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(72, 26);
             this.lblTime.TabIndex = 12;
