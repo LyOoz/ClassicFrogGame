@@ -3,27 +3,23 @@ using System.Drawing;
 
 namespace JumfrogbyMark
 {
-    /// <summary>
-    /// คลาสแม่ (Base Class) สำหรับพื้นที่ต่างๆ ในสนาม เช่น River และ Road
-    /// จัดการตำแหน่ง ขนาด และการตรวจสอบว่ากบอยู่ในพื้นที่หรือไม่
-    /// </summary>
     public abstract class Zone
     {
-        // ฟิลด์
+        // field
         protected int x;
         protected int y;
         protected int width;
         protected int height;
         protected Rectangle bounds;
 
-        // คุณสมบัติ (Properties)
+        // Properties
         public int X { get => x; set => x = value; }
         public int Y { get => y; set => y = value; }
         public int Width { get => width; set => width = value; }
         public int Height { get => height; set => height = value; }
         public Rectangle Bounds => bounds;
 
-        // คอนสตรัคเตอร์
+        // Constructor
         public Zone(int x, int y, int width, int height)
         {
             this.x = x;
@@ -33,9 +29,7 @@ namespace JumfrogbyMark
             this.bounds = new Rectangle(x, y, width, height);
         }
 
-        /// <summary>
-        /// ตรวจสอบว่าจุดศูนย์กลางของกบอยู่ภายในโซนนี้หรือไม่
-        /// </summary>
+        /// ตรวจว่าจุดศูนย์กลางของกบอยู่ภายในโซนนี้หรือไม่
         public virtual bool ContainsFrog(PlayerFrog frog)
         {
             Rectangle frogBounds = frog.Bounds;
