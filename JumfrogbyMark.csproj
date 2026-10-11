@@ -89,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\EnemyMonster.cs" />
     <Compile Include="Class\FriendMonster.cs" />
+    <Compile Include="Config\LevelBuilder.cs" />
     <Compile Include="Config\LevelConfig.cs" />
     <Compile Include="Config\SpriteConfig.cs" />
     <Compile Include="Config\GameController.cs" />
