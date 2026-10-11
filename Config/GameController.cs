@@ -150,14 +150,7 @@ namespace JumfrogbyMark
                             return;
                         }
 
-                        // กบชนศัตรูลดหัวใจ
-                        Soundplayer.PlayDmgSound();
-                        bool isGameOver = playerFrog.TakeDamage();
-
-                        if (isGameOver)
-                        {
-                            gameState = GameState.GameOver;
-                        }
+                        HandleFrogDamage();
                         return;
                     }
                 }
@@ -219,12 +212,7 @@ namespace JumfrogbyMark
                             return;
                         }
 
-                        Soundplayer.PlayDmgSound();
-                        bool isGameOver = playerFrog.TakeDamage();
-                        if (isGameOver)
-                        {
-                            gameState = GameState.GameOver;
-                        }
+                        HandleFrogDamage();
                         return;
                     }
                 }
@@ -236,13 +224,7 @@ namespace JumfrogbyMark
                         return;
                     }
 
-                    // กบตกน้ำ ตายและลดหัวใจ 1 ดวง
-                    Soundplayer.PlayDmgSound();
-                    bool isGameOver = playerFrog.TakeDamage();
-                    if (isGameOver)
-                    {
-                        gameState = GameState.GameOver;
-                    }
+                    HandleFrogDamage();
                     return;
                 }
             }
@@ -268,6 +250,16 @@ namespace JumfrogbyMark
             }
 
             gameTimer.AddTime(item.TimeBonusSeconds);
+        }
+
+        private void HandleFrogDamage()
+        {
+            Soundplayer.PlayDmgSound();
+            bool isGameOver = playerFrog.TakeDamage();
+            if (isGameOver)
+            {
+                gameState = GameState.GameOver;
+            }
         }
 
         public void MovePlayer(FrogDirection direction)
