@@ -12,6 +12,9 @@ namespace JumfrogbyMark
 
         // Properties
         public float TimeRemaining => timeRemaining;
+        public float TimeLimit => timeLimit;
+        /// สัดส่วนเวลาเหลือ ใช้คำนวณคะแนน lotus อิงเวลา
+        public float RemainingFraction => timeLimit > 0 ? timeRemaining / timeLimit : 0f;
 
         // Constructor
         public GameTimer(float defaultLimitSeconds = 30.0f)

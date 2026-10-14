@@ -175,7 +175,7 @@ namespace JumfrogbyMark
                     if (!lotus.IsOccupied)
                     {
                         lotus.Occupy();
-                        score += lotus.ScoreValue;
+                        score += CalcLotusScore(lotus.ScoreValue);
                         Soundplayer.PlayTakeLotus();
                         playerFrog.ResetToStart();
 
@@ -305,6 +305,15 @@ namespace JumfrogbyMark
                 if (!lotus.IsOccupied) return false;
             }
             return true;
+        }
+
+        /// คำนวณคะแนน lotus อิงกับ GameTimer
+        private int CalcLotusScore(int baseScore)
+        {
+            float fraction = gameTimer.RemainingFraction;
+            if (fraction < 0f) fraction = 0f;
+            if (fraction > 1f) fraction = 1f;
+            return (int)Math.Round(baseScore * fraction);
         }
 
         public void TogglePause()
