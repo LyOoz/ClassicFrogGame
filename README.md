@@ -113,7 +113,7 @@ assets/           # sprites (gameplay/), menu art, sound (sfx/), icons
 1. Clone the repository:
 
    ```
-   git clone <repo-url>
+   git clone https://github.com/LyOoz/ClassicFrogGame
    cd ClassicFrogGame
    ```
 
