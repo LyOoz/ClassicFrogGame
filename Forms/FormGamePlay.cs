@@ -32,7 +32,7 @@ namespace JumfrogbyMark
         private float itemPopElapsed;   
         private float itemPopStartY;     
         private int lastPickupId = -1;
-        private const float ItemPopDuration = 1.1f; 
+        private const float ItemPopDuration = 0.5f; 
 
         public FormGamePlay(string playerName = "ClassicFrog001", int startLevel = 1, int startScore = 0)
         {
