@@ -93,7 +93,7 @@ assets/           # sprites (gameplay/), menu art, sound (sfx/), icons
 
 <!-- Replace the placeholder below with the rendered UML Class Diagram (e.g. a PNG/SVG from PlantUML or Visio). -->
 
-![UML Class Diagram]([diagrams/class-diagram.png](https://res.cloudinary.com/dpij1hdso/image/upload/v1792002259/frog_class_diagram_1_rpv3iz.png))
+![UML](https://res.cloudinary.com/dpij1hdso/image/upload/v1792002259/frog_class_diagram_1_rpv3iz.png)
 
 ## Notes
 
