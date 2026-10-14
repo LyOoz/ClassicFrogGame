@@ -2,7 +2,7 @@
 
 A Frogger-style arcade game written in **C# / Windows Forms** for the course **040223102 Object Oriented Programming KMUTNB-MC**.
 
-The player jumps a frog across a road (dodging enemies) and a river (riding friendly fish) to reach the target lotus pads.
+The player jumps a frog across a road (dodging enemies) and a river (riding friendly fish) to reach the target lotus.
 
 ## Features
 
@@ -13,10 +13,13 @@ The player jumps a frog across a road (dodging enemies) and a river (riding frie
 - Random items spawn on the road and last 10 s: (1) extra heart, (2) +time
 - Pause overlay (Continue / Menu / Restart)
 - Game Over and Congratulations screens, both allowing a restart
-- Player name set via `FormSetName`
+- Player name set `FormSetName`
 - High score: top-5 names + scores persisted to `Highscore.txt`, shown in a sub-form
 - Sound effects (jump, damage, lotus score, item pickup, winner, game-over) and background music
 - Debug helpers: F1 location overlay, F2 God Mode
+
+## Game Play
+![Gameplay](https://res.cloudinary.com/dpij1hdso/image/upload/v1791997532/classicfroggame_l8ho6p.png)
 
 ## Build & Run
 
@@ -96,3 +99,42 @@ assets/           # sprites (gameplay/), menu art, sound (sfx/), icons
 
 - **Field size matches the form.** `GameController` defaults to `fieldWidth = 1008, fieldHeight = 661` (the `FormGamePlay` `ClientSize`). The `River` spans `y = 45, height = 300` and the `Road` spans `y = 315, height = 295` (4 lanes), so the road/river collision zones cover the whole play area. The frog spawns centered in the safe zone below the road: `startX = (fieldWidth - Frog.Width)/2`, `startY = fieldHeight - Frog.Height`. The frog hitbox is **60×50** (`SpriteConfig.Frog`) with `stepSize = 55`.
 - **Still inconsistent magic numbers (known, not a system).** `PlayerFrog` move clamps default to `MoveUp(minY=40)` / `MoveDown(maxY=660)` / `MoveLeft(minX=-10)` / `MoveRight(maxX=1000)`, and the monster wrap bounds in `LevelConfig` use `-84..1000` / `-84..1200`. These roughly agree with the 1008-wide field but are not derived from it — treat them as ad-hoc tuning values.
+
+## Installation
+
+**Requirements**
+
+- **Windows** (the game uses the **WMPLib** COM reference — Windows Media Player — for audio, so it will not build or run on macOS/Linux)
+- **.NET Framework 4.7.2** (bundled with Windows 10/11)
+- **Visual Studio 2019/2022** (with the ".NET desktop development" workload) **or** the **.NET Framework 4.7.2 Developer Pack** + **MSBuild** for command-line builds
+
+**Steps**
+
+1. Clone the repository:
+
+   ```
+   git clone <repo-url>
+   cd ClassicFrogGame
+   ```
+
+2. Build the solution:
+
+   - **Visual Studio:** open `ClassicFrogJump.sln`, set the configuration to **Debug**, and press **Build → Build Solution** (Ctrl+Shift+B).
+   - **Command line:**
+
+     ```
+     msbuild ClassicFrogJump.sln /p:Configuration=Debug
+     ```
+
+3. Run the game:
+
+   ```
+   bin\Debug\ClassicFrogJump.exe
+   ```
+
+   Or press **F5** from Visual Studio.
+
+**Notes**
+
+- Audio files (`.mp3`) are copied to the output folder automatically via `<Content CopyToOutputDirectory>` in the `.csproj` — no manual setup needed.
+- High scores are saved to `Highscore.txt` next to the EXE on first run; no configuration is required.
