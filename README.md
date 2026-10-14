@@ -23,14 +23,14 @@ The player jumps a frog across a road (dodging enemies) and a river (riding frie
 
 ## Build & Run
 
-- **Target:** .NET Framework 4.7.2, `WinExe`, namespace `ClassicFrogJump`
+- **Target:** .NET Framework 4.7.2, `WinExe`, namespace `ClassicFrogGame`
 - **Build on Windows only** (audio uses the **WMPLib** COM reference — Windows Media Player):
 
 ```
-msbuild ClassicFrogJump.sln /p:Configuration=Debug
+msbuild ClassicFrogGame.sln /p:Configuration=Debug
 ```
 
-- **Output EXE:** `bin\Debug\ClassicFrogJump.exe`
+- **Output EXE:** `bin\Debug\ClassicFrogGame.exe`
 - Audio files (`.mp3`) live in `assets\sfx\` and are copied to output via `<Content CopyToOutputDirectory>` in the `.csproj`
 - No test suite or linter is configured
 
@@ -119,17 +119,17 @@ assets/           # sprites (gameplay/), menu art, sound (sfx/), icons
 
 2. Build the solution:
 
-   - **Visual Studio:** open `ClassicFrogJump.sln`, set the configuration to **Debug**, and press **Build → Build Solution** (Ctrl+Shift+B).
+   - **Visual Studio:** open `ClassicFrogGame.sln`, set the configuration to **Debug**, and press **Build → Build Solution** (Ctrl+Shift+B).
    - **Command line:**
 
      ```
-     msbuild ClassicFrogJump.sln /p:Configuration=Debug
+     msbuild ClassicFrogGame.sln /p:Configuration=Debug
      ```
 
 3. Run the game:
 
    ```
-   bin\Debug\ClassicFrogJump.exe
+   bin\Debug\ClassicFrogGame.exe
    ```
 
    Or press **F5** from Visual Studio.
