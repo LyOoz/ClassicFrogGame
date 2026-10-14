@@ -41,13 +41,14 @@ namespace JumfrogbyMark
                 CrocodileSpeed = 2.6f,
                 FishBlueSpeed = 2.2f,
                 FishRedSpeed = 2.3f,
-                ItemFirstSpawnDelay = 6.0f,
-                ItemSpawnInterval = 18.0f,
-                ItemExtraHeartChance = 0.40f,
-                ItemHeartBonus = 1,
-                ItemTimeBonusSeconds = 10.0f,
+                ItemFirstSpawnDelay = 6.0f, // ไอเทมเกิดอันแรก
+                ItemSpawnInterval = 18.0f, // ไอเทมเกิดอันต่อไป
+                ItemExtraHeartChance = 0.40f, // สุ่มโอกาส 40% ว่าจะเป็นไอเทมหัวใจเพิ่ม    
+                ItemHeartBonus = 1, 
+                ItemTimeBonusSeconds = 30.0f,
                 LotusSettings = new (int x, int y)[]
                 {
+                    // x , y
                     (58,  85),
                     (260, 85),
                     (461, 85),
@@ -56,6 +57,7 @@ namespace JumfrogbyMark
                 },
                 RoadLaneSettings = new (int dir, EnemyType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     ( 1, EnemyType.turtle,     3, 448, -84, 1000),
                     (-1, EnemyType.turtle,     3, 490, -84, 1200),
                     ( 1, EnemyType.crocodile,  3, 555, -84, 1000),
@@ -63,6 +65,7 @@ namespace JumfrogbyMark
                 },
                 RiverLaneSettings = new (int dir, FriendType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     (-1, FriendType.FishBlue,  3, 180, -84, 1200),
                     ( 1, FriendType.FishRed,   3, 235, -84, 1000),
                     (-1, FriendType.FishBlue,  3, 290, -84, 1200),
@@ -83,7 +86,7 @@ namespace JumfrogbyMark
                 ItemSpawnInterval = 20.0f,
                 ItemExtraHeartChance = 0.35f,
                 ItemHeartBonus = 1,
-                ItemTimeBonusSeconds = 8.0f,
+                ItemTimeBonusSeconds = 30.0f,
                 LotusSettings = new (int x, int y)[]
                 {
                     (58,  85),
@@ -94,6 +97,7 @@ namespace JumfrogbyMark
                 },
                 RoadLaneSettings = new (int dir, EnemyType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     ( 1, EnemyType.turtle,     3, 448, -84, 1000),
                     (-1, EnemyType.turtle,     3, 490, -84, 1200),
                     ( 1, EnemyType.crocodile,  3, 555, -84, 1000),
@@ -101,6 +105,7 @@ namespace JumfrogbyMark
                 },
                 RiverLaneSettings = new (int dir, FriendType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     (-1, FriendType.FishBlue,  3, 180, -84, 1200),
                     ( 1, FriendType.FishRed,   3, 235, -84, 1000),
                     (-1, FriendType.FishBlue,  3, 290, -84, 1200),
@@ -121,9 +126,10 @@ namespace JumfrogbyMark
                 ItemSpawnInterval = 22.0f,
                 ItemExtraHeartChance = 0.30f,
                 ItemHeartBonus = 1,
-                ItemTimeBonusSeconds = 6.0f,
+                ItemTimeBonusSeconds = 30.0f,
                 LotusSettings = new (int x, int y)[]
                 {
+                    // x , y
                     (75,  70),
                     (275, 70),
                     (475, 70),
@@ -132,6 +138,7 @@ namespace JumfrogbyMark
                 },
                 RoadLaneSettings = new (int dir, EnemyType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     ( 1, EnemyType.turtle,     3, 448, -84, 1000),
                     (-1, EnemyType.turtle,     3, 490, -84, 1200),
                     ( 1, EnemyType.crocodile,  3, 555, -84, 1000),
@@ -139,6 +146,7 @@ namespace JumfrogbyMark
                 },
                 RiverLaneSettings = new (int dir, FriendType type, int count, int y0, int minX, int maxX)[]
                 {
+                    // 1 = right, -1 = left , type , count , y0 , minX , maxX (x0 is random between minX and maxX)
                     (-1, FriendType.FishBlue,  3, 180, -84, 1200),
                     ( 1, FriendType.FishRed,   3, 235, -84, 1000),
                     (-1, FriendType.FishBlue,  3, 290, -84, 1200),

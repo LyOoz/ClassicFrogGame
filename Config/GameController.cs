@@ -11,6 +11,12 @@ namespace JumfrogbyMark
         LevelComplete,
         Victory
     }
+
+    public struct ItemPickup
+    {
+        public string Text;
+        public bool IsHeart; // true = หัวใจ, false = เวลา
+    }
     public class GameController
     {
         private PlayerFrog playerFrog;
@@ -32,6 +38,9 @@ namespace JumfrogbyMark
         // ตัวจับเวลาสุ่มเกิดไอเทม
         private float itemSpawnTimer;
 
+        private ItemPickup lastItemPickup;
+        private int pickupId; 
+
         // Properties
         public PlayerFrog PlayerFrog => playerFrog;
         public List<EnemyMonster> Enemies => enemies;
@@ -47,6 +56,8 @@ namespace JumfrogbyMark
         public bool IsLevelComplete => gameState == GameState.LevelComplete;
         public bool IsVictory => gameState == GameState.Victory;
         public bool IsGodMode { get; set; }
+        public ItemPickup LastItemPickup => lastItemPickup;
+        public int PickupId => pickupId;
 
         public GameController(int fieldWidth = 1008, int fieldHeight = 661, int startLevel = 1, int startScore = 0)
         {
@@ -235,21 +246,39 @@ namespace JumfrogbyMark
 
         private void ApplyItemEffect(Item item)
         {
+            pickupId++;
             if (item.Type == ItemType.ExtraHeart)
             {
                 if (playerFrog.Hearts < playerFrog.InitialHearts)
                 {
                     playerFrog.Hearts = Math.Min(playerFrog.InitialHearts, playerFrog.Hearts + item.HeartBonus);
+                    lastItemPickup = new ItemPickup
+                    {
+                        Text = "+" + item.HeartBonus + " ♥",
+                        IsHeart = true
+                    };
                 }
                 else
                 {
-                    gameTimer.AddTime(item.TimeBonusSeconds * 0.5f);
+                    // หัวใจเต็มแล้ว แปลงเป็นเวลาแทน
+                    float bonus = item.TimeBonusSeconds * 0.5f;
+                    gameTimer.AddTime(bonus);
+                    lastItemPickup = new ItemPickup
+                    {
+                        Text = "+" + (int)Math.Round(bonus) + "s",
+                        IsHeart = false
+                    };
                 }
 
                 return;
             }
 
             gameTimer.AddTime(item.TimeBonusSeconds);
+            lastItemPickup = new ItemPickup
+            {
+                Text = "+" + (int)Math.Round(item.TimeBonusSeconds) + "s",
+                IsHeart = false
+            };
         }
 
         private void HandleFrogDamage()
