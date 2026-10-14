@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public partial class FormStartGame : Form
     {
@@ -52,7 +52,7 @@ namespace JumfrogbyMark
 
         private void btnHighestScore_Click(object sender, EventArgs e)
         {
-            using (var formHighScore = new JumfrogbyMark.Forms.FormHighScore())
+            using (var formHighScore = new ClassicFrogJump.Forms.FormHighScore())
             {
                 formHighScore.ShowDialog(this);
             }

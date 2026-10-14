@@ -1,4 +1,4 @@
-﻿namespace JumfrogbyMark.Forms
+﻿namespace ClassicFrogJump.Forms
 {
     partial class FormGameWinner
     {
@@ -62,7 +62,7 @@
             // btnPlayAgain
             // 
             this.btnPlayAgain.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlayAgain.BackgroundImage = global::JumfrogbyMark.Properties.Resources.btn_playagain;
+            this.btnPlayAgain.BackgroundImage = global::ClassicFrogJump.Properties.Resources.btn_playagain;
             this.btnPlayAgain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPlayAgain.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlayAgain.FlatAppearance.BorderSize = 0;
@@ -96,7 +96,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_winner_name;
+            this.BackgroundImage = global::ClassicFrogJump.Properties.Resources.bg_winner_name;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.btnMenu);
             this.Controls.Add(this.btnPlayAgain);

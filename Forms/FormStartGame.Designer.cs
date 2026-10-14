@@ -1,4 +1,4 @@
-﻿namespace JumfrogbyMark
+﻿namespace ClassicFrogJump
 {
     partial class FormStartGame
     {
@@ -57,7 +57,7 @@
             // btnSound
             // 
             this.btnSound.BackColor = System.Drawing.Color.Transparent;
-            this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
+            this.btnSound.BackgroundImage = global::ClassicFrogJump.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSound.Location = new System.Drawing.Point(650, 480);

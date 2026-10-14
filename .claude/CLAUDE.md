@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-JumfrogbyMark — a Frogger-style arcade game in C# WinForms. A single-player, multi-form game for the course **040223102 Object Oriented Programming**. The player jumps a frog across a road (avoiding enemies) and a river (riding friendly fish) to reach target lotus pads.
+ClassicFrogJump — a Frogger-style arcade game in C# WinForms. A single-player, multi-form game for the course **040223102 Object Oriented Programming**. The player jumps a frog across a road (avoiding enemies) and a river (riding friendly fish) to reach target lotus pads.
 
 ## Build & Run
 
-- Target: **.NET Framework 4.7.2**, `WinExe`, namespace `JumfrogbyMark`.
+- Target: **.NET Framework 4.7.2**, `WinExe`, namespace `ClassicFrogJump`.
 - Build **on Windows only** (audio uses the **WMPLib** COM reference — Windows Media Player):
-  - `msbuild JumfrogbyMark.sln /p:Configuration=Debug`
-  - Output EXE: `bin\Debug\JumfrogbyMark.exe`
+  - `msbuild ClassicFrogJump.sln /p:Configuration=Debug`
+  - Output EXE: `bin\Debug\ClassicFrogJump.exe`
 - Audio files (`.mp3`) live in `assets\sfx\` and are copied to output via `<Content CopyToOutputDirectory>` in the `.csproj`.
 - There is **no test suite or linter** configured.
 
@@ -49,7 +49,7 @@ Other loop details:
 
 ### Levels
 
-`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array via `LevelConfigManager.GetLevelConfig`, which clamps out-of-range levels to `[1, MaxLevel]` (3). `LevelConfig` holds a `Time` limit, `LotusScore` (score per lotus pad reached), `LevelClearBonus`, **per-creature** speeds (`TurtleSpeed`, `CrocodileSpeed`, `FishBlueSpeed`, `FishRedSpeed`), item tuning (`ItemFirstSpawnDelay`, `ItemSpawnInterval`, `ItemExtraHeartChance`, `ItemHeartBonus`, `ItemTimeBonusSeconds`), and the layout arrays `LotusSettings` and `RoadLaneSettings` / `RiverLaneSettings`. Each lane entry is a tuple `(dir, type, count, y0, minX, maxX)` — direction, monster type, count per lane, start Y, and the left/right **wrap bounds** the monster bounces between. All three levels currently share the same lane layout (4 road lanes, 4 river lanes, 5 lotuses); they differ in time limit, speeds, and score. `LevelBuilder.Build` constructs the lotuses, road enemies, and river fish from the config (it picks a random per-lane start X and spaces monsters by `SpriteSet.Spacing`). When all 5 lotuses are collected, the level-clear bonus is awarded, and the state becomes `Victory` on the last level or `LevelComplete` otherwise. In the collision pipeline, lotuses are evaluated *before* river drowning so frogs landing on lilypads collect the goal and return safely instead of drowning.
+`GameController.InitializeLevel(level)` reads a `LevelConfig` from the static `Levels[]` array via `LevelConfigManager.GetLevelConfig`, which clamps out-of-range levels to `[1, MaxLevel]` (3). `LevelConfig` holds a `Time` limit, `LotusScore` (base score per lotus pad, scaled by time — see below), `LevelClearBonus`, **per-creature** speeds (`TurtleSpeed`, `CrocodileSpeed`, `FishBlueSpeed`, `FishRedSpeed`), item tuning (`ItemFirstSpawnDelay`, `ItemSpawnInterval`, `ItemExtraHeartChance`, `ItemHeartBonus`, `ItemTimeBonusSeconds`), and the layout arrays `LotusSettings` and `RoadLaneSettings` / `RiverLaneSettings`. Each lane entry is a tuple `(dir, type, count, y0, minX, maxX)` — direction, monster type, count per lane, start Y, and the left/right **wrap bounds** the monster bounces between. All three levels currently share the same lane layout (4 road lanes, 4 river lanes, 5 lotuses); they differ in time limit, speeds, and score. `LevelBuilder.Build` constructs the lotuses, road enemies, and river fish from the config (it picks a random per-lane start X and spaces monsters by `SpriteSet.Spacing`). When a lotus is reached, the frog scores `GameController.CalcLotusScore(lotus.ScoreValue)` = `LotusScore × GameTimer.RemainingFraction` (clamped to `[0, LotusScore]`) — so less time used (more time remaining) earns the full base score and using more time scales the points down proportionally; `GameTimer` exposes `TimeLimit` and `RemainingFraction` (`timeRemaining / timeLimit`) for this. When all 5 lotuses are collected, the level-clear bonus is awarded, and the state becomes `Victory` on the last level or `LevelComplete` otherwise. In the collision pipeline, lotuses are evaluated *before* river drowning so frogs landing on lilypads collect the goal and return safely instead of drowning.
 
 ### SpriteConfig
 
@@ -62,7 +62,7 @@ Other loop details:
 ## Key Conventions
 
 - Source comments are in **Thai**; keep new comments consistent with the surrounding style.
-- All game classes live in namespace `JumfrogbyMark`; the end-state and high-score forms live in `JumfrogbyMark.Forms`.
+- All game classes live in namespace `ClassicFrogJump`; the end-state and high-score forms live in `ClassicFrogJump.Forms`.
 - Game sprites and per-creature dimensions come from `SpriteConfig` (which itself wraps `Properties.Resources`, e.g. `frog_up`, `frog_jump`). UI-only icons like `sound_on`/`sound_off` are still referenced from `Properties.Resources` directly.
 - Audio is the static `Soundplayer` class (WMPLib / Windows Media Player). It holds one looping `sound` player (start/gameplay music) and one `sfxJump` player reused for all SFX (jump, damage, lotus score, item pickup, winner, game-over). `ToggleMute` mutes both players.
 - **Field size matches the form.** `GameController` defaults to `fieldWidth = 1008, fieldHeight = 661` (the `FormGamePlay` `ClientSize`). The `River` spans `y = 45, height = 300` and the `Road` spans `y = 315, height = 295` (4 lanes), so the road/river collision zones cover the whole play area. The frog spawns centered in the safe zone below the road: `startX = (fieldWidth - Frog.Width)/2`, `startY = fieldHeight - Frog.Height` (its center sits below the road's bottom edge, so it is not immediately in a collision lane). The frog hitbox is **60×50** (`SpriteConfig.Frog`) with `stepSize = 55`.
@@ -85,6 +85,5 @@ Other loop details:
 ## Current Gaps (not yet implemented)
 
 - **Sub-levels**: `InitializeLevel` builds a single fixed layout (4 road lanes, 4 river lanes, 5 lotuses) for every level — only the time limit, per-lane speeds, and score vary. The 5-sub-level lotus-count reduction (5 → 4 → 3 → 2 → 1) is not wired up.
-- **Score is not time-based**: reaching a lotus awards a flat `LotusScore` per level; the spec's "less time used = more points" is not implemented.
 - **Item "+30 s" value**: the `ExtraTime` item exists and is implemented, but the per-level bonus is `ItemTimeBonusSeconds` (6–10 s), not the spec's +30 s.
 - **Missing SFX**: the spec's "water flow" and "enemy roar" sounds are not wired; `Soundplayer` has jump, damage, lotus score, item pickup, winner, and game-over.

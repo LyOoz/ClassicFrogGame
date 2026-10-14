@@ -1,4 +1,4 @@
-﻿namespace JumfrogbyMark.Forms
+﻿namespace ClassicFrogJump.Forms
 {
     partial class FormNextLevel
     {
@@ -78,7 +78,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_winner_name;
+            this.BackgroundImage = global::ClassicFrogJump.Properties.Resources.bg_winner_name;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.btnNextLevel);
             this.Controls.Add(this.lblScore);

@@ -1,6 +1,6 @@
 using System.Drawing;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public abstract class GameObject
     {

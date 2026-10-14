@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public partial class FormSetName : Form
     {

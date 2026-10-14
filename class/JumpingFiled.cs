@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     /// จัดการขอบเขตพื้นที่การเล่น และการจำกัดพื้นที่
     public class JumpingFiled

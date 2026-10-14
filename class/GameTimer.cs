@@ -1,6 +1,6 @@
 using System;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public class GameTimer
     {

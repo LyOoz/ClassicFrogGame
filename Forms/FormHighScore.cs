@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace JumfrogbyMark.Forms
+namespace ClassicFrogJump.Forms
 {
     public class FormHighScore : Form
     {
@@ -204,7 +204,7 @@ namespace JumfrogbyMark.Forms
             // 
             // FormHighScore
             // 
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_score;
+            this.BackgroundImage = global::ClassicFrogJump.Properties.Resources.bg_score;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.lblScoreNo5);

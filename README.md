@@ -1,6 +1,6 @@
-# JumfrogbyMark
+# ClassicFrogJump
 
-A Frogger-style arcade game written in **C# / Windows Forms** for the course **040223102 Object Oriented Programming**.
+A Frogger-style arcade game written in **C# / Windows Forms** for the course **040223102 Object Oriented Programming KMUTNB-MC**.
 
 The player jumps a frog across a road (dodging enemies) and a river (riding friendly fish) to reach the target lotus pads.
 
@@ -20,14 +20,14 @@ The player jumps a frog across a road (dodging enemies) and a river (riding frie
 
 ## Build & Run
 
-- **Target:** .NET Framework 4.7.2, `WinExe`, namespace `JumfrogbyMark`
+- **Target:** .NET Framework 4.7.2, `WinExe`, namespace `ClassicFrogJump`
 - **Build on Windows only** (audio uses the **WMPLib** COM reference — Windows Media Player):
 
 ```
-msbuild JumfrogbyMark.sln /p:Configuration=Debug
+msbuild ClassicFrogJump.sln /p:Configuration=Debug
 ```
 
-- **Output EXE:** `bin\Debug\JumfrogbyMark.exe`
+- **Output EXE:** `bin\Debug\ClassicFrogJump.exe`
 - Audio files (`.mp3`) live in `assets\sfx\` and are copied to output via `<Content CopyToOutputDirectory>` in the `.csproj`
 - No test suite or linter is configured
 

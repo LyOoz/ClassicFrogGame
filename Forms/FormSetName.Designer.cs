@@ -1,4 +1,4 @@
-﻿namespace JumfrogbyMark
+﻿namespace ClassicFrogJump
 {
     partial class FormSetName
     {
@@ -81,7 +81,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Turquoise;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_setnamenew;
+            this.BackgroundImage = global::ClassicFrogJump.Properties.Resources.bg_setnamenew;
             this.ClientSize = new System.Drawing.Size(851, 370);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnOk);

@@ -1,4 +1,4 @@
-﻿namespace JumfrogbyMark
+﻿namespace ClassicFrogJump
 {
     partial class FormGamePlay
     {
@@ -51,7 +51,7 @@
             // btnSound
             // 
             this.btnSound.BackColor = System.Drawing.Color.Transparent;
-            this.btnSound.BackgroundImage = global::JumfrogbyMark.Properties.Resources.sound_on;
+            this.btnSound.BackgroundImage = global::ClassicFrogJump.Properties.Resources.sound_on;
             this.btnSound.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSound.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSound.Location = new System.Drawing.Point(915, 12);
@@ -64,7 +64,7 @@
             // btnPause
             // 
             this.btnPause.BackColor = System.Drawing.Color.Transparent;
-            this.btnPause.BackgroundImage = global::JumfrogbyMark.Properties.Resources.pause1;
+            this.btnPause.BackgroundImage = global::ClassicFrogJump.Properties.Resources.pause1;
             this.btnPause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPause.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPause.FlatAppearance.BorderSize = 0;
@@ -129,7 +129,7 @@
             // pigHeart1
             // 
             this.pigHeart1.BackColor = System.Drawing.Color.Transparent;
-            this.pigHeart1.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
+            this.pigHeart1.BackgroundImage = global::ClassicFrogJump.Properties.Resources.heart_full;
             this.pigHeart1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pigHeart1.Location = new System.Drawing.Point(189, 23);
             this.pigHeart1.Name = "pigHeart1";
@@ -140,7 +140,7 @@
             // picHeart2
             // 
             this.picHeart2.BackColor = System.Drawing.Color.Transparent;
-            this.picHeart2.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
+            this.picHeart2.BackgroundImage = global::ClassicFrogJump.Properties.Resources.heart_full;
             this.picHeart2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHeart2.Location = new System.Drawing.Point(211, 23);
             this.picHeart2.Name = "picHeart2";
@@ -151,7 +151,7 @@
             // picHeart3
             // 
             this.picHeart3.BackColor = System.Drawing.Color.Transparent;
-            this.picHeart3.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
+            this.picHeart3.BackgroundImage = global::ClassicFrogJump.Properties.Resources.heart_full;
             this.picHeart3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHeart3.Location = new System.Drawing.Point(231, 23);
             this.picHeart3.Name = "picHeart3";
@@ -162,7 +162,7 @@
             // picHeart4
             // 
             this.picHeart4.BackColor = System.Drawing.Color.Transparent;
-            this.picHeart4.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
+            this.picHeart4.BackgroundImage = global::ClassicFrogJump.Properties.Resources.heart_full;
             this.picHeart4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHeart4.Location = new System.Drawing.Point(252, 23);
             this.picHeart4.Name = "picHeart4";
@@ -173,7 +173,7 @@
             // picHeart5
             // 
             this.picHeart5.BackColor = System.Drawing.Color.Transparent;
-            this.picHeart5.BackgroundImage = global::JumfrogbyMark.Properties.Resources.heart_full;
+            this.picHeart5.BackgroundImage = global::ClassicFrogJump.Properties.Resources.heart_full;
             this.picHeart5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picHeart5.Location = new System.Drawing.Point(274, 23);
             this.picHeart5.Name = "picHeart5";
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::JumfrogbyMark.Properties.Resources.bg_GameplayHud;
+            this.BackgroundImage = global::ClassicFrogJump.Properties.Resources.bg_GameplayHud;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1008, 661);
             this.Controls.Add(this.picHeart5);

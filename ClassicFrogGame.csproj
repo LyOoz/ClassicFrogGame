@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{52CCAA3E-6982-4157-81A1-F0E26DAB9194}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JumfrogbyMark</RootNamespace>
-    <AssemblyName>JumfrogbyMark</AssemblyName>
+    <RootNamespace>ClassicFrogJump</RootNamespace>
+    <AssemblyName>ClassicFrogJump</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JumfrogbyMark.Properties
+namespace ClassicFrogJump.Properties
 {
 
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace JumfrogbyMark.Forms
+namespace ClassicFrogJump.Forms
 {
     public partial class FormGameOver : Form
     {

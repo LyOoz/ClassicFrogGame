@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public abstract class Monster : GameObject // base class monster
     {

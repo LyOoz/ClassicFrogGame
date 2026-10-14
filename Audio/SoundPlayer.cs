@@ -1,6 +1,6 @@
 ﻿using System;
 using WMPLib;
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public static class Soundplayer // static class
     {

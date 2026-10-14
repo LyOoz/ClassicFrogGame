@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public enum GameState
     {

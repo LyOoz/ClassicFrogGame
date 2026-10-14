@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using JumfrogbyMark.Forms;
+using ClassicFrogJump.Forms;
 
-namespace JumfrogbyMark
+namespace ClassicFrogJump
 {
     public partial class FormGamePlay : Form
     {
