@@ -1,7 +1,6 @@
 # ClassicFrogJump
 
-A Frogger-style arcade game written in **C# / Windows Forms** 
-for the course **Object Oriented Programming KMUTNB-MC**.
+A ClassicFrogJump written in **C# / Windows Forms** for the course **Object Oriented Programming KMUTNB-MC**.
 
 The player jumps a frog across a road (dodging enemies) and a river (riding friendly fish) to reach the target lotus.
 
