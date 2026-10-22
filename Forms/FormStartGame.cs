@@ -5,7 +5,7 @@ namespace ClassicFrogJump
 {
     public partial class FormStartGame : Form
     {
-        private string playerName = "ClassicFrog001";
+        public static string PlayerName = "ClassicFrog001";
         public FormStartGame()
         {
             InitializeComponent();
@@ -16,11 +16,11 @@ namespace ClassicFrogJump
         {
             Soundplayer.PlayStartMusic();
             UpdateSoundButton();
-            lblName.Text = playerName;
+            lblName.Text = PlayerName;
         }
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            FormGamePlay gameForm = new FormGamePlay(playerName);
+            FormGamePlay gameForm = new FormGamePlay(PlayerName);
             Soundplayer.StopMusic();
             gameForm.Show();
             this.Hide();
@@ -40,12 +40,12 @@ namespace ClassicFrogJump
         }
         private void btnSetName_Click(object sender, EventArgs e)
         {
-            using (FormSetName formSet = new FormSetName(playerName))
+            using (FormSetName formSet = new FormSetName(PlayerName))
             {
                 if (formSet.ShowDialog() == DialogResult.OK)
                 {
-                    playerName = formSet.PlayerName;
-                    lblName.Text = playerName;
+                    PlayerName = formSet.PlayerName;
+                    lblName.Text = PlayerName;
                 }
             }
         }
