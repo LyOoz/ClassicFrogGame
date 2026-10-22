@@ -430,7 +430,7 @@ namespace ClassicFrogJump
             SaveCurrentScoreIfAny();
             moveTimer?.Stop();
             Soundplayer.StopMusic();
-            FormStartGame formStartGame = new FormStartGame();
+            FormStartGame formStartGame = new FormStartGame(playerName);
             formStartGame.Show();
             this.Hide();
         }

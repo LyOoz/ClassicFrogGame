@@ -29,7 +29,7 @@ namespace ClassicFrogJump.Forms
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
-            FormStartGame formStartGame = new FormStartGame();
+            FormStartGame formStartGame = new FormStartGame(playerName);
             formStartGame.Show();
             this.Hide();
         }
