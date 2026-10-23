@@ -11,7 +11,6 @@ namespace ClassicFrogJump.Forms
         {
             InitializeComponent();
             this.playerName = playerName;
-            HighScoreManager.SaveScore(playerName, score);
             lblName.Text = playerName;
             lblScore.Text = score.ToString();
         }

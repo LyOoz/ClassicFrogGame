@@ -8,10 +8,10 @@ ClassicFrogGame — a Frogger-style arcade game in C# WinForms. A single-player,
 
 ## Build & Run
 
-- Target: **.NET Framework 4.7.2**, `WinExe`, namespace `ClassicFrogGame`.
+- Target: **.NET Framework 4.7.2**, `WinExe`, namespace `ClassicFrogJump`.
 - Build **on Windows only** (audio uses the **WMPLib** COM reference — Windows Media Player):
   - `msbuild ClassicFrogGame.sln /p:Configuration=Debug`
-  - Output EXE: `bin\Debug\ClassicFrogGame.exe`
+  - Output EXE: `bin\Debug\ClassicFrogJump.exe`
 - Audio files (`.mp3`) live in `assets\sfx\` and are copied to output via `<Content CopyToOutputDirectory>` in the `.csproj`.
 - There is **no test suite or linter** configured.
 
@@ -62,7 +62,7 @@ Other loop details:
 ## Key Conventions
 
 - Source comments are in **Thai**; keep new comments consistent with the surrounding style.
-- All game classes live in namespace `ClassicFrogGame`; the end-state and high-score forms live in `ClassicFrogGame.Forms`.
+- All game classes live in namespace `ClassicFrogJump`; the end-state and high-score forms live in `ClassicFrogJump.Forms`.
 - Game sprites and per-creature dimensions come from `SpriteConfig` (which itself wraps `Properties.Resources`, e.g. `frog_up`, `frog_jump`). UI-only icons like `sound_on`/`sound_off` are still referenced from `Properties.Resources` directly.
 - Audio is the static `Soundplayer` class (WMPLib / Windows Media Player). It holds one looping `sound` player (start/gameplay music) and one `sfxJump` player reused for all SFX (jump, damage, lotus score, item pickup, winner, game-over). `ToggleMute` mutes both players.
 - **Field size matches the form.** `GameController` defaults to `fieldWidth = 1008, fieldHeight = 661` (the `FormGamePlay` `ClientSize`). The `River` spans `y = 45, height = 300` and the `Road` spans `y = 315, height = 295` (4 lanes), so the road/river collision zones cover the whole play area. The frog spawns centered in the safe zone below the road: `startX = (fieldWidth - Frog.Width)/2`, `startY = fieldHeight - Frog.Height` (its center sits below the road's bottom edge, so it is not immediately in a collision lane). The frog hitbox is **60×50** (`SpriteConfig.Frog`) with `stepSize = 55`.

@@ -103,6 +103,7 @@ namespace ClassicFrogJump
         private void ShowGameOver()
         {
             moveTimer.Stop();
+            SaveCurrentScoreIfAny(); // บันทึกคะแนน
             FormGameOver formGameOver = new FormGameOver(playerName, controller.Score);
             Soundplayer.StopMusic();
             formGameOver.Show();
@@ -111,6 +112,7 @@ namespace ClassicFrogJump
         private void ShowNextLevel()
         {
             moveTimer.Stop();
+            scoreSaved = true; // คะแนนนำไปใช้ต่อ
             FormNextLevel formNextLevel = new FormNextLevel(playerName, controller.Score, controller.NextLevel);
             Soundplayer.StopMusic();
             formNextLevel.Show();
@@ -119,6 +121,7 @@ namespace ClassicFrogJump
         private void ShowGameWinner()
         {
             moveTimer.Stop();
+            SaveCurrentScoreIfAny(); // บันทึกคะแนน
             FormGameWinner formGameWinner = new FormGameWinner(playerName, controller.Score);
             Soundplayer.StopMusic();
             formGameWinner.Show();
@@ -437,9 +440,8 @@ namespace ClassicFrogJump
 
         private void btnPauseRestart_Click(object sender, EventArgs e)
         {
-            SaveCurrentScoreIfAny();
             controller?.RestartGame();
-            scoreSaved = false;
+            scoreSaved = false; // reset score
             frogSprite = SpriteConfig.FrogUp;
             isJumping = false;
             SetPauseOverlayVisible(false);
