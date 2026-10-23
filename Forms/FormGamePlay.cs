@@ -19,6 +19,7 @@ namespace ClassicFrogJump
         private Button btnPauseMenu;
         private Button btnPauseRestart;
         private bool scoreSaved;
+        private bool closingForTransition;
 
         // debug Location (X, Y) , godmode
         private bool showDebug = false;
@@ -107,7 +108,8 @@ namespace ClassicFrogJump
             FormGameOver formGameOver = new FormGameOver(playerName, controller.Score);
             Soundplayer.StopMusic();
             formGameOver.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
         private void ShowNextLevel()
         {
@@ -116,7 +118,8 @@ namespace ClassicFrogJump
             FormNextLevel formNextLevel = new FormNextLevel(playerName, controller.Score, controller.NextLevel);
             Soundplayer.StopMusic();
             formNextLevel.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
         private void ShowGameWinner()
         {
@@ -125,7 +128,8 @@ namespace ClassicFrogJump
             FormGameWinner formGameWinner = new FormGameWinner(playerName, controller.Score);
             Soundplayer.StopMusic();
             formGameWinner.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
         private void UpdateHeartsDisplay()
         {
@@ -335,7 +339,8 @@ namespace ClassicFrogJump
         {
             SaveCurrentScoreIfAny();
             moveTimer?.Stop();
-            Application.Exit();
+            if (!closingForTransition)
+                Application.Exit(); 
         }
         private void btnSound_Click(object sender, EventArgs e)
         {
@@ -435,7 +440,8 @@ namespace ClassicFrogJump
             Soundplayer.StopMusic();
             FormStartGame formStartGame = new FormStartGame(playerName);
             formStartGame.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
 
         private void btnPauseRestart_Click(object sender, EventArgs e)

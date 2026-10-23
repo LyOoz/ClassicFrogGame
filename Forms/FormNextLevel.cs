@@ -8,6 +8,7 @@ namespace ClassicFrogJump.Forms
         private readonly string playerName;
         private readonly int score;
         private readonly int nextLevel;
+        private bool closingForTransition;
 
         public FormNextLevel(string playerName = "ClassicFrog001", int score = 0, int nextLevel = 2)
         {
@@ -28,12 +29,14 @@ namespace ClassicFrogJump.Forms
         {
             FormGamePlay formGamePlay = new FormGamePlay(playerName, nextLevel, score);
             formGamePlay.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
 
         private void FormNextLevel_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!closingForTransition)
+                Application.Exit();
         }
 
     }

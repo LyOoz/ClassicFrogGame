@@ -6,6 +6,7 @@ namespace ClassicFrogJump.Forms
     public partial class FormGameOver : Form
     {
         private readonly string playerName;
+        private bool closingForTransition;
 
         public FormGameOver(string playerName = "ClassicFrog001", int score = 0)
         {
@@ -23,18 +24,21 @@ namespace ClassicFrogJump.Forms
         {
             FormGamePlay formGamePlay = new FormGamePlay(playerName);
             formGamePlay.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
             FormStartGame formStartGame = new FormStartGame(playerName);
             formStartGame.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
         private void FormGameOver_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!closingForTransition)
+                Application.Exit(); 
         }
 
     }

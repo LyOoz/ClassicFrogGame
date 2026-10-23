@@ -112,7 +112,7 @@ namespace ClassicFrogJump
         {
             if (gameState != GameState.Playing) return;
 
-            // Gametimer
+            // Gametimer หมดเวลา
             bool timeRanOut = gameTimer.Update(deltaTime);
             if (timeRanOut)
             {

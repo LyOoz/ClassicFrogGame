@@ -6,6 +6,8 @@ namespace ClassicFrogJump.Forms
     public partial class FormGameWinner : Form
     {
         private readonly string playerName;
+        // true = เปลี่่ยนไป form อื่น
+        private bool closingForTransition;
 
         public FormGameWinner(string playerName = "ClassicFrog001", int score = 0)
         {
@@ -25,18 +27,21 @@ namespace ClassicFrogJump.Forms
         {
             FormGamePlay formGamePlay = new FormGamePlay(playerName);
             formGamePlay.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
         {
             FormStartGame formStartGame = new FormStartGame(playerName);
             formStartGame.Show();
-            this.Hide();
+            closingForTransition = true;
+            this.Close();
         }
         private void FormGameWinner_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            if (!closingForTransition)
+                Application.Exit(); // ปิดจบ
         }
 
     }
