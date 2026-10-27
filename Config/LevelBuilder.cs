@@ -1,10 +1,20 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ClassicFrogJump
 {
     public static class LevelBuilder
     {
+        private static int PickLaneStartX(Random rng, int minX, int maxX, int count, int spacing, int width)
+        {
+            int span = (count - 1) * spacing + width;
+            int lo = minX;
+            int hi = maxX - span;
+            if (hi < lo) hi = lo; // ขอบเขตแคบเกินไป ให้เว้นกันเต็มช่วง
+
+            return rng.Next(lo, hi + 1);
+        }
+
         public static void Build(
             LevelConfig cfg,
             Random rng,
@@ -36,13 +46,12 @@ namespace ClassicFrogJump
             for (int lane = 0; lane < cfg.RoadLanes; lane++)
             {
                 var (dir, type, count, y0, minX, maxX) = cfg.RoadLaneSettings[lane];
-                int x0 = rng.Next(minX, maxX - 200);
+                var enemySet = type == EnemyType.turtle ? SpriteConfig.Turtle : SpriteConfig.Crocodile;
+                int x0 = PickLaneStartX(rng, minX, maxX, count, enemySet.Spacing, enemySet.Width);
 
                 for (int i = 0; i < count; i++)
                 {
-                    var enemySet = type == EnemyType.turtle ? SpriteConfig.Turtle : SpriteConfig.Crocodile;
-                    float enemySpeed = type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed;
-                    var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: enemySpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
+                    var enemy = new EnemyMonster(x0 + i * enemySet.Spacing, y0, enemySet.Width, enemySet.Height, baseSpeed: type == EnemyType.turtle ? cfg.TurtleSpeed : cfg.CrocodileSpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
                     enemy.Sprite = enemySet.Get(dir > 0);
 
                     if (type == EnemyType.turtle)
@@ -64,13 +73,12 @@ namespace ClassicFrogJump
             for (int lane = 0; lane < cfg.RiverLanes; lane++)
             {
                 var (dir, type, count, y0, minX, maxX) = cfg.RiverLaneSettings[lane];
-                int x0 = rng.Next(minX + 50, maxX - 300);
+                var friendSet = type == FriendType.FishBlue ? SpriteConfig.FishBlue : SpriteConfig.FishRed;
+                int x0 = PickLaneStartX(rng, minX, maxX, count, friendSet.Spacing, friendSet.Width);
 
                 for (int i = 0; i < count; i++)
                 {
-                    var friendSet = type == FriendType.FishBlue ? SpriteConfig.FishBlue : SpriteConfig.FishRed;
-                    float friendSpeed = type == FriendType.FishBlue ? cfg.FishBlueSpeed : cfg.FishRedSpeed;
-                    var friend = new FriendMonster(x0 + i * friendSet.Spacing, y0, friendSet.Width, friendSet.Height, baseSpeed: friendSpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
+                    var friend = new FriendMonster(x0 + i * friendSet.Spacing, y0, friendSet.Width, friendSet.Height, baseSpeed: type == FriendType.FishBlue ? cfg.FishBlueSpeed : cfg.FishRedSpeed, movingRight: dir > 0, type: type, minX: minX, maxX: maxX);
                     friend.Sprite = friendSet.Get(dir > 0);
                     friends.Add(friend);
                 }
